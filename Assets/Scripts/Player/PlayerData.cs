@@ -1,0 +1,52 @@
+using Cinemachine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
+
+
+public enum FireWeapon { 주총, 보조총 }; // 이들은 상태가 따로 존재. Scene View에서 true false를 각각해줘야함.
+public enum NotFireWeapon { 칼, 수류탄 };
+public enum Zoom { 줌아웃, 줌인 };
+
+public class PlayerData : MonoBehaviour
+{
+    [SerializeField] private float _hp;
+    [SerializeField] private float _maxhp;
+    [HideInInspector]public float Hp { get { return _hp; } set { _hp = value; OnPlayerHpChanged?.Invoke(); } }
+    [HideInInspector]public float MaxHp { get { return _maxhp; } set { _maxhp = value; } }
+
+    public float Speed;
+    public float StiffnessTime;
+    public Camera Camera;
+    public CinemachineVirtualCamera PlayerVirtualCamera;
+    public FireWeapon CurFireWeapon;
+    public Zoom IsZoom;
+    [HideInInspector]public bool IsDamage;
+    [HideInInspector]public bool IsSafe; 
+
+    // 들고있는 총 상태, 총기류들, 총기류가 아닌 무기들
+    public GameObject[] FireStates;
+    public GameObject[] FireWeapons;
+    public GameObject[] NotFireWeapons;
+
+    //Aim
+    public GameObject[] Aims;
+
+    //총기가 아닌 무기들 공격위치
+    public GameObject[] NotFireAttackPos;
+
+    // Fire총기류들 현재 탄약개수, 수류탄개수
+    public int[] Ammos;
+    public int NumGrenade;
+
+    // 각 무기별 마지막으로 공격한 시간 -> 공격주기체크를위한 변수, 연사가아닌 한번씩누를때에도 공격주기가 충족하도록하기위함.
+    [HideInInspector]public float[] FireLastAttackTime;
+    [HideInInspector] public float[] NotFireLastAttackTime;
+
+
+    public UnityAction OnPlayerHpChanged;
+
+
+}
