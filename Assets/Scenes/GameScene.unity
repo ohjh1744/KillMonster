@@ -2085,7 +2085,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 958f532a2b4037e419228a9e171b85cf,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 958f532a2b4037e419228a9e171b85cf,
         type: 3}
@@ -4210,7 +4210,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 5f7be806bcf25c44f8ca34c780417dc5, type: 2}
-  m_InitialState: 0
+  m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
