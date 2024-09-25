@@ -20,6 +20,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
 
     private Coroutine _turnBloodyRoutine;
     private WaitForSeconds _turnBloodySeconds;
+
     private void Awake()
     {
         Rigid = GetComponent<Rigidbody>();
@@ -43,6 +44,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     // Update is called once per frame
     private void Update()
     {
+        UpRunGage();
         _currentMovementState?.Update();
         _currentAttackState?.Update();
     }
@@ -109,10 +111,14 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         _turnBloodyRoutine = null;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, 1f);
-    //}
+
+    private void UpRunGage()
+    {
+        if (PlayerData.IsRun == false && PlayerData.RunGage <= PlayerData.RunMaxGage)
+        {
+            PlayerData.RunGage += Time.deltaTime;
+        }
+    }
+
 
 }
