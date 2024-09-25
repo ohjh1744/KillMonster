@@ -19,7 +19,10 @@ public class Knife : MonoBehaviour, IAttackTime, ICuttable
             foreach (Collider hit in hits)
             {
                 IDamagable damagable = hit.GetComponent<IDamagable>();
-                damagable.TakeDamage(_damage);
+                if (hit.gameObject.tag != "Player")
+                {
+                    damagable.TakeDamage(_damage);
+                }
             }
         }
 
