@@ -41,7 +41,7 @@ public class IdleAttackState : AttackState
         {
             _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Slash]);
         }
-        if(Input.GetKeyDown(KeyCode.R) || _playerData.Ammos[(int)_playerData.CurFireWeapon] == 0)
+        if(Input.GetKeyDown(KeyCode.R) || _playerData.GetAmmos((int)_playerData.CurFireWeapon) == 0)
         {
             _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.ReLoad]);
         }
@@ -64,5 +64,7 @@ public class IdleAttackState : AttackState
         _playerData.CurFireWeapon = afterFireWeapon;
         //ป๓ลย true
         _playerData.FireStates[(int)_playerData.CurFireWeapon].SetActive(true);
+
+        _playerData.SetAmmos((int)_playerData.CurFireWeapon, _playerData.GetAmmos((int)_playerData.CurFireWeapon));
     }
 }
