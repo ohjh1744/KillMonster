@@ -14,8 +14,8 @@ public class PlayerData : MonoBehaviour
 {
     [SerializeField] private float _hp;
     [SerializeField] private float _maxhp;
-    [HideInInspector]public float Hp { get { return _hp; } set { _hp = value; OnPlayerHpChanged?.Invoke(); } }
-    [HideInInspector]public float MaxHp { get { return _maxhp; } set { _maxhp = value; } }
+    [HideInInspector] public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
+    [HideInInspector] public float MaxHp { get { return _maxhp; } set { _maxhp = value; } }
 
     public float Speed;
     public float StiffnessTime;
@@ -23,8 +23,8 @@ public class PlayerData : MonoBehaviour
     public CinemachineVirtualCamera PlayerVirtualCamera;
     public FireWeapon CurFireWeapon;
     public Zoom IsZoom;
-    [HideInInspector]public bool IsDamage;
-    [HideInInspector]public bool IsSafe; 
+    [HideInInspector] public bool IsDamage;
+    [HideInInspector] public bool IsSafe;
 
     // 들고있는 총 상태, 총기류들, 총기류가 아닌 무기들
     public GameObject[] FireStates;
@@ -38,15 +38,32 @@ public class PlayerData : MonoBehaviour
     public GameObject[] NotFireAttackPos;
 
     // Fire총기류들 현재 탄약개수, 수류탄개수
-    public int[] Ammos;
-    public int NumGrenade;
+    [SerializeField]private int[] Ammos;
+
+    public void SetAmmos(int fireWeapon, int value)
+    {
+        Ammos[fireWeapon] = value;
+        OnAmmosChanged?.Invoke();
+    }
+
+    public int GetAmmos(int fireWeapon)
+    {
+        return Ammos[fireWeapon];
+    }
+    [SerializeField] public int _numGrenade;
+    [HideInInspector] public int NumGrenade { get { return _numGrenade; } set { _numGrenade = value; OnNumGrenadeChanged?.Invoke(); } }
+
+
+
 
     // 각 무기별 마지막으로 공격한 시간 -> 공격주기체크를위한 변수, 연사가아닌 한번씩누를때에도 공격주기가 충족하도록하기위함.
     [HideInInspector]public float[] FireLastAttackTime;
     [HideInInspector] public float[] NotFireLastAttackTime;
 
 
-    public UnityAction OnPlayerHpChanged;
+    public UnityAction OnHpChanged;
+    public UnityAction OnAmmosChanged;
+    public UnityAction OnNumGrenadeChanged;
 
 
 }
