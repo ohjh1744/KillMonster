@@ -59,7 +59,7 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
                 bulletImpact.transform.rotation = Quaternion.LookRotation(bulletAngle);
             }
 
-            if(hit.collider.gameObject.layer == _layerMask)
+            if(hit.collider.gameObject.layer == _layerMask && hit.collider.gameObject.tag != "Player")
             {
                 Debug.Log(hit.collider.name);
                 IDamagable damagable = hit.collider.GetComponent<IDamagable>();
