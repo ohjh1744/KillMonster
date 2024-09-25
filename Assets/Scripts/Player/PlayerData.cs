@@ -31,7 +31,8 @@ public class PlayerData : MonoBehaviour
     public Zoom IsZoom;
     [HideInInspector] public bool IsDamage;
     [HideInInspector] public bool IsSafe;
-
+    [HideInInspector] public bool IsChangeFireWeapon;
+    public float ChangeWeaponTime;
     // 들고있는 총 상태, 총기류들, 총기류가 아닌 무기들
     public GameObject[] FireStates;
     public GameObject[] FireWeapons;
