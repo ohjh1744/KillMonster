@@ -6,7 +6,8 @@ using static PlayerStateMachine;
 public class IdleAttackState : AttackState
 {
     private PlayerStateMachine _player;
-    PlayerData _playerData;
+    private PlayerData _playerData;
+    private float _currentTime; 
     public IdleAttackState(PlayerStateMachine player)
     {
         _player = player;
@@ -19,35 +20,45 @@ public class IdleAttackState : AttackState
 
     public override void Update()
     {
+        if(_playerData.IsChangeFireWeapon == true)
+        {
+            _currentTime -= Time.deltaTime;
+            if(_currentTime - Time.deltaTime < 0)
+            {
+                _playerData.IsChangeFireWeapon = false;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                SwapFireWeapon(FireWeapon.ÁÖÃÑ);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                SwapFireWeapon(FireWeapon.º¸Á¶ÃÑ);
+            }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SwapFireWeapon(FireWeapon.ÁÖÃÑ);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SwapFireWeapon(FireWeapon.º¸Á¶ÃÑ);
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Fire]);
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Zoom]);
-        }
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Slash]);
-        }
-        if(Input.GetKeyDown(KeyCode.R) || _playerData.GetAmmos((int)_playerData.CurFireWeapon) == 0)
-        {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.ReLoad]);
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Throw]);
+            if(Input.GetMouseButtonDown(0))
+            {
+                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Fire]);
+            }
+            if(Input.GetMouseButtonDown(1))
+            {
+                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Zoom]);
+            }
+            if(Input.GetKeyDown(KeyCode.Z))
+            {
+                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Slash]);
+            }
+            if (Input.GetKeyDown(KeyCode.R) || _playerData.GetAmmos((int)_playerData.CurFireWeapon) == 0)
+            {
+                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.ReLoad]);
+            }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Throw]);
+            }
         }
     }
 
@@ -58,6 +69,7 @@ public class IdleAttackState : AttackState
 
     private void SwapFireWeapon(FireWeapon afterFireWeapon)
     {
+        _playerData.IsChangeFireWeapon = true;
         // ÇöÀç»óÅÂ.fase
         _playerData.FireStates[(int)_playerData.CurFireWeapon].SetActive(false);
         //»óÅÂº¯È­
@@ -66,5 +78,8 @@ public class IdleAttackState : AttackState
         _playerData.FireStates[(int)_playerData.CurFireWeapon].SetActive(true);
 
         _playerData.SetAmmos((int)_playerData.CurFireWeapon, _playerData.GetAmmos((int)_playerData.CurFireWeapon));
+
+        _currentTime = _playerData.ChangeWeaponTime;
+        
     }
 }
