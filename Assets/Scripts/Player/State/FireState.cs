@@ -50,7 +50,7 @@ public class FireState : AttackState
     {
         float attackTime = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IAttackTime>().AttackTime;
 
-        if (_playerData.Ammos[(int)_playerData.CurFireWeapon] > 0)
+        if (_playerData.GetAmmos((int)_playerData.CurFireWeapon) > 0)
         {
             if (Time.time - _playerData.FireLastAttackTime[(int)_playerData.CurFireWeapon] > attackTime)
             {
@@ -58,7 +58,7 @@ public class FireState : AttackState
                 shootable.Shoot(_camera);
                 _moveCamera.ApplyRecoil(shootable.ReCoil);
 
-                _playerData.Ammos[(int)_playerData.CurFireWeapon]--;
+                _playerData.SetAmmos((int)_playerData.CurFireWeapon , _playerData.GetAmmos((int)_playerData.CurFireWeapon) - 1);
 
                 _playerData.FireLastAttackTime[(int)_playerData.CurFireWeapon] = Time.time;
                 _anim.SetBool("isFire", true);
