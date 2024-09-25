@@ -71,15 +71,31 @@ public class MoveState : MovementState
 
     private void Run()
     {
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            _playerData.Speed = _originSpeed * 2;
-            _anim.SetBool("isRun", true);
+            if(_playerData.RunGage > 0)
+            {
+                _playerData.IsRun = true;
+                _playerData.RunGage -= Time.deltaTime;
+                _playerData.Speed = _originSpeed * 2;
+                _anim.SetBool("isRun", true);
+            }
+            else
+            {
+                CantRun();
+            }
         }
         else
         {
-            _playerData.Speed = _originSpeed;
-            _anim.SetBool("isRun", false);
+            CantRun();
+            _playerData.IsRun = false;
         }
+    }
+
+    private void CantRun()
+    {
+        _playerData.Speed = _originSpeed;
+        _anim.SetBool("isRun", false);
     }
 }
