@@ -33,6 +33,10 @@ public class MoveState : MovementState
 
     public override void Update()
     {
+        if (_playerData.IsChangeFireWeapon == true)
+        {
+            _anim = _playerData.FireStates[(int)_playerData.CurFireWeapon].GetComponent<Animator>();
+        }
         if (_playerData.IsDamage == true)
         {
             currentTime += Time.deltaTime;
