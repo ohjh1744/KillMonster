@@ -29,7 +29,10 @@ public abstract class Explosive : MonoBehaviour
             foreach (Collider hit in hits)
             {
                 IDamagable damagable = hit.GetComponent<IDamagable>();
-                damagable.TakeDamage(_damage);
+                if (hit.gameObject.tag != "Player")
+                {
+                    damagable.TakeDamage(_damage);
+                }
             }
         }
 
