@@ -40,7 +40,7 @@ public class ReLoadState : AttackState
         Debug.Log("ReLoadState에서 나감!");
 
         _anim.SetBool("isReLoad", false);
-        _playerData.Ammos[(int)_playerData.CurFireWeapon] = _shootable.Bullet;
+        _playerData.SetAmmos((int)_playerData.CurFireWeapon, _shootable.Bullet);
     }
 
     private void ReLoad()
