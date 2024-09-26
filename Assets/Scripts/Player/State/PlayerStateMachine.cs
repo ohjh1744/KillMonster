@@ -12,9 +12,15 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     private AttackState _currentAttackState;
     [HideInInspector] public Rigidbody Rigid;
     [HideInInspector] public PlayerData PlayerData;
+    [SerializeField] private Image _bloody;
+    [SerializeField] private float _turnBloodyTime;
     public MovementState[] MovementStates = new MovementState[(int)EMovementState.Size];
     public AttackState[] AttackStates = new AttackState[(int)EAttackState.Size];
     public Image ReLoadImage;
+
+    private Coroutine _turnBloodyRoutine;
+    private WaitForSeconds _turnBloodySeconds;
+
     private void Awake()
     {
         Rigid = GetComponent<Rigidbody>();
@@ -30,6 +36,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     }
     private void Start()
     {
+        _turnBloodySeconds = new WaitForSeconds(_turnBloodyTime);
         ChangeMovementState(MovementStates[(int)EMovementState.Idle]);
         ChangeAttackState(AttackStates[(int)EAttackState.IdleAttack]);
     }
@@ -37,6 +44,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     // Update is called once per frame
     private void Update()
     {
+        UpRunGage();
         _currentMovementState?.Update();
         _currentAttackState?.Update();
     }
@@ -90,12 +98,27 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     {
         PlayerData.IsDamage = true;
         PlayerData.Hp -= damage;
+        _turnBloodyRoutine = StartCoroutine(TurnBloodyScreen());
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, 1f);
-    //}
+    IEnumerator TurnBloodyScreen()
+    {
+        _bloody.gameObject.SetActive(true);
+
+        yield return _turnBloodySeconds;
+
+        _bloody.gameObject.SetActive(false);
+        _turnBloodyRoutine = null;
+    }
+
+
+    private void UpRunGage()
+    {
+        if (PlayerData.IsRun == false && PlayerData.RunGage <= PlayerData.RunMaxGage)
+        {
+            PlayerData.RunGage += Time.deltaTime;
+        }
+    }
+
 
 }

@@ -11,12 +11,15 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _playerHpText;
     [SerializeField] private TextMeshProUGUI _bulletNumText;
     [SerializeField] private TextMeshProUGUI _grenadeNumText;
+    [SerializeField] private Slider _runBar;
+
     private StringBuilder _sb = new StringBuilder();
     private void OnEnable()
     {
         _playerData.OnHpChanged += UpdateHp;
         _playerData.OnAmmosChanged += UpdateBullet;
         _playerData.OnNumGrenadeChanged += UpdateGrenade;
+        _playerData.OnRunGageChanged += UpdateRunGage;
     }
 
     private void OnDisable()
@@ -24,6 +27,7 @@ public class PlayerUI : MonoBehaviour
         _playerData.OnHpChanged -= UpdateHp;
         _playerData.OnAmmosChanged -= UpdateBullet;
         _playerData.OnNumGrenadeChanged -= UpdateGrenade;
+        _playerData.OnRunGageChanged -= UpdateRunGage;
     }
 
     private void Start()
@@ -31,6 +35,7 @@ public class PlayerUI : MonoBehaviour
         UpdateHp();
         UpdateBullet();
         UpdateGrenade();
+        UpdateRunGage();
     }
     private void UpdateHp()
     {
@@ -51,5 +56,10 @@ public class PlayerUI : MonoBehaviour
         _sb.Clear();
         _sb.Append(_playerData.NumGrenade);
         _grenadeNumText.SetText(_sb);
+    }
+
+    private void UpdateRunGage()
+    {
+        _runBar.value = _playerData.RunGage / _playerData.RunMaxGage;
     }
 }

@@ -18,20 +18,27 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public float MaxHp { get { return _maxhp; } set { _maxhp = value; } }
 
     public float Speed;
+    [SerializeField] private float _runGage;
+    public float RunMaxGage;
+    [HideInInspector] public bool IsRun;
+    [HideInInspector]public float RunGage { get { return _runGage; } set { _runGage = value; OnRunGageChanged?.Invoke(); } }
+
     public float StiffnessTime;
+
     public Camera Camera;
     public CinemachineVirtualCamera PlayerVirtualCamera;
     public FireWeapon CurFireWeapon;
     public Zoom IsZoom;
     [HideInInspector] public bool IsDamage;
     [HideInInspector] public bool IsSafe;
-
+    [HideInInspector] public bool IsChangeFireWeapon;
+    public float ChangeWeaponTime;
     // 들고있는 총 상태, 총기류들, 총기류가 아닌 무기들
     public GameObject[] FireStates;
     public GameObject[] FireWeapons;
     public GameObject[] NotFireWeapons;
 
-    //Aim
+    //Aim이미지
     public GameObject[] Aims;
 
     //총기가 아닌 무기들 공격위치
@@ -64,6 +71,6 @@ public class PlayerData : MonoBehaviour
     public UnityAction OnHpChanged;
     public UnityAction OnAmmosChanged;
     public UnityAction OnNumGrenadeChanged;
-
+    public UnityAction OnRunGageChanged;
 
 }
