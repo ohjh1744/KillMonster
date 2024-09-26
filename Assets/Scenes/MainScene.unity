@@ -1580,8 +1580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6a3e034217114349b5ad7a7f866ae52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SaveData: {fileID: 1560366147}
   _missions: []
-  _saveData: {fileID: 1560366147}
 --- !u!4 &1560366149
 Transform:
   m_ObjectHideFlags: 0
