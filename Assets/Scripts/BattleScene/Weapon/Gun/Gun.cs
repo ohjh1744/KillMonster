@@ -47,7 +47,7 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         _flashWaitForSeconds = new WaitForSeconds(_gunData.FlashTime);
         _reLoadWaitForSeconds = new WaitForSeconds(_gunData.ReLoadTime);
     }
-    public void Shoot(Camera camera)
+    public void Shoot(Camera camera, float playerDamage)
     {
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100))
@@ -64,7 +64,7 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
             {
                 Debug.Log(hit.collider.name);
                 IDamagable damagable = hit.collider.GetComponent<IDamagable>();
-                damagable.TakeDamage(_gunData.Damage);
+                damagable.TakeDamage(_gunData.Damage + playerDamage);
             }
         }
         _fireFlashRoutine = StartCoroutine(FlashEffect());
