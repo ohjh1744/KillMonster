@@ -6,10 +6,6 @@ using UnityEngine.Playables;
 using System.IO;
 using System.Text;
 
-public class SaveData
-{
-    public int MissionNum;
-}
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
