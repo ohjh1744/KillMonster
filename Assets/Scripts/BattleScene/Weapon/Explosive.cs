@@ -18,7 +18,7 @@ public abstract class Explosive : MonoBehaviour
     }
 
 
-    public IEnumerator Explode()
+    public IEnumerator Explode(float playerDamage)
     {
         GameObject explosion = Instantiate(_explosion);
         explosion.transform.position = gameObject.transform.position;
@@ -31,7 +31,7 @@ public abstract class Explosive : MonoBehaviour
                 IDamagable damagable = hit.GetComponent<IDamagable>();
                 if (hit.gameObject.tag != "Player")
                 {
-                    damagable.TakeDamage(_damage);
+                    damagable.TakeDamage(playerDamage + _damage);
                 }
             }
         }
