@@ -6,12 +6,28 @@ using UnityEngine.UI;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] Image _loadingImage;
-    [SerializeField] Slider _loadingBar;
-    [SerializeField] Image _loadingBG;
-    [SerializeField] GameObject _mainUI;
+    public static SceneChanger Instance { get; private set; }
+
+    [SerializeField] private Image _loadingImage;
+    [SerializeField] private Slider _loadingBar;
+    [SerializeField] private Image _loadingBG;
+    [SerializeField] private GameObject _mainUI;
+    [SerializeField] private float _loadingTime;
 
     private Coroutine _loadingRoutine;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void ChangeScene(string sceneName)
     {
         _mainUI.SetActive(false);
@@ -57,11 +73,6 @@ public class SceneChanger : MonoBehaviour
         }
 
         Debug.Log("loading Success");
-        while (Input.anyKeyDown == false)
-        {
-            yield return null;
-        }
-
         oper.allowSceneActivation = true;
         _loadingImage.gameObject.SetActive(false);
     }
