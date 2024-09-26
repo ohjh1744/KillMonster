@@ -24,11 +24,12 @@ public class StatUI
 
 public class UpGradeStats : MonoBehaviour
 {
-    [SerializeField] private SaveData _saveData;
     [SerializeField] private StatUI _damageUi;
     [SerializeField] private StatUI _maxHpUi;
     [SerializeField] private TextMeshProUGUI _goldText;
+    private SaveData _saveData;
     private StringBuilder _sb = new StringBuilder();
+
 
     private void OnEnable()
     {
@@ -50,6 +51,11 @@ public class UpGradeStats : MonoBehaviour
         _saveData.OnUpGradeMaxHpGoldChanged -= UpdateUpGradeMaxHpGold;
         _saveData.OnUpGradeDmaageLevel -= UpdateDamageLevel;
         _saveData.OnUpGradeMaxHpLevel -= UpdateMaxHpLevel;
+    }
+
+    private void Awake()
+    {
+        _saveData = DataManager.Instance.SaveData;
     }
 
     private void Start()
