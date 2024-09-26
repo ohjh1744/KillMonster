@@ -13,10 +13,9 @@ public enum Zoom { ¡‹æ∆øÙ, ¡‹¿Œ };
 public class PlayerData : MonoBehaviour
 {
     [SerializeField] private float _hp;
-    [SerializeField] private float _maxhp;
     [HideInInspector] public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
-    [HideInInspector] public float MaxHp { get { return _maxhp; } set { _maxhp = value; } }
-
+    [SerializeField] private float _damage;
+    [HideInInspector] public float Damage { get { return _damage; } set { _damage = value; } }
     public float Speed;
     [SerializeField] private float _runGage;
     public float RunMaxGage;
