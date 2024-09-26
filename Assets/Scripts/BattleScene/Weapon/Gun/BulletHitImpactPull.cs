@@ -2,27 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletPullManager : MonoBehaviour
+public class BulletHitImpactPull : MonoBehaviour
 {
-    public static BulletPullManager Instance  {get; private set; }
     [SerializeField]private GameObject BulletImpact;
     private List<GameObject>_pool;
 
-    private void Awake()
+    public void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         _pool = new List<GameObject>();
     }
-
     public GameObject Get()
     {
+        Debug.Log("hi");
         GameObject select = null;
 
         foreach (GameObject item in _pool)

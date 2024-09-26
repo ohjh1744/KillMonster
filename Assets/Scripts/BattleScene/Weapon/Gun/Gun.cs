@@ -21,6 +21,7 @@ public class GunData
     public float FlashTime;
     public GameObject FireFlash;
     public Image ReLoadImage;
+    public BulletHitImpactPull BulletHitImpactPull;
 }
 
 public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
@@ -53,7 +54,7 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         {
             if(hit.collider.tag != "Player")
             {
-                GameObject bulletImpact = BulletPullManager.Instance.Get();
+                GameObject bulletImpact = _gunData.BulletHitImpactPull.Get();
                 bulletImpact.transform.position = hit.point;
                 Vector3 bulletAngle = camera.transform.position - hit.point;
                 bulletImpact.transform.rotation = Quaternion.LookRotation(bulletAngle);
