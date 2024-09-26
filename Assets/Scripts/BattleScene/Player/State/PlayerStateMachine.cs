@@ -37,6 +37,8 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     private void Start()
     {
         _turnBloodySeconds = new WaitForSeconds(_turnBloodyTime);
+        PlayerData.Hp = PlayerData.Hp + DataManager.Instance.SaveData.CurrentMaxHp;
+        PlayerData.Damage = DataManager.Instance.SaveData.CurrentDamage;
         ChangeMovementState(MovementStates[(int)EMovementState.Idle]);
         ChangeAttackState(AttackStates[(int)EAttackState.IdleAttack]);
     }

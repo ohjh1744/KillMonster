@@ -11,10 +11,12 @@ public class Stone : MonoBehaviour, IThrowable
     [SerializeField] private Rigidbody _rigid;
 
     private Vector3 _targetPos;
+    private float _bossDamage;
     public Vector3 Target { get { return _targetPos; } set { _targetPos = value; } }
 
-    public void Throw()
+    public void Throw(float bossDamage)
     {
+        _bossDamage = bossDamage;
         Vector3 direction = Target - transform.position;
         _rigid.AddForce(direction * _power, ForceMode.Impulse);
     }
@@ -39,7 +41,7 @@ public class Stone : MonoBehaviour, IThrowable
             if (collision.gameObject.tag == "Player")
             {
                 IDamagable damagable = collision.gameObject.GetComponent<IDamagable>();
-                damagable.TakeDamage(_damage);
+                damagable.TakeDamage(_damage + _bossDamage);
                 Destroy(gameObject);
             }
         }

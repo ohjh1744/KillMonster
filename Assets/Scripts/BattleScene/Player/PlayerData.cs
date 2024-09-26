@@ -13,10 +13,9 @@ public enum Zoom { 줌아웃, 줌인 };
 public class PlayerData : MonoBehaviour
 {
     [SerializeField] private float _hp;
-    [SerializeField] private float _maxhp;
     [HideInInspector] public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
-    [HideInInspector] public float MaxHp { get { return _maxhp; } set { _maxhp = value; } }
-
+    private float _damage;
+    [HideInInspector] public float Damage { get { return _damage; } set { _damage = value; } }
     public float Speed;
     [SerializeField] private float _runGage;
     public float RunMaxGage;
@@ -59,9 +58,6 @@ public class PlayerData : MonoBehaviour
     }
     [SerializeField] public int _numGrenade;
     [HideInInspector] public int NumGrenade { get { return _numGrenade; } set { _numGrenade = value; OnNumGrenadeChanged?.Invoke(); } }
-
-
-
 
     // 각 무기별 마지막으로 공격한 시간 -> 공격주기체크를위한 변수, 연사가아닌 한번씩누를때에도 공격주기가 충족하도록하기위함.
     [HideInInspector]public float[] FireLastAttackTime;

@@ -7,7 +7,7 @@ public interface IShootable
     public int Bullet { get; set; }
     public float ReCoil { get; set; }
     public bool IsReLoad { get; set; }
-    public void Shoot(Camera camera);
+    public void Shoot(Camera camera, float damage);
     public void ReLoad();
 
     public GameObject FireFlash { get; set; }

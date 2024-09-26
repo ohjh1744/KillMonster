@@ -56,7 +56,7 @@ public class ThrowState : AttackState
             grenade.transform.rotation = _throwPos.transform.rotation;
             _playerData.NumGrenade--;
             IThrowable throwable = grenade.GetComponent<IThrowable>();
-            throwable.Throw();
+            throwable.Throw(DataManager.Instance.SaveData.Damage);
 
             _playerData.NotFireLastAttackTime[(int)NotFireWeapon.¼ö·ùÅº] = Time.time;
         }

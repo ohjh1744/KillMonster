@@ -13,6 +13,7 @@ public class FireState : AttackState
     private MoveCamera _moveCamera;
     private Camera _camera;
 
+    private float _playerDamage;
     private int _fireHash = Animator.StringToHash("Fire");
     private int _zoomFireHash = Animator.StringToHash("ZoomFire");
     public FireState(PlayerStateMachine player)
@@ -21,6 +22,7 @@ public class FireState : AttackState
         _playerData = _player.PlayerData;
         _camera = _player.PlayerData.Camera;
         _moveCamera = _playerData.GetComponent<MoveCamera>();
+        _playerDamage = _playerData.Damage;
     }
 
     public override void Enter()
@@ -55,7 +57,7 @@ public class FireState : AttackState
             if (Time.time - _playerData.FireLastAttackTime[(int)_playerData.CurFireWeapon] > attackTime)
             {
                 IShootable shootable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IShootable>();
-                shootable.Shoot(_camera);
+                shootable.Shoot(_camera, _playerDamage);
                 _moveCamera.ApplyRecoil(shootable.ReCoil);
 
                 _playerData.SetAmmos((int)_playerData.CurFireWeapon , _playerData.GetAmmos((int)_playerData.CurFireWeapon) - 1);
