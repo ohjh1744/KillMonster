@@ -9,9 +9,9 @@ using System.Text;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
+    public SaveData SaveData;
     [SerializeField] private MissionData[] _missions;
     [SerializeField] private Dictionary<int, MissionData> _dataDic;
-    [SerializeField] private SaveData _saveData;
 
     private int _currentMissionNum;
 
@@ -44,7 +44,7 @@ public class DataManager : MonoBehaviour
         {
             Directory.CreateDirectory(path.ToString());
         }
-        string json = JsonUtility.ToJson(_saveData);
+        string json = JsonUtility.ToJson(SaveData);
         File.WriteAllText($"{path}/save.txt", json);
     }
 
@@ -58,8 +58,8 @@ public class DataManager : MonoBehaviour
             return;
         }
         string json = File.ReadAllText(path.ToString());
-        _saveData = JsonUtility.FromJson<SaveData>(json);
-        _currentMissionNum = _saveData.MissionNum;
+        SaveData = JsonUtility.FromJson<SaveData>(json);
+        _currentMissionNum = SaveData.MissionNum;
 
     }
 }
