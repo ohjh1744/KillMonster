@@ -14,7 +14,7 @@ public class PlayerData : MonoBehaviour
 {
     [SerializeField] private float _hp;
     [HideInInspector] public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
-    [SerializeField] private float _damage;
+    private float _damage;
     [HideInInspector] public float Damage { get { return _damage; } set { _damage = value; } }
     public float Speed;
     [SerializeField] private float _runGage;
