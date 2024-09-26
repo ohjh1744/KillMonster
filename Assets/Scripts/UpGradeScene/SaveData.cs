@@ -10,6 +10,8 @@ public class SaveData : MonoBehaviour
     [SerializeField] private Stat MaxHpState;
     [SerializeField] private int _gold;
 
+    public float CurrentDamage { get { return DamageState.CurrentStat; } set { DamageState.CurrentStat = value;} }
+    public float CurrentMaxHp { get { return MaxHpState.CurrentStat; } set { MaxHpState.CurrentStat = value; } }
     public float Damage { get { return DamageState.UpGradeStat; } set { DamageState.UpGradeStat = value; OnUpGradeDamageChanged?.Invoke(); } }
     public float MaxHp {  get { return MaxHpState.UpGradeStat; } set { MaxHpState.UpGradeStat = value; OnUpGradeMaxHpChagned?.Invoke(); } }
     public int Gold { get { return _gold; } set { _gold = value; OnGoldChanged?.Invoke(); } }
