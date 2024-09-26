@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class SceneChanger : MonoBehaviour
 {
-    public static SceneChanger Instance { get; private set; }
-
     [SerializeField] private Image _loadingImage;
     [SerializeField] private Slider _loadingBar;
     [SerializeField] private Image _loadingBG;
@@ -16,18 +14,6 @@ public class SceneChanger : MonoBehaviour
 
     private Coroutine _loadingRoutine;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
     public void ChangeScene(string sceneName)
     {
         _mainUI.SetActive(false);
@@ -65,10 +51,10 @@ public class SceneChanger : MonoBehaviour
 
         //Fake Loading
         float time = 0f;
-        while(time < 5f)
+        while(time < _loadingTime)
         {
             time += Time.deltaTime;
-            _loadingBar.value = time / 5f;
+            _loadingBar.value = time / _loadingTime;
             yield return null;
         }
 
