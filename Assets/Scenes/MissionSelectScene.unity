@@ -518,7 +518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &214261860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2321,7 +2321,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: GameScene
+          m_StringArgument: MainScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &961853033
@@ -3915,7 +3915,7 @@ MonoBehaviour:
   _loadingBar: {fileID: 1453150247}
   _loadingBG: {fileID: 362775205}
   _mainUI: {fileID: 1574016933}
-  _loadingTime: 0
+  _loadingTime: 3
 --- !u!4 &1678571192
 Transform:
   m_ObjectHideFlags: 0
