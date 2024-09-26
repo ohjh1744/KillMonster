@@ -783,7 +783,7 @@ MonoBehaviour:
   _loadingBar: {fileID: 1856304129}
   _loadingBG: {fileID: 696420306}
   _mainUI: {fileID: 1862048485}
-  _loadingTime: 0
+  _loadingTime: 3
 --- !u!4 &571063984
 Transform:
   m_ObjectHideFlags: 0
