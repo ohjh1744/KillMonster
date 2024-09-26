@@ -10,13 +10,14 @@ public class Grenade : Explosive, IAttackTime, IThrowable
     private float _attackTime;
     [SerializeField]
     private float _power;
-
+    private float _playerDamage;
     public float AttackTime { get { return _attackTime; } set { _attackTime = value; } }
 
     public Vector3 Target { get; set; }
-    public void Throw()
+    public void Throw(float damage)
     {
         _rigid.AddForce(_rigid.transform.forward * _power, ForceMode.Impulse);
+        _playerDamage = damage;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -26,7 +27,7 @@ public class Grenade : Explosive, IAttackTime, IThrowable
             // explosion이 여러곳에서 발생하는 버그 fix를 위해
             if(_coroutine == null)
             {
-                _coroutine = StartCoroutine(Explode());
+                _coroutine = StartCoroutine(Explode(_playerDamage));
             }
         }
     }
