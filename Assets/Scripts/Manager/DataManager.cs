@@ -9,9 +9,9 @@ using System.Text;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
-    [SerializeField] MissionData[] _missions;
-    [SerializeField] Dictionary<int, MissionData> _dataDic;
-    [SerializeField] SaveData _saveData;
+    [SerializeField] private MissionData[] _missions;
+    [SerializeField] private Dictionary<int, MissionData> _dataDic;
+    [SerializeField] private SaveData _saveData;
 
     private int _currentMissionNum;
 
