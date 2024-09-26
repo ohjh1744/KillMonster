@@ -8,6 +8,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Stat
 {
+    public float CurrentStat;
     public float UpGradeStat;
     public int  UpGradeStatGold;
     public int Level;
@@ -73,6 +74,7 @@ public class UpGradeStats : MonoBehaviour
     {
         if (_saveData.UpGradeDamageLevel < _saveData.DamageMaxLevel && _saveData.Gold >= _saveData.UpGradeDamageGold)
         {
+            _saveData.CurrentDamage += _saveData.Damage;
             _saveData.Damage += _saveData.Damage;
             _saveData.Gold -= _saveData.UpGradeDamageGold;
             _saveData.UpGradeDamageGold += _saveData.UpGradeDamageGold;
@@ -85,6 +87,7 @@ public class UpGradeStats : MonoBehaviour
     {
         if (_saveData.UpGradeMaxHpLevel < _saveData.MaxHpMaxLevel && _saveData.Gold >= _saveData.UpGradeMaxHpGold)
         {
+            _saveData.CurrentMaxHp += _saveData.MaxHp;
             _saveData.MaxHp += _saveData.MaxHp;
             _saveData.Gold -= _saveData.UpGradeMaxHpGold;
             _saveData.UpGradeMaxHpGold += _saveData.UpGradeMaxHpGold;
