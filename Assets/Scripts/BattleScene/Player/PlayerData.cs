@@ -66,6 +66,7 @@ public class PlayerData : MonoBehaviour
     [HideInInspector] public float[] NotFireLastAttackTime;
 
     [SerializeField] public AudioClip[] AudioClips;
+    [SerializeField] public float[] AudioTimes;
 
     public UnityAction OnHpChanged;
     public UnityAction OnAmmosChanged;
