@@ -19,8 +19,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameState = GameState.¡ÿ∫Ò;
-        SoundManager.Instance.PlayeBGM(_bgm);
         _finishStartTime = (float)_startTimeLine.duration;
+    }
+
+    private void Start()
+    {
+        SoundManager.Instance.PlayeBGM(_bgm);
     }
 
     private void Update()
