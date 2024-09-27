@@ -30,12 +30,12 @@ public class BossWorldAreaAttack : MonoBehaviour
         _originPriority = _playerNoiseCamera.Priority;
     }
 
-    public void Attack(int bossDamage, Animator anim, string st)
+    public void Attack(int bossDamage, Animator anim, string st, AudioClip attackClip, AudioSource audioSource)
     {
-        _coroutine = StartCoroutine(RoarAttack(bossDamage, anim, st));
+        _coroutine = StartCoroutine(RoarAttack(bossDamage, anim, st, attackClip, audioSource));
     }
 
-    private IEnumerator RoarAttack(int bossDamage, Animator anim, string st)
+    private IEnumerator RoarAttack(int bossDamage, Animator anim, string st, AudioClip attackClip, AudioSource audioSource)
     {
         if (_safeZone != null)
         {
@@ -47,6 +47,8 @@ public class BossWorldAreaAttack : MonoBehaviour
         anim.Play("Idle");
         yield return _waitRoarSeconds;
 
+        audioSource.spatialBlend = 0f;
+        audioSource.PlayOneShot(attackClip);
         anim.Play(st);
 
         _playerNoiseCamera.Priority = _originPriority * 2;
@@ -76,6 +78,7 @@ public class BossWorldAreaAttack : MonoBehaviour
             yield return _damageRateSeconds;
         }
 
+        audioSource.spatialBlend = 1f;
         _playerNoiseCamera.Priority = _originPriority;
         if(_safeZone != null)
         {
