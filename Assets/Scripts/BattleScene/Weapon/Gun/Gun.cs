@@ -48,9 +48,9 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         _flashWaitForSeconds = new WaitForSeconds(_gunData.FlashTime);
         _reLoadWaitForSeconds = new WaitForSeconds(_gunData.ReLoadTime);
     }
-    public void Shoot(Camera camera, float playerDamage)
+    public void Shoot(Camera camera, float playerDamage, AudioSource audioSource)
     {
-        SoundManager.Instance.PlaySFX(_shootClip);
+        audioSource.PlayOneShot(_shootClip);
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100))
         {
@@ -81,9 +81,9 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         _fireFlashRoutine = null;
     }
 
-    public void ReLoad()
+    public void ReLoad(AudioSource audioSource)
     {
-        SoundManager.Instance.PlaySFX(_reLoadClip);
+        audioSource.PlayOneShot(_reLoadClip);
         _reLoadRoutine = StartCoroutine(ReLoading());
     }
 
