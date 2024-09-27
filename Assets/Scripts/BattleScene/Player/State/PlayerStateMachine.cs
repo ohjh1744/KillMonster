@@ -12,6 +12,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     private AttackState _currentAttackState;
     [HideInInspector] public Rigidbody Rigid;
     [HideInInspector] public PlayerData PlayerData;
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private Image _bloody;
     [SerializeField] private float _turnBloodyTime;
     public MovementState[] MovementStates = new MovementState[(int)EMovementState.Size];
@@ -46,9 +47,12 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     // Update is called once per frame
     private void Update()
     {
-        UpRunGage();
-        _currentMovementState?.Update();
-        _currentAttackState?.Update();
+        if(_gameManager.GameState == GameState.Ω√¿€)
+        {
+            UpRunGage();
+            _currentMovementState?.Update();
+            _currentAttackState?.Update();
+        }
     }
 
     private void FixedUpdate()
