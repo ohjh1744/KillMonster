@@ -101,6 +101,8 @@ MonoBehaviour:
   _damage: 50
   _range: 1
   _explosion: {fileID: 1427962332153456, guid: 301583a5af63a494298d60cd9f296909, type: 3}
+  _throwClip: {fileID: 8300000, guid: a640cc6972f037f4ca8f590635bb4f2a, type: 3}
+  _explodeClip: {fileID: 8300000, guid: ca80aad89fdc47a4b91e62a663ebd1f0, type: 3}
   _attackTime: 1
   _power: 20
 --- !u!54 &-7554402388852987344
