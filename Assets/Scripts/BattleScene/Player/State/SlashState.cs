@@ -9,6 +9,7 @@ public class SlashState : AttackState
     private PlayerData _playerData;
     private Animator _anim;
 
+    private float _attackLastTime;
     private float _playerDamage;
     private int _slashHash = Animator.StringToHash("Slash");
 
@@ -18,6 +19,7 @@ public class SlashState : AttackState
         _playerData = _player.PlayerData;
         _knifePos = _playerData.NotFireAttackPos[(int)NotFireWeapon.Į].transform;
         _playerDamage = _playerData.Damage;
+        _attackLastTime = 0f;
     }
     public override void Enter()
     {
@@ -43,12 +45,12 @@ public class SlashState : AttackState
     {
         float attackTime = _playerData.NotFireWeapons[(int)NotFireWeapon.Į].GetComponent<IAttackTime>().AttackTime;
 
-        if (Time.time - _playerData.NotFireLastAttackTime[(int)NotFireWeapon.Į] > attackTime)
+        if (Time.time - _attackLastTime > attackTime)
         {
             ICuttable cuttable = _playerData.NotFireWeapons[(int)NotFireWeapon.Į].GetComponent<ICuttable>();
             cuttable.Cut(_knifePos.position, _playerDamage);
 
-            _playerData.NotFireLastAttackTime[(int)NotFireWeapon.Į] = Time.time;
+            _attackLastTime = Time.time;
             _anim.SetBool("isSlash", true);
             _anim.Play(_slashHash);
         }
