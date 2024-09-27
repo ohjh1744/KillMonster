@@ -13,6 +13,7 @@ public class FireState : AttackState
     private MoveCamera _moveCamera;
     private Camera _camera;
 
+    private float _attackLastTime;
     private float _playerDamage;
     private int _fireHash = Animator.StringToHash("Fire");
     private int _zoomFireHash = Animator.StringToHash("ZoomFire");
@@ -23,6 +24,7 @@ public class FireState : AttackState
         _camera = _player.PlayerData.Camera;
         _moveCamera = _playerData.GetComponent<MoveCamera>();
         _playerDamage = _playerData.Damage;
+        _attackLastTime = 0f;
     }
 
     public override void Enter()
@@ -54,7 +56,7 @@ public class FireState : AttackState
 
         if (_playerData.GetAmmos((int)_playerData.CurFireWeapon) > 0)
         {
-            if (Time.time - _playerData.FireLastAttackTime[(int)_playerData.CurFireWeapon] > attackTime)
+            if (Time.time - _attackLastTime > attackTime)
             {
                 IShootable shootable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IShootable>();
                 shootable.Shoot(_camera, _playerDamage);
@@ -62,7 +64,7 @@ public class FireState : AttackState
 
                 _playerData.SetAmmos((int)_playerData.CurFireWeapon , _playerData.GetAmmos((int)_playerData.CurFireWeapon) - 1);
 
-                _playerData.FireLastAttackTime[(int)_playerData.CurFireWeapon] = Time.time;
+                _attackLastTime = Time.time;
                 _anim.SetBool("isFire", true);
                 if(_playerData.IsZoom == Zoom.ÁÜ¾Æ¿ô)
                 {
