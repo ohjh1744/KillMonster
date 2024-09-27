@@ -61,10 +61,6 @@ public class PlayerData : MonoBehaviour
     [SerializeField] public int _numGrenade;
     [HideInInspector] public int NumGrenade { get { return _numGrenade; } set { _numGrenade = value; OnNumGrenadeChanged?.Invoke(); } }
 
-    // 각 무기별 마지막으로 공격한 시간 -> 공격주기체크를위한 변수, 연사가아닌 한번씩누를때에도 공격주기가 충족하도록하기위함.
-    [HideInInspector]public float[] FireLastAttackTime;
-    [HideInInspector] public float[] NotFireLastAttackTime;
-
     [SerializeField] public AudioClip[] AudioClips;
     [SerializeField] public float[] AudioTimes;
 
