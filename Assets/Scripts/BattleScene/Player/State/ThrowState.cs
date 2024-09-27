@@ -14,12 +14,14 @@ public class ThrowState : AttackState
     private Animator _anim;
 
     private int _throwHash = Animator.StringToHash("Throw");
+    private float _attackLastTime;
 
     public ThrowState(PlayerStateMachine player)
     {
         _player = player;
         _playerData = _player.PlayerData;
         _throwPos = _playerData.NotFireAttackPos[(int)NotFireWeapon.¼ö·ùÅº].transform;
+        _attackLastTime = 0f;
     }
     public override void Enter()
     {
@@ -47,7 +49,7 @@ public class ThrowState : AttackState
     {
         float attackTime = _playerData.NotFireWeapons[(int)NotFireWeapon.¼ö·ùÅº].GetComponent<IAttackTime>().AttackTime;
 
-        if (Time.time - _playerData.NotFireLastAttackTime[(int)NotFireWeapon.¼ö·ùÅº] > attackTime && _playerData.NumGrenade > 0)
+        if (Time.time - _attackLastTime > attackTime && _playerData.NumGrenade > 0)
         {
             _anim.SetBool("isThrow", true);
             _anim.Play(_throwHash);
@@ -58,7 +60,7 @@ public class ThrowState : AttackState
             IThrowable throwable = grenade.GetComponent<IThrowable>();
             throwable.Throw(DataManager.Instance.SaveData.Damage);
 
-            _playerData.NotFireLastAttackTime[(int)NotFireWeapon.¼ö·ùÅº] = Time.time;
+            _attackLastTime = Time.time;
         }
     }
 
