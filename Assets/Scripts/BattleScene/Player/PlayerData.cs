@@ -10,7 +10,7 @@ public enum FireWeapon { ÁÖÃÑ, º¸Á¶ÃÑ }; // ÀÌµéÀº »óÅÂ°¡ µû·Î Á¸Àç. Scene View¿
 public enum NotFireWeapon { Ä®, ¼ö·ùÅº };
 public enum Zoom { ÁÜ¾Æ¿ô, ÁÜÀÎ };
 
-public enum Sound { °È±â, ¶Ù±â};
+public enum Sound { °È±â, ¶Ù±â, ÃÑ±³Ã¼, ÇÇ°İ};
 
 public class PlayerData : MonoBehaviour
 {
