@@ -9,9 +9,10 @@ public class Knife : MonoBehaviour, IAttackTime, ICuttable
 
     public float AttackTime { get { return _attackTime; } set { _attackTime = value; } }
 
-    public void Cut(Vector3 pos, float playerDamage)
+    public void Cut(Vector3 pos, float playerDamage, AudioSource audioSource)
     {
         SoundManager.Instance.PlaySFX(_slashClip);
+        audioSource.PlayOneShot(_slashClip);
         Collider[] hits = Physics.OverlapSphere(pos, _range,  LayerMask.GetMask("Damagable"));
         if (hits.Length > 0)
         {
