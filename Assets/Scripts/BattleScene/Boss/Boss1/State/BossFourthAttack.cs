@@ -10,6 +10,8 @@ public class BossFourthAttack : BossState
     private NavMeshAgent _navMesh;
     private BossWorldAreaAttack _bossWorldAreaAttack;
     private Animator anim;
+    private AudioClip _fourthAttack;
+    private AudioSource _audioSource;
     public BossFourthAttack(BossStateMachine boss)
     {
         this._boss = boss;
@@ -17,6 +19,8 @@ public class BossFourthAttack : BossState
         _navMesh = _bossData.NavMesh;
         _bossWorldAreaAttack = _bossData.BossWorldAreaAttack;
         anim = _bossData.Anim;
+        _fourthAttack = _bossData.AudioClips[(int)BossSound.FourthAttack];
+        _audioSource = _boss.AudioSource;
     }
     public override void Enter()
     {
@@ -24,7 +28,7 @@ public class BossFourthAttack : BossState
         _navMesh.enabled = false;
         _boss.transform.LookAt(_bossData.Player.transform);
         anim.Play("FourthAttack", -1, 0);
-        _bossWorldAreaAttack.Attack(_bossData.BasicDamage, anim, "FourthAttack");
+        _bossWorldAreaAttack.Attack(_bossData.BasicDamage, anim, "FourthAttack", _fourthAttack, _audioSource);
     }
 
     public override void Update()

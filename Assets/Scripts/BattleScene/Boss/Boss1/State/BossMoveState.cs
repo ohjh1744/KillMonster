@@ -11,7 +11,10 @@ public class BossMoveState : BossState
     private Transform _player;
     private float _speed;
     private Animator _anim;
+    private AudioSource _audioSource;
+    private AudioClip _moveClip;
 
+    private float _curMoveSoundTime;
     private float probability;
     private float _bossUpsetHp;
     public BossMoveState(BossStateMachine boss)
@@ -23,18 +26,22 @@ public class BossMoveState : BossState
         _speed = _bossData.Speed;
         _anim = _bossData.Anim;
         _bossUpsetHp = _bossData.Hp / 2;
+        _audioSource = boss.AudioSource;
+        _moveClip = _bossData.AudioClips[(int)BossSound.Walk];
     }
     public override void Enter()
     {
         Debug.Log("BossMoveStateø° ¡¯¿‘");
         _navMesh.enabled = true;
         _navMesh.speed = _speed;
-    }
+        _curMoveSoundTime = 0;
+}
 
     public override void Update()
     {
+        PlayMoveSound();
         Move();
-        if(_bossData.IsUpset == false && _bossData.Hp < _bossUpsetHp && _boss._isChange == false)
+        if (_bossData.IsUpset == false && _bossData.Hp < _bossUpsetHp && _boss._isChange == false)
         {
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Upset]);
@@ -69,6 +76,15 @@ public class BossMoveState : BossState
     public override void FixedUpdate()
     {
 
+    }
+
+    private void PlayMoveSound()
+    {
+        if (Time.time - _curMoveSoundTime > _moveClip.length/ _moveClip.length)
+        {
+            _audioSource.PlayOneShot(_moveClip);
+            _curMoveSoundTime = Time.time;
+        }
     }
 
     private void Move()

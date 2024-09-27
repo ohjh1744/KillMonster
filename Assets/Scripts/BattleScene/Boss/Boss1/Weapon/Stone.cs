@@ -9,13 +9,15 @@ public class Stone : MonoBehaviour, IThrowable
     [SerializeField]private float _power;
     [SerializeField]private float _remainTime;
     [SerializeField] private Rigidbody _rigid;
+    [SerializeField] private AudioClip _throwClip;
 
     private Vector3 _targetPos;
     private float _bossDamage;
     public Vector3 Target { get { return _targetPos; } set { _targetPos = value; } }
 
-    public void Throw(float bossDamage)
+    public void Throw(float bossDamage, AudioSource audioSource)
     {
+        audioSource.PlayOneShot(_throwClip);
         _bossDamage = bossDamage;
         Vector3 direction = Target - transform.position;
         _rigid.AddForce(direction * _power, ForceMode.Impulse);
