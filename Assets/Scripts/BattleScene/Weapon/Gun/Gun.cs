@@ -27,7 +27,8 @@ public class GunData
 public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
 {
     [SerializeField] private GunData _gunData;
-    [SerializeField] private AudioClip _audioClip;
+    [SerializeField] private AudioClip _shootClip;
+    [SerializeField] private AudioClip _reLoadClip;
     private Coroutine _fireFlashRoutine;
     private WaitForSeconds _flashWaitForSeconds;
     private Coroutine _reLoadRoutine;
@@ -49,7 +50,7 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
     }
     public void Shoot(Camera camera, float playerDamage)
     {
-        SoundManager.Instance.PlaySFX(_audioClip);
+        SoundManager.Instance.PlaySFX(_shootClip);
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100))
         {
@@ -82,6 +83,7 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
 
     public void ReLoad()
     {
+        SoundManager.Instance.PlaySFX(_reLoadClip);
         _reLoadRoutine = StartCoroutine(ReLoading());
     }
 
