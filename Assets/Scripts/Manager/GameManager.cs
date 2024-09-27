@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameState GameState;
 
 
+
     private void Awake()
     {
         GameState = GameState.¡ÿ∫Ò;
