@@ -47,6 +47,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     // Update is called once per frame
     private void Update()
     {
+
         if(_gameManager.GameState == GameState.Ω√¿€)
         {
             UpRunGage();
