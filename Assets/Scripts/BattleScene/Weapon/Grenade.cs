@@ -13,9 +13,9 @@ public class Grenade : Explosive, IAttackTime, IThrowable
     public float AttackTime { get { return _attackTime; } set { _attackTime = value; } }
 
     public Vector3 Target { get; set; }
-    public void Throw(float damage)
+    public void Throw(float damage, AudioSource audioSource)
     {
-        SoundManager.Instance.PlaySFX(_throwClip);
+        audioSource.PlayOneShot(_throwClip);
         _rigid.AddForce(_rigid.transform.forward * _power, ForceMode.Impulse);
         _playerDamage = damage;
     }
