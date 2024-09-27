@@ -7,11 +7,13 @@ public class IdleAttackState : AttackState
 {
     private PlayerStateMachine _player;
     private PlayerData _playerData;
+    private AudioClip _changeGunClip;
     private float _currentTime; 
     public IdleAttackState(PlayerStateMachine player)
     {
         _player = player;
         _playerData = player.PlayerData;
+        _changeGunClip = _playerData.AudioClips[(int)Sound.총교체];
     }
     public override void Enter()
     {
@@ -69,6 +71,7 @@ public class IdleAttackState : AttackState
 
     private void SwapFireWeapon(FireWeapon afterFireWeapon)
     {
+        SoundManager.Instance.PlaySFX(_changeGunClip);
         _playerData.IsChangeFireWeapon = true;
         // 현재상태.fase
         _playerData.FireStates[(int)_playerData.CurFireWeapon].SetActive(false);
