@@ -856,7 +856,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 713d6645f7dc816418c67d9122072e84, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1558,11 +1558,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MissionNum: 0
   DamageState:
+    CurrentStat: 0
     UpGradeStat: 5
     UpGradeStatGold: 5
     Level: 0
     MaxLevel: 5
   MaxHpState:
+    CurrentStat: 0
     UpGradeStat: 10
     UpGradeStatGold: 5
     Level: 0
