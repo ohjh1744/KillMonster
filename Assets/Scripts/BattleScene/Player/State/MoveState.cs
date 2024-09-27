@@ -15,13 +15,13 @@ public class MoveState : MovementState
     private Rigidbody _rigid;
     private float canMoveTime;
     private float currentTime;
+    private bool _isRun;
 
     public MoveState(PlayerStateMachine player)
     {
         _player = player;
         _playerData = _player.PlayerData;
         _originSpeed = _playerData.Speed;
-        //_controller = _player.GetComponent<CharacterController>();
         _rigid = _player.Rigid;
         canMoveTime = _playerData.StiffnessTime;
     }
@@ -29,6 +29,7 @@ public class MoveState : MovementState
     {
         Debug.Log("현재 Walk State에 진입!");
         _anim = _playerData.FireStates[(int)_playerData.CurFireWeapon].GetComponent<Animator>();
+        //SoundManager.Instance.PlaySFX(_playerData.AudioClips[(int)Sound.걷기]);
     }
 
     public override void Update()
@@ -69,13 +70,10 @@ public class MoveState : MovementState
         dir.y = 0f;
 
         _rigid.velocity = dir;
-        //_controller.Move(dir);
-
     }
 
     private void Run()
     {
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             if(_playerData.RunGage > 0)
