@@ -9,6 +9,8 @@ public class MoveState : MovementState
     private PlayerStateMachine _player;
     private PlayerData _playerData;
     private Animator _anim;
+    private AudioClip _walkClip;
+    private AudioClip _runClip;
     private float _originSpeed;
     private Vector3 _moveDir;
     private Rigidbody _rigid;
@@ -30,6 +32,8 @@ public class MoveState : MovementState
         _cantMoveTime = _playerData.StiffnessTime;
         _walkSoundTime = _playerData.AudioTimes[(int)Sound.°È±â];
         _runSoundTime = _playerData.AudioTimes[(int)Sound.¶Ù±â];
+        _walkClip = _playerData.AudioClips[(int)Sound.°È±â];
+        _runClip = _playerData.AudioClips[(int)Sound.¶Ù±â];
     }
     public override void Enter()
     {
@@ -76,7 +80,7 @@ public class MoveState : MovementState
     {
         if (Time.time - _curWalkSoundTime > _walkSoundTime && _isRun == false)
         {
-            SoundManager.Instance.PlaySFX(_playerData.AudioClips[(int)Sound.°È±â]);
+            SoundManager.Instance.PlaySFX(_walkClip);
             _curWalkSoundTime = Time.time;
         }
     }
@@ -103,7 +107,7 @@ public class MoveState : MovementState
         if (Time.time - _curRunSoundTime > _runSoundTime && _isRun == true)
         {
             SoundManager.Instance.StopSFX();
-            SoundManager.Instance.PlaySFX(_playerData.AudioClips[(int)Sound.¶Ù±â]);
+            SoundManager.Instance.PlaySFX(_runClip);
             _curRunSoundTime = Time.time;
             _hasStoppedRunSound = false;
         }
