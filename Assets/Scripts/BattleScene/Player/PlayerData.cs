@@ -10,6 +10,8 @@ public enum FireWeapon { ÁÖÃÑ, º¸Á¶ÃÑ }; // ÀÌµéÀº »óÅÂ°¡ µû·Î Á¸Àç. Scene View¿
 public enum NotFireWeapon { Ä®, ¼ö·ùÅº };
 public enum Zoom { ÁÜ¾Æ¿ô, ÁÜÀÎ };
 
+public enum Sound { °È±â, ¶Ù±â};
+
 public class PlayerData : MonoBehaviour
 {
     [SerializeField] private float _hp;
@@ -63,6 +65,7 @@ public class PlayerData : MonoBehaviour
     [HideInInspector]public float[] FireLastAttackTime;
     [HideInInspector] public float[] NotFireLastAttackTime;
 
+    [SerializeField] public AudioClip[] AudioClips;
 
     public UnityAction OnHpChanged;
     public UnityAction OnAmmosChanged;
