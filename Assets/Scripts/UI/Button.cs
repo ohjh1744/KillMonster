@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private AudioClip _clickSfx;
+    
+    public void ClickButton()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SoundManager.Instance.PlaySFX(_clickSfx);
     }
 }
