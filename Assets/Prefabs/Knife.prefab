@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b07c30806b39b145aa29a60d68c2632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _slashClip: {fileID: 8300000, guid: 56eabdf4d9c92d544a8676ed2ed23aac, type: 3}
   _damage: 10
   _attackTime: 1
   _range: 0.3
