@@ -22,6 +22,7 @@ public class MoveState : MovementState
     private float _curWalkSoundTime;
     private float _runSoundTime;
     private float _curRunSoundTime;
+    private AudioSource _audioSource;
 
     public MoveState(PlayerStateMachine player)
     {
@@ -34,6 +35,7 @@ public class MoveState : MovementState
         _runSoundTime = _playerData.AudioTimes[(int)Sound.¶Ù±â];
         _walkClip = _playerData.AudioClips[(int)Sound.°È±â];
         _runClip = _playerData.AudioClips[(int)Sound.¶Ù±â];
+        _audioSource = _player.MovementStateAudio;
     }
     public override void Enter()
     {
@@ -73,14 +75,14 @@ public class MoveState : MovementState
     public override void Exit()
     {
         Debug.Log("Walk State¿¡¼­ ³ª°¨!");
-        SoundManager.Instance.StopSFX();
+        _audioSource.Stop();
     }
 
     private void PlayWalkSound()
     {
         if (Time.time - _curWalkSoundTime > _walkSoundTime && _isRun == false)
         {
-            SoundManager.Instance.PlaySFX(_walkClip);
+            _audioSource.PlayOneShot(_walkClip);
             _curWalkSoundTime = Time.time;
         }
     }
@@ -106,14 +108,14 @@ public class MoveState : MovementState
     {
         if (Time.time - _curRunSoundTime > _runSoundTime && _isRun == true)
         {
-            SoundManager.Instance.StopSFX();
-            SoundManager.Instance.PlaySFX(_runClip);
+            _audioSource.Stop();
+            _audioSource.PlayOneShot(_runClip);
             _curRunSoundTime = Time.time;
             _hasStoppedRunSound = false;
         }
         if(_isRun == false && _hasStoppedRunSound == false)
         {
-            SoundManager.Instance.StopSFX();
+            _audioSource.Stop();
             _hasStoppedRunSound = true;
             _curWalkSoundTime = 0;
         }

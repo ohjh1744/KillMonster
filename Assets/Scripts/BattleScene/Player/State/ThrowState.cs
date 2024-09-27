@@ -12,6 +12,7 @@ public class ThrowState : AttackState
     private GameObject grenade;
     private PlayerData _playerData;
     private Animator _anim;
+    private AudioSource _audioSource;
 
     private int _throwHash = Animator.StringToHash("Throw");
     private float _attackLastTime;
@@ -22,6 +23,7 @@ public class ThrowState : AttackState
         _playerData = _player.PlayerData;
         _throwPos = _playerData.NotFireAttackPos[(int)NotFireWeapon.¼ö·ùÅº].transform;
         _attackLastTime = 0f;
+        _audioSource = _player.AttackStateAudio;
     }
     public override void Enter()
     {
@@ -58,7 +60,7 @@ public class ThrowState : AttackState
             grenade.transform.rotation = _throwPos.transform.rotation;
             _playerData.NumGrenade--;
             IThrowable throwable = grenade.GetComponent<IThrowable>();
-            throwable.Throw(DataManager.Instance.SaveData.Damage);
+            throwable.Throw(DataManager.Instance.SaveData.Damage, _audioSource);
 
             _attackLastTime = Time.time;
         }
