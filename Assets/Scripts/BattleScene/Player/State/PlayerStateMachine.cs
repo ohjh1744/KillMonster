@@ -10,6 +10,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
 {
     private MovementState _currentMovementState;
     private AttackState _currentAttackState;
+    private AudioClip _hitClip;
     [HideInInspector] public Rigidbody Rigid;
     [HideInInspector] public PlayerData PlayerData;
     [SerializeField] private GameManager _gameManager;
@@ -40,6 +41,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         _turnBloodySeconds = new WaitForSeconds(_turnBloodyTime);
         PlayerData.Hp = PlayerData.Hp + DataManager.Instance.SaveData.CurrentMaxHp;
         PlayerData.Damage = DataManager.Instance.SaveData.CurrentDamage;
+        _hitClip = PlayerData.AudioClips[(int)Sound.ÇÇ°Ý];
         ChangeMovementState(MovementStates[(int)EMovementState.Idle]);
         ChangeAttackState(AttackStates[(int)EAttackState.IdleAttack]);
     }
@@ -103,6 +105,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
+        SoundManager.Instance.PlaySFX(_hitClip);
         PlayerData.IsDamage = true;
         PlayerData.Hp -= damage;
         _turnBloodyRoutine = StartCoroutine(TurnBloodyScreen());
