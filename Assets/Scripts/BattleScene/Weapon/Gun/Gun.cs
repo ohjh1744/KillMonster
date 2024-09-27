@@ -62,7 +62,6 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
 
             if(hit.collider.gameObject.layer == _layerMask && hit.collider.gameObject.tag != "Player")
             {
-                Debug.Log(hit.collider.name);
                 IDamagable damagable = hit.collider.GetComponent<IDamagable>();
                 damagable.TakeDamage(_gunData.Damage + playerDamage);
             }
