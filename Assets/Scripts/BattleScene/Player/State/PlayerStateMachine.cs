@@ -16,6 +16,9 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private Image _bloody;
     [SerializeField] private float _turnBloodyTime;
+    public AudioSource MovementStateAudio;
+    public AudioSource AttackStateAudio;
+
     public MovementState[] MovementStates = new MovementState[(int)EMovementState.Size];
     public AttackState[] AttackStates = new AttackState[(int)EAttackState.Size];
     public Image ReLoadImage;
