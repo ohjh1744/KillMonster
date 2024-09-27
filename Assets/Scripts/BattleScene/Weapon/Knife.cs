@@ -2,17 +2,16 @@ using UnityEngine;
 
 public class Knife : MonoBehaviour, IAttackTime, ICuttable
 {
-    [SerializeField]
-    private int _damage;
-    [SerializeField]
-    private float _attackTime;
-    [SerializeField]
-    private float _range;
+    [SerializeField] private AudioClip _slashClip;
+    [SerializeField] private int _damage;
+    [SerializeField] private float _attackTime;
+    [SerializeField] private float _range;
 
     public float AttackTime { get { return _attackTime; } set { _attackTime = value; } }
 
     public void Cut(Vector3 pos, float playerDamage)
     {
+        SoundManager.Instance.PlaySFX(_slashClip);
         Collider[] hits = Physics.OverlapSphere(pos, _range,  LayerMask.GetMask("Damagable"));
         if (hits.Length > 0)
         {
