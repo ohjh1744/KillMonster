@@ -5519,6 +5519,9 @@ MonoBehaviour:
   NotFireLastAttackTime:
   - 0
   - 0
+  AudioClips:
+  - {fileID: 8300000, guid: deb1a008bef85924cb1ec0fcaf7e1d81, type: 3}
+  - {fileID: 8300000, guid: 4b911063d0bd83a459d01d8c19dbb2ad, type: 3}
 --- !u!135 &1775929579
 SphereCollider:
   m_ObjectHideFlags: 0
