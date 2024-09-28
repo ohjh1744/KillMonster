@@ -17,7 +17,7 @@ public class BossSecondAttackState : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _bossData.NavMesh;
-        _bossHitAttack = _bossData.BossHitAttack;
+        _bossHitAttack = boss.GetComponent<BossHitAttack>();
         anim = _bossData.Anim;
         _secondAttackClip = _bossData.AudioClips[(int)BossSound.SecondAttack];
         _audioSource = _boss.AudioSource;
