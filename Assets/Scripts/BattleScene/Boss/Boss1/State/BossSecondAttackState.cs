@@ -9,27 +9,25 @@ public class BossSecondAttackState : BossState
     private BossData _bossData;
     private NavMeshAgent _navMesh;
     private BossHitAttack _bossHitAttack;
-    private Animator anim;
-    private AudioClip _secondAttackClip;
-    private AudioSource _audioSource;
+    private Animator _anim;
+    private int _secondAttackHash = Animator.StringToHash("SecondAttack");
     public BossSecondAttackState(BossStateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
-        _navMesh = _bossData.NavMesh;
+        _navMesh = _bossData.GetComponent<NavMeshAgent>();
         _bossHitAttack = boss.GetComponent<BossHitAttack>();
-        anim = _bossData.Anim;
-        _secondAttackClip = _bossData.AudioClips[(int)BossSound.SecondAttack];
-        _audioSource = _boss.AudioSource;
+        _anim = _boss.GetComponent<Animator>();
 
     }
     public override void Enter()
     {
         Debug.Log("BossSecondAttack 진입");
         _navMesh.enabled = false;
-        _boss.transform.LookAt(_bossData.Player.transform);
-        anim.Play("SecondAttack", -1, 0);
-        _bossHitAttack.Attack(_bossData.BasicDamage, _secondAttackClip, _audioSource);
+        _boss.transform.LookAt(_boss.transform);
+        _anim.Play(_secondAttackHash, -1, 0);
+        _bossHitAttack.IsAttack = true;
+        _bossHitAttack.Attack(_bossData.BasicDamage);
     }
 
     public override void Update()
@@ -47,7 +45,6 @@ public class BossSecondAttackState : BossState
 
     public override void Exit()
     {
-        _bossHitAttack.IsAttack = true;
         _boss._isChange = false;
         Debug.Log("BossSecondAttack 나감");
     }

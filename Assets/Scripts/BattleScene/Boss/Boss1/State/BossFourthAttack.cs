@@ -11,29 +11,27 @@ public class BossFourthAttack : BossState
     private NavMeshAgent _navMesh;
     private BossWorldAreaAttack _bossWorldAreaAttack;
     private Animator _anim;
-    private AudioClip _fourthAttack;
-    private AudioSource _audioSource;
     private Animator _warningAnim;
     private int _warningAnimTrueHash = Animator.StringToHash("WarningImageTrue");
     private int _warningAnimFalseHash = Animator.StringToHash("WarningImageFalse");
+    private int _FourthAttackHash = Animator.StringToHash("FourthAttack");
     public BossFourthAttack(BossStateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
-        _navMesh = _bossData.NavMesh; 
+        _navMesh = _boss.GetComponent<NavMeshAgent>(); 
         _bossWorldAreaAttack = _boss.GetComponent<BossWorldAreaAttack>();
-        _anim = _bossData.Anim;
-        _fourthAttack = _bossData.AudioClips[(int)BossSound.FourthAttack];
-        _audioSource = _boss.AudioSource;
+        _anim = _boss.GetComponent<Animator>();
         _warningAnim = _boss.WarningImage.GetComponent<Animator>();
     }
     public override void Enter()
     {
         Debug.Log("BossFourthAttack 진입");
         _navMesh.enabled = false;
-        _boss.transform.LookAt(_bossData.Player.transform);
-        _anim.Play("FourthAttack", -1, 0);
-        _bossWorldAreaAttack.Attack(_bossData.BasicDamage, _anim, "FourthAttack", _fourthAttack, _audioSource);
+        _boss.transform.LookAt(_boss.Player.transform);
+        _anim.Play(_FourthAttackHash, -1, 0);
+        _bossWorldAreaAttack.IsAttack = true;
+        _bossWorldAreaAttack.Attack(_bossData.BasicDamage, "FourthAttack");
         _warningAnim.Play(_warningAnimTrueHash);
     }
 
@@ -54,7 +52,6 @@ public class BossFourthAttack : BossState
     {
         _warningAnim.Play(_warningAnimFalseHash);
         _bossWorldAreaAttack.IsAttack = true;
-        _boss._isChange = false;
         Debug.Log("BossFourthAttack 나감");
     }
 }

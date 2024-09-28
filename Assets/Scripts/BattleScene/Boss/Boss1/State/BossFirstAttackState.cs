@@ -9,25 +9,25 @@ public class BossFirstAttackState : BossState
     private BossData _bossData;
     private NavMeshAgent _navMesh;
     private BossThrowAttack _bossThrowAttack;
-    private Animator anim;
-    private AudioSource _audioSource;
+    private Animator _anim;
+    private int _firstAttackHash = Animator.StringToHash("FirstAttack");
     public BossFirstAttackState(BossStateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
-        _navMesh = _bossData.NavMesh;
+        _navMesh = _boss.GetComponent<NavMeshAgent>();
         _bossThrowAttack = boss.GetComponent<BossThrowAttack>();
-        anim = _bossData.Anim;
-        _audioSource = _boss.AudioSource;
+        _anim = _boss.GetComponent<Animator>();
     }
     public override void Enter()
     {
         Debug.Log("BossFirstAttack 진입");
         _navMesh.enabled = false;
-        _boss.transform.LookAt(_bossData.Player.transform);
-        anim.Play("FirstAttack", -1, 0);
-        _bossThrowAttack.Target = _bossData.Player.transform;
-        _bossThrowAttack.Attack(_bossData.BasicDamage, _audioSource);
+        _boss.transform.LookAt(_boss.Player.transform);
+        _anim.Play(_firstAttackHash, -1, 0);
+        _bossThrowAttack.Target = _boss.Player.transform;
+        _bossThrowAttack.IsAttack = true;
+        _bossThrowAttack.Attack(_bossData.BasicDamage);
     }
 
     public override void Update()
@@ -45,7 +45,6 @@ public class BossFirstAttackState : BossState
 
     public override void Exit()
     {
-        _bossThrowAttack.IsAttack = true;
         _boss._isChange = false;
         Debug.Log("BossFirstAttack 나감");
     }

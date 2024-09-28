@@ -9,28 +9,25 @@ public class BossThirdAttackState : BossState
     private BossData _bossData;
     private NavMeshAgent _navMesh;
     private BossRushAttack _bossRushAttack;
-    private Animator anim;
-    private AudioClip _thirdAttackClip;
-    private AudioSource _audioSource;
+    private Animator _anim;
+    private int _ThirdAttackHash = Animator.StringToHash("ThirdAttack");
 
     public BossThirdAttackState(BossStateMachine boss)
     {
         this._boss = boss;
+        _anim = _boss.GetComponent<Animator>();
         _bossData = _boss.BossData;
-        _navMesh = _bossData.NavMesh;
+        _navMesh = _boss.GetComponent<NavMeshAgent>();
         _bossRushAttack = _bossData.GetComponent<BossRushAttack>();
         _bossRushAttack.IsAttack = true;
-        anim = _bossData.Anim;
-        _thirdAttackClip = _bossData.AudioClips[(int)BossSound.ThirdAttack];
-        _audioSource = _boss.AudioSource;
     }
     public override void Enter()
     {
         Debug.Log("BossThirdAttack ¡¯¿‘");
-        _boss.transform.LookAt(_bossData.Player.transform);
-        anim.Play("ThirdAttack", -1, 0);
+        _boss.transform.LookAt(_boss.Player.transform);
+        _anim.Play(_ThirdAttackHash, -1, 0);
         _bossRushAttack.IsAttack = true;
-        _bossRushAttack.Attack(_bossData.Speed, _bossData.BasicDamage, _bossData.Player.transform.position, _navMesh, anim , _thirdAttackClip , _audioSource);
+        _bossRushAttack.Attack(_bossData.Speed, _bossData.BasicDamage);
     }
 
     public override void Update()
