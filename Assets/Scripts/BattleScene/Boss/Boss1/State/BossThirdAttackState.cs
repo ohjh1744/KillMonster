@@ -18,7 +18,7 @@ public class BossThirdAttackState : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _bossData.NavMesh;
-        _bossRushAttack = _bossData.BossRushAttack;
+        _bossRushAttack = _bossData.GetComponent<BossRushAttack>();
         anim = _bossData.Anim;
         _thirdAttackClip = _bossData.AudioClips[(int)BossSound.ThirdAttack];
         _audioSource = _boss.AudioSource;
