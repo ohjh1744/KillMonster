@@ -10,6 +10,7 @@ public class BossFirstAttackState : BossState
     private NavMeshAgent _navMesh;
     private BossThrowAttack _bossThrowAttack;
     private Animator anim;
+    private AudioSource _audioSource;
     public BossFirstAttackState(BossStateMachine boss)
     {
         this._boss = boss;
@@ -17,6 +18,7 @@ public class BossFirstAttackState : BossState
         _navMesh = _bossData.NavMesh;
         _bossThrowAttack = _bossData.BossThrowAttack;
         anim = _bossData.Anim;
+        _audioSource = _boss.AudioSource;
     }
     public override void Enter()
     {
@@ -25,7 +27,7 @@ public class BossFirstAttackState : BossState
         _boss.transform.LookAt(_bossData.Player.transform);
         anim.Play("FirstAttack", -1, 0);
         _bossThrowAttack.Target = _bossData.Player.transform;
-        _bossThrowAttack.Attack(_bossData.BasicDamage);
+        _bossThrowAttack.Attack(_bossData.BasicDamage, _audioSource);
     }
 
     public override void Update()

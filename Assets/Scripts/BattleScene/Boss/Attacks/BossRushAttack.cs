@@ -25,12 +25,12 @@ public class BossRushAttack : MonoBehaviour
         _waitRushSeconds = new WaitForSeconds(_waitRushTime);
     }
 
-    public void Attack(float basicSpeed,int bossDamage, NavMeshAgent navMeshAgent, Animator anim)
+    public void Attack(float basicSpeed,int bossDamage, NavMeshAgent navMeshAgent, Animator anim, AudioClip attackClip, AudioSource audioSource)
     {
-        _coroutine = StartCoroutine(RushAttack(basicSpeed, bossDamage, navMeshAgent, anim));
+        _coroutine = StartCoroutine(RushAttack(basicSpeed, bossDamage, navMeshAgent, anim, attackClip, audioSource));
     }
 
-    private IEnumerator RushAttack(float basicSpeed, int bossDamage, NavMeshAgent navMeshAgent, Animator anim)
+    private IEnumerator RushAttack(float basicSpeed, int bossDamage, NavMeshAgent navMeshAgent, Animator anim, AudioClip attackClip, AudioSource audioSource)
     {
 
         anim.speed = 0;
@@ -38,6 +38,7 @@ public class BossRushAttack : MonoBehaviour
 
         yield return _waitRushSeconds;
 
+        audioSource.PlayOneShot(attackClip);
         anim.speed = 1;
         float originSpeed = navMeshAgent.speed;
         navMeshAgent.speed  = _rushSpeed + basicSpeed;

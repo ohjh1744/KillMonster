@@ -26,8 +26,9 @@ public class GunData
 
 public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
 {
-   [SerializeField] private GunData _gunData;
-
+    [SerializeField] private GunData _gunData;
+    [SerializeField] private AudioClip _shootClip;
+    [SerializeField] private AudioClip _reLoadClip;
     private Coroutine _fireFlashRoutine;
     private WaitForSeconds _flashWaitForSeconds;
     private Coroutine _reLoadRoutine;
@@ -47,8 +48,9 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         _flashWaitForSeconds = new WaitForSeconds(_gunData.FlashTime);
         _reLoadWaitForSeconds = new WaitForSeconds(_gunData.ReLoadTime);
     }
-    public void Shoot(Camera camera, float playerDamage)
+    public void Shoot(Camera camera, float playerDamage, AudioSource audioSource)
     {
+        audioSource.PlayOneShot(_shootClip);
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100))
         {
@@ -62,7 +64,6 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
 
             if(hit.collider.gameObject.layer == _layerMask && hit.collider.gameObject.tag != "Player")
             {
-                Debug.Log(hit.collider.name);
                 IDamagable damagable = hit.collider.GetComponent<IDamagable>();
                 damagable.TakeDamage(_gunData.Damage + playerDamage);
             }
@@ -80,8 +81,9 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         _fireFlashRoutine = null;
     }
 
-    public void ReLoad()
+    public void ReLoad(AudioSource audioSource)
     {
+        audioSource.PlayOneShot(_reLoadClip);
         _reLoadRoutine = StartCoroutine(ReLoading());
     }
 

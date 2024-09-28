@@ -10,10 +10,15 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
 {
     private MovementState _currentMovementState;
     private AttackState _currentAttackState;
+    private AudioClip _hitClip;
     [HideInInspector] public Rigidbody Rigid;
     [HideInInspector] public PlayerData PlayerData;
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private Image _bloody;
     [SerializeField] private float _turnBloodyTime;
+    public AudioSource MovementStateAudio;
+    public AudioSource AttackStateAudio;
+
     public MovementState[] MovementStates = new MovementState[(int)EMovementState.Size];
     public AttackState[] AttackStates = new AttackState[(int)EAttackState.Size];
     public Image ReLoadImage;
@@ -39,6 +44,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         _turnBloodySeconds = new WaitForSeconds(_turnBloodyTime);
         PlayerData.Hp = PlayerData.Hp + DataManager.Instance.SaveData.CurrentMaxHp;
         PlayerData.Damage = DataManager.Instance.SaveData.CurrentDamage;
+        _hitClip = PlayerData.AudioClips[(int)Sound.피격];
         ChangeMovementState(MovementStates[(int)EMovementState.Idle]);
         ChangeAttackState(AttackStates[(int)EAttackState.IdleAttack]);
     }
@@ -46,9 +52,13 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     // Update is called once per frame
     private void Update()
     {
-        UpRunGage();
-        _currentMovementState?.Update();
-        _currentAttackState?.Update();
+
+        if(_gameManager.GameState == GameState.시작)
+        {
+            UpRunGage();
+            _currentMovementState?.Update();
+            _currentAttackState?.Update();
+        }
     }
 
     private void FixedUpdate()
@@ -98,6 +108,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
+        SoundManager.Instance.PlaySFX(_hitClip);
         PlayerData.IsDamage = true;
         PlayerData.Hp -= damage;
         _turnBloodyRoutine = StartCoroutine(TurnBloodyScreen());

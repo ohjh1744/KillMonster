@@ -9,6 +9,8 @@ public class BossUpsetState : BossState
     private BossData _bossData;
     private NavMeshAgent _navMesh;
     private Animator anim;
+    private AudioClip _upsetClip;
+    private AudioSource _audioSource;
     private float _upsetTime;
 
     private float _currentTIme;
@@ -19,6 +21,8 @@ public class BossUpsetState : BossState
         _navMesh = _bossData.NavMesh;
         anim = _bossData.Anim;
         _upsetTime = _bossData.UpsetTime;
+        _upsetClip = _bossData.AudioClips[(int)BossSound.Upset];
+        _audioSource = _boss.AudioSource;
     }
     public override void Enter()
     {
@@ -51,6 +55,7 @@ public class BossUpsetState : BossState
 
     private void TurnUpset()
     {
+        _audioSource.PlayOneShot(_upsetClip);
         _bossData.IsUpset = true;
         _bossData.BasicDamage *= 2;
         _bossData.Speed *= 2;

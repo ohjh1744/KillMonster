@@ -8,8 +8,10 @@ public class BossStateMachine : MonoBehaviour
 {
     [HideInInspector] public BossData BossData;
     [HideInInspector] public Rigidbody Rigid;
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private float _changeStateTime;
     private BossState _state;
+    public AudioSource AudioSource;
     public BossState[] BossStates = new BossState[(int)EBossState.Size];
     //[HideInInspector] 
     public int StateProbability;
@@ -41,7 +43,10 @@ public class BossStateMachine : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _state?.Update();
+        if (_gameManager.GameState == GameState.Ω√¿€)
+        {
+            _state?.Update();
+        }
     }
 
     private void FixedUpdate()

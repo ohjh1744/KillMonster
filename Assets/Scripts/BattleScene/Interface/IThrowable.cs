@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IThrowable 
 {
     public Vector3 Target { get; set; }
-    public void Throw(float damage);
+    public void Throw(float damage, AudioSource audioSource);
 }

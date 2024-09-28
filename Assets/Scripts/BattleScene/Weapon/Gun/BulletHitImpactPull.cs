@@ -13,7 +13,6 @@ public class BulletHitImpactPull : MonoBehaviour
     }
     public GameObject Get()
     {
-        Debug.Log("hi");
         GameObject select = null;
 
         foreach (GameObject item in _pool)

@@ -23,14 +23,15 @@ public class BossHitAttack : MonoBehaviour
         _showHitSeconds = new WaitForSeconds(_showHitTime);
     }
 
-    public void Attack(int bossDamage)
+    public void Attack(int bossDamage, AudioClip attackClip, AudioSource audioSource)
     {
-        _coroutine = StartCoroutine(HitAttack(bossDamage));
+        _coroutine = StartCoroutine(HitAttack(bossDamage, attackClip, audioSource));
     }
 
-    private IEnumerator  HitAttack(int bossDamage )
+    private IEnumerator  HitAttack(int bossDamage , AudioClip attackClip , AudioSource audioSource)
     {
         _hitPoint.SetActive(true);
+        audioSource.PlayOneShot(attackClip);
 
         yield return _showHitSeconds;
 

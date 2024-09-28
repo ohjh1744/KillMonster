@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-public enum EBossAttackObject {FirstAttack, SecondAttack, FirstSkill, SecondSkill};
+public enum BossSound {Walk, Upset, SecondAttack, ThirdAttack, FourthAttack}
 public class BossData : MonoBehaviour
 {
     [SerializeField] private float _hp;
@@ -26,6 +26,8 @@ public class BossData : MonoBehaviour
     public BossRushAttack BossRushAttack;
     [Header("Fourth Attack")]
     public BossWorldAreaAttack BossWorldAreaAttack;
+
+    public AudioClip[] AudioClips;
 
     public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
     public float MaxHp { get { return _maxhp; } set { _maxhp = value;} }

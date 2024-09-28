@@ -131,3 +131,4 @@ MonoBehaviour:
   _power: 1.5
   _remainTime: 3
   _rigid: {fileID: 3022494652158926644}
+  _throwClip: {fileID: 8300000, guid: 82d0a32798acad54389d4c0ca1b9c0c3, type: 3}

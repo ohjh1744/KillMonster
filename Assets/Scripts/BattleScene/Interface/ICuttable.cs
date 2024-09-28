@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICuttable 
 {
-    public void Cut(Vector3 pos, float damage);
+    public void Cut(Vector3 pos, float damage, AudioSource audioSource);
 }

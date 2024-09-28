@@ -10,6 +10,8 @@ public enum FireWeapon { 주총, 보조총 }; // 이들은 상태가 따로 존재. Scene View�
 public enum NotFireWeapon { 칼, 수류탄 };
 public enum Zoom { 줌아웃, 줌인 };
 
+public enum Sound { 걷기, 뛰기, 총교체, 피격};
+
 public class PlayerData : MonoBehaviour
 {
     [SerializeField] private float _hp;
@@ -59,10 +61,8 @@ public class PlayerData : MonoBehaviour
     [SerializeField] public int _numGrenade;
     [HideInInspector] public int NumGrenade { get { return _numGrenade; } set { _numGrenade = value; OnNumGrenadeChanged?.Invoke(); } }
 
-    // 각 무기별 마지막으로 공격한 시간 -> 공격주기체크를위한 변수, 연사가아닌 한번씩누를때에도 공격주기가 충족하도록하기위함.
-    [HideInInspector]public float[] FireLastAttackTime;
-    [HideInInspector] public float[] NotFireLastAttackTime;
-
+    [SerializeField] public AudioClip[] AudioClips;
+    [SerializeField] public float[] AudioTimes;
 
     public UnityAction OnHpChanged;
     public UnityAction OnAmmosChanged;
