@@ -22,7 +22,7 @@ public class BossFourthAttack : BossState
         _navMesh = _boss.GetComponent<NavMeshAgent>(); 
         _bossWorldAreaAttack = _boss.GetComponent<IBossWorldAreaAttack>();
         _anim = _boss.GetComponent<Animator>();
-        _warningAnim = _boss.WarningImage.GetComponent<Animator>();
+        _warningAnim = _boss.FourthAttackWarningImage.GetComponent<Animator>();
     }
     public override void Enter()
     {
