@@ -14,7 +14,7 @@ public class BossStateMachine : MonoBehaviour
     [SerializeField] public GameObject Player;
     public Image WarningImage;
     private BossState _state;
-    public AudioSource AudioSource;
+    //public AudioSource AudioSource;
     public BossState[] BossStates = new BossState[(int)EBossState.Size];
     //[HideInInspector] 
     public int StateProbability;
