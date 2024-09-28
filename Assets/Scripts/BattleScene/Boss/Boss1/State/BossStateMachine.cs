@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public enum EBossState {Idle, Move, Upset, FirstAttack, SecondAttack, ThirdAttack, FourthAttack, Size}
@@ -10,6 +11,7 @@ public class BossStateMachine : MonoBehaviour
     [HideInInspector] public Rigidbody Rigid;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private float _changeStateTime;
+    [SerializeField] public GameObject Player;
     public Image WarningImage;
     private BossState _state;
     public AudioSource AudioSource;
