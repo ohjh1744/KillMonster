@@ -16,7 +16,7 @@ public class BossFirstAttackState : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _bossData.NavMesh;
-        _bossThrowAttack = _bossData.BossThrowAttack;
+        _bossThrowAttack = boss.GetComponent<BossThrowAttack>();
         anim = _bossData.Anim;
         _audioSource = _boss.AudioSource;
     }
