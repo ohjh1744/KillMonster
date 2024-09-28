@@ -25,7 +25,6 @@ public class BossMoveState : BossState
         _bossHitAttack = _boss.GetComponent<BossHitAttack>();
         _navMesh = _bossData.NavMesh;
         _player = _bossData.Player.transform;
-        _speed = _bossData.Speed;
         _anim = _bossData.Anim;
         _bossUpsetHp = _bossData.Hp / 2;
         _audioSource = boss.AudioSource;
@@ -34,6 +33,7 @@ public class BossMoveState : BossState
     public override void Enter()
     {
         Debug.Log("BossMoveStateø° ¡¯¿‘");
+        _speed = _bossData.Speed;
         _navMesh.enabled = true;
         _navMesh.speed = _speed;
         _curMoveSoundTime = 0;
@@ -48,26 +48,26 @@ public class BossMoveState : BossState
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Upset]);
         }
-        if (_boss.StateProbability <= 30 && _boss._isChange == false)
-        {
-            _boss._isChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.FirstAttack]);
-        }
-        if (Vector3.Distance(_player.position, _boss.transform.position) < _bossHitAttack.AttackDistance && _boss._isChange == false)
-        {
-            _boss._isChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.SecondAttack]);
-        }
-        if ((_boss.StateProbability > 30 && _boss.StateProbability <= 60) && _boss._isChange == false)
+        //if (_boss.StateProbability <= 30 && _boss._isChange == false)
+        //{
+        //    _boss._isChange = true;
+        //    _boss.ChangeState(_boss.BossStates[(int)EBossState.FirstAttack]);
+        //}
+        //if (Vector3.Distance(_player.position, _boss.transform.position) < _bossHitAttack.AttackDistance && _boss._isChange == false)
+        //{
+        //    _boss._isChange = true;
+        //    _boss.ChangeState(_boss.BossStates[(int)EBossState.SecondAttack]);
+        //}
+        if ((_boss.StateProbability > 30 && _boss.StateProbability <= 90) && _boss._isChange == false)
         {
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.ThirdAttack]);
         }
-        if (_bossData.IsUpset == true && (_boss.StateProbability > 60 && _boss.StateProbability <= 90) && _boss._isChange == false)
-        {
-            _boss._isChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.FourthAttack]);
-        }
+        //if (_bossData.IsUpset == true && (_boss.StateProbability > 60 && _boss.StateProbability <= 90) && _boss._isChange == false)
+        //{
+        //    _boss._isChange = true;
+        //    _boss.ChangeState(_boss.BossStates[(int)EBossState.FourthAttack]);
+        //}
     }
 
     public override void Exit()

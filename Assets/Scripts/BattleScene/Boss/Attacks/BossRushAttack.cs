@@ -17,14 +17,25 @@ public class BossRushAttack : MonoBehaviour
     private WaitForSeconds _damageRateSeconds;
     private WaitForSeconds _waitRushSeconds;
     private Coroutine _coroutine;
+    private NavMeshAgent _navMesh;
+    [SerializeField]private Transform _playerPosition;
 
     void Awake()
     {
-        IsAttack = true;
+        IsAttack = false;
         _damageRateSeconds = new WaitForSeconds(_damageRateTime);
         _waitRushSeconds = new WaitForSeconds(_waitRushTime);
+        _navMesh = GetComponent<NavMeshAgent>();
     }
 
+
+    private void Update()
+    {
+        if (IsAttack)
+        {
+            _navMesh.SetDestination(_playerPosition.position);
+        }
+    }
     public void Attack(float basicSpeed,int bossDamage, Vector3 player, NavMeshAgent navMeshAgent, Animator anim, AudioClip attackClip, AudioSource audioSource)
     {
         _coroutine = StartCoroutine(RushAttack(basicSpeed, bossDamage, player, navMeshAgent, anim, attackClip, audioSource));
@@ -32,7 +43,6 @@ public class BossRushAttack : MonoBehaviour
 
     private IEnumerator RushAttack(float basicSpeed, int bossDamage, Vector3 player ,NavMeshAgent navMeshAgent, Animator anim, AudioClip attackClip, AudioSource audioSource)
     {
-
         anim.speed = 0;
         navMeshAgent.speed = 0;
 
@@ -42,7 +52,6 @@ public class BossRushAttack : MonoBehaviour
         anim.speed = 1;
         float originSpeed = navMeshAgent.speed;
         navMeshAgent.speed  = _rushSpeed + basicSpeed;
-        navMeshAgent.SetDestination(player);
         int num = 0;
         while ( num < _attackNum)
         {
