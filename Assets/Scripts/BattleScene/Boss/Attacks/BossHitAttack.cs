@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossHitAttack : MonoBehaviour
 {
     public bool IsAttack;
+    public float AttackDistance;
     [SerializeField] Transform _attackPos;
     [SerializeField] private GameObject _hitPoint;
     [SerializeField] private float _range;
@@ -12,7 +13,6 @@ public class BossHitAttack : MonoBehaviour
     [SerializeField] private float _pullPower;
     [SerializeField] private float _finishAttackTime;
     [SerializeField] private float _showHitTime;
-
     private WaitForSeconds _FinishAttackSeconds;
     private WaitForSeconds _showHitSeconds;
     private Coroutine _coroutine;
