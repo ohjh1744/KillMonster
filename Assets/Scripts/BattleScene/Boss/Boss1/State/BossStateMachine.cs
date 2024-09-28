@@ -12,7 +12,8 @@ public class BossStateMachine : MonoBehaviour
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private float _changeStateTime;
     [SerializeField] public GameObject Player;
-    public Image WarningImage;
+    public Image FourthAttackWarningImage;
+    public Image UpsetWarningImage;
     private BossState _state;
     //public AudioSource AudioSource;
     public BossState[] BossStates = new BossState[(int)EBossState.Size];
