@@ -4473,11 +4473,6 @@ MonoBehaviour:
   Anim: {fileID: 158112538}
   UpsetTime: 4
   IsUpset: 0
-  BossThrowAttack: {fileID: 1422332686}
-  BossHitAttack: {fileID: 1422332687}
-  SecondAttackDistance: 5
-  BossRushAttack: {fileID: 1422332688}
-  BossWorldAreaAttack: {fileID: 1422332689}
   AudioClips:
   - {fileID: 8300000, guid: fccf29413135ce24ca34d3dafa2e5c12, type: 3}
   - {fileID: 8300000, guid: 08fa23af8587d544bb0dc35c67853486, type: 3}
@@ -4559,6 +4554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsAttack: 0
+  AttackDistance: 5
   _attackPos: {fileID: 437870697}
   _hitPoint: {fileID: 967795166}
   _range: 3
