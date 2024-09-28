@@ -63,7 +63,7 @@ public class BossMoveState : BossState
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.ThirdAttack]);
         }
-        if (_bossData.IsUpset == true && (_boss.StateProbability > 60 && _boss.StateProbability <= 80) && _boss._isChange == false)
+        if (_bossData.IsUpset == true && (_boss.StateProbability > 60 && _boss.StateProbability <= 90) && _boss._isChange == false)
         {
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.FourthAttack]);
