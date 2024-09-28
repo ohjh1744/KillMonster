@@ -7,6 +7,7 @@ public class BossMoveState : BossState
 {
     private BossStateMachine _boss;
     private BossData _bossData;
+    private BossHitAttack _bossHitAttack;
     private NavMeshAgent _navMesh;
     private Transform _player;
     private float _speed;
@@ -21,6 +22,7 @@ public class BossMoveState : BossState
     {
         this._boss = boss;
         _bossData = _boss.BossData;
+        _bossHitAttack = _boss.GetComponent<BossHitAttack>();
         _navMesh = _bossData.NavMesh;
         _player = _bossData.Player.transform;
         _speed = _bossData.Speed;
@@ -51,7 +53,7 @@ public class BossMoveState : BossState
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.FirstAttack]);
         }
-        if (Vector3.Distance(_player.position, _boss.transform.position) < _bossData.SecondAttackDistance && _boss._isChange == false)
+        if (Vector3.Distance(_player.position, _boss.transform.position) < _bossHitAttack.SecondAttackDistance && _boss._isChange == false)
         {
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.SecondAttack]);
