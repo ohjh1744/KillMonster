@@ -17,7 +17,7 @@ public class BossFourthAttack : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _bossData.NavMesh;
-        _bossWorldAreaAttack = _bossData.BossWorldAreaAttack;
+        _bossWorldAreaAttack = _boss.GetComponent<BossWorldAreaAttack>();
         anim = _bossData.Anim;
         _fourthAttack = _bossData.AudioClips[(int)BossSound.FourthAttack];
         _audioSource = _boss.AudioSource;
