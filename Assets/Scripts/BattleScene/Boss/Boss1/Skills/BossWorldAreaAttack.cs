@@ -4,9 +4,9 @@ using System.Text;
 using UnityEngine;
 
 
-public class BossWorldAreaAttack : MonoBehaviour
+public class BossWorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
 {
-    public bool IsAttack;
+    private bool _isAttack;
     [SerializeField] private float _damage;
     [SerializeField] private float _range;
     [SerializeField] private float _attackNum;
@@ -21,10 +21,12 @@ public class BossWorldAreaAttack : MonoBehaviour
 
     private int _originPriority;
     private int _safeZonePointNum;
+    private int _IdleHash = Animator.StringToHash("Idle");
     private WaitForSeconds _damageRateSeconds;
     private WaitForSeconds _waitRoarSeconds;
     private Coroutine _coroutine;
 
+    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
     void Awake()
     {
         IsAttack = true;
@@ -33,12 +35,12 @@ public class BossWorldAreaAttack : MonoBehaviour
         _originPriority = _playerNoiseCamera.Priority;
     }
 
-    public void Attack(int bossDamage, string animName)
+    public void Attack(int bossDamage, int animHash)
     {
-        _coroutine = StartCoroutine(RoarAttack(bossDamage, animName));
+        _coroutine = StartCoroutine(RoarAttack(bossDamage, animHash));
     }
 
-    private IEnumerator RoarAttack(int bossDamage, string st)
+    private IEnumerator RoarAttack(int bossDamage, int animHash)
     {
         if (_safeZone != null)
         {
@@ -47,12 +49,12 @@ public class BossWorldAreaAttack : MonoBehaviour
             _safeZone.transform.position = _safeZonePoints[_safeZonePointNum].position;
         }
 
-        _anim.Play("Idle");
+        _anim.Play(_IdleHash);
         yield return _waitRoarSeconds;
 
         _audioSource.spatialBlend = 0f;
         _audioSource.PlayOneShot(_attackClip);
-        _anim.Play(st);
+        _anim.Play(animHash);
 
         _playerNoiseCamera.Priority = _originPriority * 2;
         int num = 0;

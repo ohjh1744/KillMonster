@@ -9,7 +9,7 @@ public class BossFourthAttack : BossState
     private BossStateMachine _boss;
     private BossData _bossData;
     private NavMeshAgent _navMesh;
-    private BossWorldAreaAttack _bossWorldAreaAttack;
+    private IBossWorldAreaAttack _bossWorldAreaAttack;
     private Animator _anim;
     private Animator _warningAnim;
     private int _warningAnimTrueHash = Animator.StringToHash("WarningImageTrue");
@@ -20,7 +20,7 @@ public class BossFourthAttack : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _boss.GetComponent<NavMeshAgent>(); 
-        _bossWorldAreaAttack = _boss.GetComponent<BossWorldAreaAttack>();
+        _bossWorldAreaAttack = _boss.GetComponent<IBossWorldAreaAttack>();
         _anim = _boss.GetComponent<Animator>();
         _warningAnim = _boss.WarningImage.GetComponent<Animator>();
     }
@@ -31,7 +31,7 @@ public class BossFourthAttack : BossState
         _boss.transform.LookAt(_boss.Player.transform);
         _anim.Play(_FourthAttackHash, -1, 0);
         _bossWorldAreaAttack.IsAttack = true;
-        _bossWorldAreaAttack.Attack(_bossData.BasicDamage, "FourthAttack");
+        _bossWorldAreaAttack.Attack(_bossData.BasicDamage, _FourthAttackHash);
         _warningAnim.Play(_warningAnimTrueHash);
     }
 

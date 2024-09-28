@@ -8,7 +8,7 @@ public class BossSecondAttackState : BossState
     private BossStateMachine _boss;
     private BossData _bossData;
     private NavMeshAgent _navMesh;
-    private BossHitAttack _bossHitAttack;
+    private IBossHitAttack _bossHitAttack;
     private Animator _anim;
     private int _secondAttackHash = Animator.StringToHash("SecondAttack");
     public BossSecondAttackState(BossStateMachine boss)
@@ -16,7 +16,7 @@ public class BossSecondAttackState : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _bossData.GetComponent<NavMeshAgent>();
-        _bossHitAttack = boss.GetComponent<BossHitAttack>();
+        _bossHitAttack = boss.GetComponent<IBossHitAttack>();
         _anim = _boss.GetComponent<Animator>();
 
     }

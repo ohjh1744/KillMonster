@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossRushAttack : MonoBehaviour
+public class BossRushAttack : MonoBehaviour, IBossRushAttack
 {
-    public bool IsAttack;
+    private bool _isAttack;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _attackClip;
     [SerializeField] private NavMeshAgent _navMesh;
@@ -23,6 +23,7 @@ public class BossRushAttack : MonoBehaviour
     private WaitForSeconds _waitRushSeconds;
     private Coroutine _coroutine;
 
+    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
     void Awake()
     {
         IsAttack = false;
@@ -38,12 +39,12 @@ public class BossRushAttack : MonoBehaviour
             _navMesh.SetDestination(_playerPosition.position);
         }
     }
-    public void Attack(float basicSpeed,int bossDamage)
+    public void Attack(float basicSpeed,int basicDamage)
     {
-        _coroutine = StartCoroutine(RushAttack(basicSpeed, bossDamage));
+        _coroutine = StartCoroutine(RushAttack(basicSpeed, basicDamage));
     }
 
-    private IEnumerator RushAttack(float basicSpeed, int bossDamage)
+    private IEnumerator RushAttack(float basicSpeed, int basicDamage)
     {
         _anim.speed = 0;
         _navMesh.speed = 0;
@@ -65,7 +66,7 @@ public class BossRushAttack : MonoBehaviour
                     if (hit.gameObject.tag == "Player")
                     {
                         IDamagable damagable = hit.GetComponent<IDamagable>();
-                        damagable.TakeDamage(bossDamage + _damage);
+                        damagable.TakeDamage(basicDamage + _damage);
                         Rigidbody rigid = hit.GetComponent<Rigidbody>();
                         rigid.AddForce(transform.forward * _pullPower, ForceMode.Impulse);
                     }

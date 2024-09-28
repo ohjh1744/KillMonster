@@ -8,7 +8,7 @@ public class BossThirdAttackState : BossState
     private BossStateMachine _boss;
     private BossData _bossData;
     private NavMeshAgent _navMesh;
-    private BossRushAttack _bossRushAttack;
+    private IBossRushAttack _bossRushAttack;
     private Animator _anim;
     private int _ThirdAttackHash = Animator.StringToHash("ThirdAttack");
 
@@ -18,7 +18,7 @@ public class BossThirdAttackState : BossState
         _anim = _boss.GetComponent<Animator>();
         _bossData = _boss.BossData;
         _navMesh = _boss.GetComponent<NavMeshAgent>();
-        _bossRushAttack = _bossData.GetComponent<BossRushAttack>();
+        _bossRushAttack = _bossData.GetComponent<IBossRushAttack>();
         _bossRushAttack.IsAttack = true;
     }
     public override void Enter()

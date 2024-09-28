@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossHitAttack : MonoBehaviour
+public class BossHitAttack : MonoBehaviour, IBossHitAttack
 {
-    public bool IsAttack;
+    private bool _isAttack;
     public float AttackDistance;
     [SerializeField] Transform _attackPos;
     [SerializeField] AudioSource _audioSource;
@@ -18,6 +18,8 @@ public class BossHitAttack : MonoBehaviour
     private WaitForSeconds _FinishAttackSeconds;
     private WaitForSeconds _showHitSeconds;
     private Coroutine _coroutine;
+
+    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
     void Awake()
     {
         IsAttack = true;
