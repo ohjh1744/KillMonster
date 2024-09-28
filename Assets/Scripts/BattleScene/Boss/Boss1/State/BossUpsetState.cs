@@ -10,8 +10,6 @@ public class BossUpsetState : BossState
     private BossUpset _bossUpset;
     private NavMeshAgent _navMesh;
     private Animator anim;
-    private AudioClip _upsetClip;
-    private AudioSource _audioSource;
     private float _upsetTime;
 
     private float _currentTIme;
@@ -24,7 +22,6 @@ public class BossUpsetState : BossState
         _navMesh = _boss.GetComponent<NavMeshAgent>();
         anim = _boss.GetComponent<Animator>();
         _upsetTime = _bossData.UpsetTime;
-        _audioSource = _boss.AudioSource;
     }
     public override void Enter()
     {
