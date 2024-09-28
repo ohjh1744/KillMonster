@@ -7,6 +7,8 @@ public class BossHitAttack : MonoBehaviour
     public bool IsAttack;
     public float AttackDistance;
     [SerializeField] Transform _attackPos;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip _attackClip;
     [SerializeField] private GameObject _hitPoint;
     [SerializeField] private float _range;
     [SerializeField] private float _damage;
@@ -23,15 +25,15 @@ public class BossHitAttack : MonoBehaviour
         _showHitSeconds = new WaitForSeconds(_showHitTime);
     }
 
-    public void Attack(int bossDamage, AudioClip attackClip, AudioSource audioSource)
+    public void Attack(int bossDamage)
     {
-        _coroutine = StartCoroutine(HitAttack(bossDamage, attackClip, audioSource));
+        _coroutine = StartCoroutine(HitAttack(bossDamage));
     }
 
-    private IEnumerator  HitAttack(int bossDamage , AudioClip attackClip , AudioSource audioSource)
+    private IEnumerator  HitAttack(int bossDamage)
     {
         _hitPoint.SetActive(true);
-        audioSource.PlayOneShot(attackClip);
+        _audioSource.PlayOneShot(_attackClip);
 
         yield return _showHitSeconds;
 

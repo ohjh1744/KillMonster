@@ -8,9 +8,11 @@ public class BossThrowAttack : MonoBehaviour
     public bool IsAttack;
     [SerializeField] private float _finishAttackTime;
     [SerializeField] private float _showHitTime;
+    [SerializeField] AudioSource _audioSource;
     [SerializeField] private GameObject _throwObject;
     [SerializeField] private Transform ThrowPos;
     [SerializeField] private GameObject _hitPoint;
+    [SerializeField] private Animator _anim;
     [HideInInspector]public Transform Target;
 
     private WaitForSeconds _FinishAttackSeconds;
@@ -25,12 +27,12 @@ public class BossThrowAttack : MonoBehaviour
         _showHitSeconds = new WaitForSeconds(_showHitTime);
     }
 
-    public void Attack(float bossBasicDamage,AudioSource audioSource)
+    public void Attack(float bossBasicDamage)
     {
-        _coroutine = StartCoroutine(ThrowAttack( bossBasicDamage, audioSource));
+        _coroutine = StartCoroutine(ThrowAttack( bossBasicDamage));
     }
 
-    private IEnumerator ThrowAttack(float bossBasicDamage, AudioSource audioSource)
+    private IEnumerator ThrowAttack(float bossBasicDamage)
     {
         GameObject hitPoint = Instantiate(_hitPoint);
         Vector3 hitPointPostion = Target.position;
@@ -44,7 +46,7 @@ public class BossThrowAttack : MonoBehaviour
         throwObject.transform.position = ThrowPos.position;
         IThrowable throwable = throwObject.GetComponent<IThrowable>();
         throwable.Target = hitPointPostion;
-        throwable.Throw(bossBasicDamage, audioSource);
+        throwable.Throw(bossBasicDamage, _audioSource);
 
         yield return _FinishAttackSeconds;
 

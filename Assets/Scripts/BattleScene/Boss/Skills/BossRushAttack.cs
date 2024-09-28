@@ -6,6 +6,11 @@ using UnityEngine.AI;
 public class BossRushAttack : MonoBehaviour
 {
     public bool IsAttack;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _attackClip;
+    [SerializeField] private NavMeshAgent _navMesh;
+    [SerializeField] private Animator _anim;
+    [SerializeField] private Transform _playerPosition;
     [SerializeField] private float _rushSpeed;
     [SerializeField] private float _damage;
     [SerializeField] private float _pullPower;
@@ -17,15 +22,12 @@ public class BossRushAttack : MonoBehaviour
     private WaitForSeconds _damageRateSeconds;
     private WaitForSeconds _waitRushSeconds;
     private Coroutine _coroutine;
-    private NavMeshAgent _navMesh;
-    [SerializeField]private Transform _playerPosition;
 
     void Awake()
     {
         IsAttack = false;
         _damageRateSeconds = new WaitForSeconds(_damageRateTime);
         _waitRushSeconds = new WaitForSeconds(_waitRushTime);
-        _navMesh = GetComponent<NavMeshAgent>();
     }
 
 
@@ -36,22 +38,22 @@ public class BossRushAttack : MonoBehaviour
             _navMesh.SetDestination(_playerPosition.position);
         }
     }
-    public void Attack(float basicSpeed,int bossDamage, Vector3 player, NavMeshAgent navMeshAgent, Animator anim, AudioClip attackClip, AudioSource audioSource)
+    public void Attack(float basicSpeed,int bossDamage)
     {
-        _coroutine = StartCoroutine(RushAttack(basicSpeed, bossDamage, player, navMeshAgent, anim, attackClip, audioSource));
+        _coroutine = StartCoroutine(RushAttack(basicSpeed, bossDamage));
     }
 
-    private IEnumerator RushAttack(float basicSpeed, int bossDamage, Vector3 player ,NavMeshAgent navMeshAgent, Animator anim, AudioClip attackClip, AudioSource audioSource)
+    private IEnumerator RushAttack(float basicSpeed, int bossDamage)
     {
-        anim.speed = 0;
-        navMeshAgent.speed = 0;
+        _anim.speed = 0;
+        _navMesh.speed = 0;
 
         yield return _waitRushSeconds;
 
-        audioSource.PlayOneShot(attackClip);
-        anim.speed = 1;
-        float originSpeed = navMeshAgent.speed;
-        navMeshAgent.speed  = _rushSpeed + basicSpeed;
+        _audioSource.PlayOneShot(_attackClip);
+        _anim.speed = 1;
+        float originSpeed = _navMesh.speed;
+        _navMesh.speed  = _rushSpeed + basicSpeed;
         int num = 0;
         while ( num < _attackNum)
         {
@@ -74,7 +76,7 @@ public class BossRushAttack : MonoBehaviour
             yield return _damageRateSeconds;
         }
 
-        navMeshAgent.speed = originSpeed;
+        _navMesh.speed = originSpeed;
         IsAttack = false;
         _coroutine = null;
 

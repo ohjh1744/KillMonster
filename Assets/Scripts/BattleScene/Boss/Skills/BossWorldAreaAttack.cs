@@ -15,6 +15,9 @@ public class BossWorldAreaAttack : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera _playerNoiseCamera;
     [SerializeField] private GameObject _safeZone;
     [SerializeField] private Transform[] _safeZonePoints;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _attackClip;
+    [SerializeField] private Animator _anim;
 
     private int _originPriority;
     private int _safeZonePointNum;
@@ -30,12 +33,12 @@ public class BossWorldAreaAttack : MonoBehaviour
         _originPriority = _playerNoiseCamera.Priority;
     }
 
-    public void Attack(int bossDamage, Animator anim, string st, AudioClip attackClip, AudioSource audioSource)
+    public void Attack(int bossDamage, string animName)
     {
-        _coroutine = StartCoroutine(RoarAttack(bossDamage, anim, st, attackClip, audioSource));
+        _coroutine = StartCoroutine(RoarAttack(bossDamage, animName));
     }
 
-    private IEnumerator RoarAttack(int bossDamage, Animator anim, string st, AudioClip attackClip, AudioSource audioSource)
+    private IEnumerator RoarAttack(int bossDamage, string st)
     {
         if (_safeZone != null)
         {
@@ -44,12 +47,12 @@ public class BossWorldAreaAttack : MonoBehaviour
             _safeZone.transform.position = _safeZonePoints[_safeZonePointNum].position;
         }
 
-        anim.Play("Idle");
+        _anim.Play("Idle");
         yield return _waitRoarSeconds;
 
-        audioSource.spatialBlend = 0f;
-        audioSource.PlayOneShot(attackClip);
-        anim.Play(st);
+        _audioSource.spatialBlend = 0f;
+        _audioSource.PlayOneShot(_attackClip);
+        _anim.Play(st);
 
         _playerNoiseCamera.Priority = _originPriority * 2;
         int num = 0;
@@ -78,7 +81,7 @@ public class BossWorldAreaAttack : MonoBehaviour
             yield return _damageRateSeconds;
         }
 
-        audioSource.spatialBlend = 1f;
+        _audioSource.spatialBlend = 1f;
         _playerNoiseCamera.Priority = _originPriority;
         if(_safeZone != null)
         {
