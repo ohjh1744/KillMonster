@@ -17,15 +17,6 @@ public class BossData : MonoBehaviour
     [Header("Upset")]
     public float UpsetTime;
     [HideInInspector] public bool IsUpset;
-    [Header("First Attack")]
-    public BossThrowAttack BossThrowAttack;
-    [Header("Second Attack")]
-    public BossHitAttack BossHitAttack;
-    public float SecondAttackDistance;
-    [Header("Third Attack")]
-    public BossRushAttack BossRushAttack;
-    [Header("Fourth Attack")]
-    public BossWorldAreaAttack BossWorldAreaAttack;
 
     public AudioClip[] AudioClips;
 
