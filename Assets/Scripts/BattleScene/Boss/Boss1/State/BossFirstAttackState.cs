@@ -8,7 +8,7 @@ public class BossFirstAttackState : BossState
     private BossStateMachine _boss;
     private BossData _bossData;
     private NavMeshAgent _navMesh;
-    private BossThrowAttack _bossThrowAttack;
+    private IBossThrowAttack _bossThrowAttack;
     private Animator _anim;
     private int _firstAttackHash = Animator.StringToHash("FirstAttack");
     public BossFirstAttackState(BossStateMachine boss)
@@ -16,7 +16,7 @@ public class BossFirstAttackState : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _boss.GetComponent<NavMeshAgent>();
-        _bossThrowAttack = boss.GetComponent<BossThrowAttack>();
+        _bossThrowAttack = boss.GetComponent<IBossThrowAttack>();
         _anim = _boss.GetComponent<Animator>();
     }
     public override void Enter()
