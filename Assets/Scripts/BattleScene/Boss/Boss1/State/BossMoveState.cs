@@ -13,8 +13,7 @@ public class BossMoveState : BossState
     private Transform _player;
     private float _speed;
     private Animator _anim;
-    private AudioSource _audioSource;
-    private AudioClip _moveClip;
+
 
     private float probability;
     private float _bossUpsetHp;
@@ -28,7 +27,6 @@ public class BossMoveState : BossState
         _player = _boss.Player.transform;
         _anim = _boss.GetComponent<Animator>();
         _bossUpsetHp = _bossData.Hp / 2;
-        _audioSource = boss.AudioSource;
  
     }
     public override void Enter()
