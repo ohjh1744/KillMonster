@@ -10,6 +10,7 @@ public class BossStateMachine : MonoBehaviour
     [HideInInspector] public Rigidbody Rigid;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private float _changeStateTime;
+    public Image WarningImage;
     private BossState _state;
     public AudioSource AudioSource;
     public BossState[] BossStates = new BossState[(int)EBossState.Size];
