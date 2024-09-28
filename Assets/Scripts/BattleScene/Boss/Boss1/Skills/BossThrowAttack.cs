@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BossThrowAttack : MonoBehaviour
+public class BossThrowAttack : MonoBehaviour, IBossThrowAttack
 {
-    public bool IsAttack;
+    private bool _isAttack;
     [SerializeField] private float _finishAttackTime;
     [SerializeField] private float _showHitTime;
     [SerializeField] AudioSource _audioSource;
@@ -13,12 +13,14 @@ public class BossThrowAttack : MonoBehaviour
     [SerializeField] private Transform ThrowPos;
     [SerializeField] private GameObject _hitPoint;
     [SerializeField] private Animator _anim;
-    [HideInInspector]public Transform Target;
+    [HideInInspector]private Transform _target;
 
     private WaitForSeconds _FinishAttackSeconds;
     private WaitForSeconds _showHitSeconds;
     private  Coroutine _coroutine;
 
+    public Transform Target { get { return _target; } set { _target = value; } }
+    public bool IsAttack { get { return _isAttack; }  set { _isAttack = value; } }
 
     public void Awake()
     {
