@@ -7,6 +7,7 @@ public class BossUpsetState : BossState
 {
     private BossStateMachine _boss;
     private BossData _bossData;
+    private BossUpset _bossUpset;
     private NavMeshAgent _navMesh;
     private Animator anim;
     private AudioClip _upsetClip;
@@ -14,22 +15,23 @@ public class BossUpsetState : BossState
     private float _upsetTime;
 
     private float _currentTIme;
+    private int _upsetHash = Animator.StringToHash("Upset");
     public BossUpsetState(BossStateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
-        _navMesh = _bossData.NavMesh;
-        anim = _bossData.Anim;
+        _bossUpset = _boss.GetComponent<BossUpset>();
+        _navMesh = _boss.GetComponent<NavMeshAgent>();
+        anim = _boss.GetComponent<Animator>();
         _upsetTime = _bossData.UpsetTime;
-        _upsetClip = _bossData.AudioClips[(int)BossSound.Upset];
         _audioSource = _boss.AudioSource;
     }
     public override void Enter()
     {
         Debug.Log("BossUpsetState 진입");
         _navMesh.enabled = false;
-        anim.Play("Upset");
-        TurnUpset();
+        anim.Play(_upsetHash);
+        _bossUpset.TurnUpset(_bossData);
     }
 
     public override void Update()
@@ -53,11 +55,5 @@ public class BossUpsetState : BossState
         Debug.Log("BossUpsetState 나감");
     }
 
-    private void TurnUpset()
-    {
-        _audioSource.PlayOneShot(_upsetClip);
-        _bossData.IsUpset = true;
-        _bossData.BasicDamage *= 2;
-        _bossData.Speed *= 2;
-    }
+
 }
