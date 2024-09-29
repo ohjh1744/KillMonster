@@ -15,7 +15,8 @@ public class BossUpset : MonoBehaviour
 
     public void TurnUpset(BossData bossData)
     {
-        _audioSource.PlayOneShot(_upsetClip);
+        _audioSource.clip = _upsetClip;
+        _audioSource.Play();
         bossData.IsUpset = true;
         bossData.BasicDamage *= 2;
         bossData.Speed *= 2;
