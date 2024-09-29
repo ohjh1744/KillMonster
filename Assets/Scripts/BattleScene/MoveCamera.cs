@@ -3,11 +3,11 @@ using UnityEngine;
 public class MoveCamera : MonoBehaviour
 {
     [Header("Camera Settings")]
-    [SerializeField]private float _mouseSensitive; // 마우스 민감도
-    [SerializeField]private float _recoilResetSpeed; // 반동이 사라지는 속도
+    [SerializeField] private float _mouseSensitive; // 마우스 민감도
+    [SerializeField] private float _recoilResetSpeed; // 반동이 사라지는 속도
     [SerializeField] private float _yMinAxis;
     [SerializeField] private float _yMaxAxis;
-
+    [SerializeField] private GameManager _gameManager;
 
 
     private float _recoil; // 반동의 크기
@@ -25,15 +25,23 @@ public class MoveCamera : MonoBehaviour
 
     private void Update()
     {
-        InputMousePos();
-        RotateCamera();
-        ResetRecoil();
+        if (_gameManager.GameState == GameState.시작)
+        {
+            InputMousePos();
+            RotateCamera();
+            ResetRecoil();
+        }
+        else if(_gameManager.GameState == GameState.끝)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     private void Initialize()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
+        Cursor.visible = false;
     }
 
     // 마우스 위치 입력
