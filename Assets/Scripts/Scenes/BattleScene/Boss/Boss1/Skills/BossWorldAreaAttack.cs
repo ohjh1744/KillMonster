@@ -40,6 +40,14 @@ public class BossWorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
         _coroutine = StartCoroutine(RoarAttack(bossDamage, animHash));
     }
 
+    public void StopAttack()
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+    }
+
     private IEnumerator RoarAttack(int bossDamage, int animHash)
     {
         if (_safeZone != null)

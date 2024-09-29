@@ -44,6 +44,15 @@ public class BossRushAttack : MonoBehaviour, IBossRushAttack
         _coroutine = StartCoroutine(RushAttack(basicSpeed, basicDamage));
     }
 
+    public void StopAttack()
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+    }
+
+
     private IEnumerator RushAttack(float basicSpeed, int basicDamage)
     {
         _anim.speed = 0;

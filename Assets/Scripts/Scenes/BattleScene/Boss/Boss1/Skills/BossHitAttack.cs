@@ -32,6 +32,14 @@ public class BossHitAttack : MonoBehaviour, IBossHitAttack
         _coroutine = StartCoroutine(HitAttack(bossDamage));
     }
 
+    public void StopAttack()
+    {
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+    }
+
     private IEnumerator  HitAttack(int bossDamage)
     {
         _hitPoint.SetActive(true);

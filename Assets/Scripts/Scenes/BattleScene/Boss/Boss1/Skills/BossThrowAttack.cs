@@ -34,6 +34,15 @@ public class BossThrowAttack : MonoBehaviour, IBossThrowAttack
         _coroutine = StartCoroutine(ThrowAttack( bossBasicDamage));
     }
 
+    public void StopAttack()
+    {
+        if(_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+    }
+
+
     private IEnumerator ThrowAttack(float bossBasicDamage)
     {
         GameObject hitPoint = Instantiate(_hitPoint);
