@@ -9,6 +9,7 @@ public class BossData : MonoBehaviour
 {
     [SerializeField] private float _hp;
     [SerializeField]private float _maxhp;
+    public int Money;
     public float Speed;
     public int BasicDamage;
     [Header("Upset")]
