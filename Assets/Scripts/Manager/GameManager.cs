@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
 
 public enum GameState { 준비, 시작, 끝}
 public class GameManager : MonoBehaviour
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private AudioClip _bgm;
     [SerializeField] private TimelineAsset _startTimeLine;
+    [SerializeField] private Image WinImage;
+    [SerializeField] private Image LoseImage;
+  
     private float _finishStartTime;
     private float _currentTime;
     private bool _isGameStart;
@@ -43,6 +47,24 @@ public class GameManager : MonoBehaviour
             _isGameStart = true;
             GameState = GameState.시작;
         }
+    }
+
+    private void FinishGame()
+    {
+        Time.timeScale = 0f;
+        GameState = GameState.끝;
+    }
+
+    public void Win()
+    {
+        FinishGame();
+        WinImage.gameObject.SetActive(true);
+    }
+
+    public void Lose()
+    {
+        FinishGame();
+        LoseImage.gameObject.SetActive(true);
     }
 
 }
