@@ -16,7 +16,6 @@ public class BossStateMachine : MonoBehaviour
     public Image FourthAttackWarningImage;
     public Image UpsetWarningImage;
     private BossState _state;
-    //public AudioSource AudioSource;
     public BossState[] BossStates = new BossState[(int)EBossState.Size];
     //[HideInInspector] 
     public int StateProbability;
