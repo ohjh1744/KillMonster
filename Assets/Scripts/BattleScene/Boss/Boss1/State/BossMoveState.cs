@@ -12,7 +12,6 @@ public class BossMoveState : BossState
     private NavMeshAgent _navMesh;
     private Transform _player;
     private float _speed;
-    private Animator _anim;
 
 
     private float probability;
@@ -25,7 +24,6 @@ public class BossMoveState : BossState
         _bossHitAttack = _boss.GetComponent<BossHitAttack>();
         _navMesh = _boss.GetComponent<NavMeshAgent>();
         _player = _boss.Player.transform;
-        _anim = _boss.GetComponent<Animator>();
         _bossUpsetHp = _bossData.Hp / 2;
  
     }
