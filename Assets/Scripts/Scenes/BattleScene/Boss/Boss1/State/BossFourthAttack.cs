@@ -55,6 +55,7 @@ public class BossFourthAttack : BossState
 
     public override void Exit()
     {
+        _bossWorldAreaAttack.StopAttack();
         _warningAnim.Play(_warningAnimFalseHash);
         _boss._isChange = false;
         Debug.Log("BossFourthAttack ³ª°¨");

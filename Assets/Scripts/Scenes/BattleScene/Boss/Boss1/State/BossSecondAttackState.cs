@@ -50,6 +50,7 @@ public class BossSecondAttackState : BossState
 
     public override void Exit()
     {
+        _bossHitAttack.StopAttack();
         _boss._isChange = false;
         Debug.Log("BossSecondAttack ³ª°¨");
     }
