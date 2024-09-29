@@ -35,7 +35,8 @@ public class BossHitAttack : MonoBehaviour, IBossHitAttack
     private IEnumerator  HitAttack(int bossDamage)
     {
         _hitPoint.SetActive(true);
-        _audioSource.PlayOneShot(_attackClip);
+        _audioSource.clip = _attackClip;
+        _audioSource.Play();
 
         yield return _showHitSeconds;
 
