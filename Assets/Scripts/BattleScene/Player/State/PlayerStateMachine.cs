@@ -109,10 +109,13 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-        SoundManager.Instance.PlaySFX(_hitClip);
-        PlayerData.IsDamage = true;
-        PlayerData.Hp -= damage;
-        _turnBloodyRoutine = StartCoroutine(TurnBloodyScreen());
+       if(_gameManager.GameState == GameState.Ω√¿€)
+        {
+            SoundManager.Instance.PlaySFX(_hitClip);
+            PlayerData.IsDamage = true;
+            PlayerData.Hp -= damage;
+            _turnBloodyRoutine = StartCoroutine(TurnBloodyScreen());
+        }
     }
 
     IEnumerator TurnBloodyScreen()
@@ -139,6 +142,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         if(PlayerData.Hp < 1)
         {
             PlayerData.Hp = 0f;
+            _gameManager.GameState = GameState.≥°;
             _gameManager.Lose();
         }
     }
