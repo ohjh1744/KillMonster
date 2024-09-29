@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private AudioClip _bgm;
     [SerializeField] private TimelineAsset _startTimeLine;
-    [SerializeField] private Image WinImage;
-    [SerializeField] private Image LoseImage;
+    [SerializeField] private GameObject _mainUI;
+    [SerializeField] private Image _winImage;
+    [SerializeField] private Image _loseImage;
   
     private float _finishStartTime;
     private float _currentTime;
@@ -38,10 +39,11 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        if(_isGameStart == false)
+        if (_isGameStart == false)
         {
             _isGameStart = true;
             GameState = GameState.Ω√¿€;
+            _mainUI.SetActive(true);
         }
     }
 
@@ -49,13 +51,13 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         Time.timeScale = 0f;
-        WinImage.gameObject.SetActive(true);
+        _winImage.gameObject.SetActive(true);
     }
 
     public void Lose()
     {
         Time.timeScale = 0f;
-        LoseImage.gameObject.SetActive(true);
+        _loseImage.gameObject.SetActive(true);
     }
 
 }
