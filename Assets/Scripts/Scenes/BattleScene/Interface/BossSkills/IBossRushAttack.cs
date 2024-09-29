@@ -6,6 +6,6 @@ public interface IBossRushAttack
 {
     public bool IsAttack { get; set; }
     public void Attack(float basicSpeed, int basicDamage);
-
+    public void StopAttack();
 
 }
