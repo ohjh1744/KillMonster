@@ -51,7 +51,8 @@ public class BossRushAttack : MonoBehaviour, IBossRushAttack
 
         yield return _waitRushSeconds;
 
-        _audioSource.PlayOneShot(_attackClip);
+        _audioSource.clip = _attackClip;
+        _audioSource.Play();
         _anim.speed = 1;
         float originSpeed = _navMesh.speed;
         _navMesh.speed  = _rushSpeed + basicSpeed;
