@@ -1,15 +1,16 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public enum EBossState {Idle, Move, Upset, FirstAttack, SecondAttack, ThirdAttack, FourthAttack, Size}
+public enum EBossState {Idle, Move, Upset, Dead, FirstAttack, SecondAttack, ThirdAttack, FourthAttack, Size}
 public class BossStateMachine : MonoBehaviour
 {
     [HideInInspector] public BossData BossData;
     [HideInInspector] public Rigidbody Rigid;
-    [SerializeField] private GameManager _gameManager;
+    public GameManager GameManager;
     [SerializeField] private float _changeStateTime;
     [SerializeField] public GameObject Player;
     public Image FourthAttackWarningImage;
@@ -32,6 +33,7 @@ public class BossStateMachine : MonoBehaviour
         BossStates[(int)EBossState.Idle] = new BossIdleState(this);
         BossStates[(int)EBossState.Move] = new BossMoveState(this);
         BossStates[(int)EBossState.Upset] = new BossUpsetState(this);
+        BossStates[(int)EBossState.Dead] = new BossDeadState(this);
         BossStates[(int)EBossState.FirstAttack] = new BossFirstAttackState(this);
         BossStates[(int)EBossState.SecondAttack] = new BossSecondAttackState(this);
         BossStates[(int)EBossState.ThirdAttack] = new BossThirdAttackState(this);
@@ -47,7 +49,7 @@ public class BossStateMachine : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (_gameManager.GameState == GameState.시작)
+        if (GameManager.GameState == GameState.시작)
         {
             _state?.Update();
         }
