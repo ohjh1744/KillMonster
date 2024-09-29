@@ -5814,7 +5814,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 1000
   _maxhp: 1000
-  Gold: 0
+  Gold: 50
   Speed: 2
   BasicDamage: 5
   UpsetTime: 4
