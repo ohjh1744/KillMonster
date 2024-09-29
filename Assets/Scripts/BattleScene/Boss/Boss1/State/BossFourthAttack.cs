@@ -37,7 +37,12 @@ public class BossFourthAttack : BossState
 
     public override void Update()
     {
-        if (_bossWorldAreaAttack.IsAttack == false)
+        if (_bossData.Hp < 1)
+        {
+            _boss._isChange = true;
+            _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
+        }
+        else if (_bossWorldAreaAttack.IsAttack == false)
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
@@ -51,7 +56,7 @@ public class BossFourthAttack : BossState
     public override void Exit()
     {
         _warningAnim.Play(_warningAnimFalseHash);
-        _bossWorldAreaAttack.IsAttack = true;
+        _boss._isChange = false;
         Debug.Log("BossFourthAttack ³ª°¨");
     }
 }
