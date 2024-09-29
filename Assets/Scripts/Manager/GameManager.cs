@@ -27,11 +27,6 @@ public class GameManager : MonoBehaviour
         _finishStartTime = (float)_startTimeLine.duration;
     }
 
-    private void Start()
-    {
-        SoundManager.Instance.PlayeBGM(_bgm);
-    }
-
     private void Update()
     {
         _currentTime += Time.deltaTime;
