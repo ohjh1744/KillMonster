@@ -53,7 +53,8 @@ public class BossWorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
         yield return _waitRoarSeconds;
 
         _audioSource.spatialBlend = 0f;
-        _audioSource.PlayOneShot(_attackClip);
+        _audioSource.clip = _attackClip;
+        _audioSource.Play();
         _anim.Play(animHash);
 
         _playerNoiseCamera.Priority = _originPriority * 2;
