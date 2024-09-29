@@ -32,7 +32,12 @@ public class BossFirstAttackState : BossState
 
     public override void Update()
     {
-        if (_bossThrowAttack.IsAttack == false)
+        if (_bossData.Hp < 1)
+        {
+            _boss._isChange = true;
+            _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
+        }
+        else if (_bossThrowAttack.IsAttack == false)
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
