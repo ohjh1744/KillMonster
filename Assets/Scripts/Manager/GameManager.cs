@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private float _finishStartTime;
     private float _currentTime;
     private bool _isGameStart;
+    private bool _isGameFinish;
     public GameState GameState;
 
 
@@ -49,21 +50,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void FinishGame()
-    {
-        Time.timeScale = 0f;
-        GameState = GameState.³¡;
-    }
 
     public void Win()
     {
-        FinishGame();
+        Time.timeScale = 0f;
         WinImage.gameObject.SetActive(true);
     }
 
     public void Lose()
     {
-        FinishGame();
+        Time.timeScale = 0f;
         LoseImage.gameObject.SetActive(true);
     }
 
