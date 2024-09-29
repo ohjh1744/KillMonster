@@ -39,6 +39,11 @@ public class BossMoveState : BossState
     {
         _bossMove.PlayMoveSound();
         _bossMove.Move();
+        if(_bossData.Hp < 1)
+        {
+            _boss._isChange = true;
+            _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
+        }
         if (_bossData.IsUpset == false && _bossData.Hp < _bossUpsetHp && _boss._isChange == false)
         {
             _boss._isChange = true;
