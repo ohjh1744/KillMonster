@@ -25,11 +25,6 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        if()
-    }
-
     public void PlayeBGM(AudioClip clip)
     {
         _bgm.clip = clip;
