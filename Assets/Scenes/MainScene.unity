@@ -1419,8 +1419,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b61f0c6181d7474c9ae0b97921e54e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgm: {fileID: 787045592}
-  sfx: {fileID: 8249332}
+  _bgm: {fileID: 787045592}
+  Sfx: {fileID: 8249332}
 --- !u!4 &1155731091
 Transform:
   m_ObjectHideFlags: 0
