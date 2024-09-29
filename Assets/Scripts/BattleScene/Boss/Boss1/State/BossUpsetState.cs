@@ -40,7 +40,12 @@ public class BossUpsetState : BossState
     public override void Update()
     {
         _currentTIme += Time.deltaTime;
-        if (_currentTIme > _upsetTime)
+        if (_bossData.Hp < 1)
+        {
+            _boss._isChange = true;
+            _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
+        }
+        else if (_currentTIme > _upsetTime)
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
