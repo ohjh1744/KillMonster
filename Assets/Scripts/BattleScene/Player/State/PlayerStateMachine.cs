@@ -55,6 +55,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
 
         if(_gameManager.GameState == GameState.Ω√¿€)
         {
+            Dead();
             UpRunGage();
             _currentMovementState?.Update();
             _currentAttackState?.Update();
@@ -130,6 +131,15 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         if (PlayerData.IsRun == false && PlayerData.RunGage <= PlayerData.RunMaxGage)
         {
             PlayerData.RunGage += Time.deltaTime;
+        }
+    }
+
+    private void Dead()
+    {
+        if(PlayerData.Hp < 1)
+        {
+            PlayerData.Hp = 0f;
+            _gameManager.Lose();
         }
     }
 
