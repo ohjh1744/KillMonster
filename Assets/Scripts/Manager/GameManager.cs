@@ -11,14 +11,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip _bgm;
     [SerializeField] private TimelineAsset _startTimeLine;
     [SerializeField] private GameObject _mainUI;
+    [SerializeField] private GameObject _subUI;
     [SerializeField] private Image _winImage;
     [SerializeField] private Image _loseImage;
   
     private float _finishStartTime;
     private float _currentTime;
+    public bool IsGamePause;
     private bool _isGameStart;
-    private bool _isGameFinish;
     public GameState GameState;
+
 
 
 
@@ -34,6 +36,26 @@ public class GameManager : MonoBehaviour
         if (_currentTime > _finishStartTime)
         {
             StartGame();
+        }
+        PauseGmae();
+    }
+
+    private void PauseGmae()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_subUI.activeSelf == true)
+            {
+                IsGamePause = false;
+                Time.timeScale = 1f;
+                _subUI.SetActive(false);
+            }
+            else
+            {
+                IsGamePause = true;
+                Time.timeScale = 0f;
+                _subUI.SetActive(true);
+            }
         }
     }
 
