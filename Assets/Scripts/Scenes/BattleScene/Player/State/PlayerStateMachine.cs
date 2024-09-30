@@ -53,7 +53,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     private void Update()
     {
 
-        if(_gameManager.GameState == GameState.시작)
+        if(_gameManager.GameState == GameState.시작 && _gameManager.IsGamePause == false)
         {
             Dead();
             UpRunGage();
