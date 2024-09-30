@@ -13,11 +13,16 @@ public enum ESound { Walk, Run, ChangeFireWeapon, TakeDamage};
 
 public class PlayerData : MonoBehaviour
 {
+    // ±âº» ½ºÅÝ
     [SerializeField] private float _hp;
-    [HideInInspector] public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
+    public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
+
     private float _damage;
-    [HideInInspector] public float Damage { get { return _damage; } set { _damage = value; } }
-    public float Speed;
+    public float Damage { get { return _damage; } set { _damage = value; } }
+
+    [SerializeField] private float _speed;
+    public float Speed { get { return _speed; } set { _speed = value; } }
+
     [SerializeField] private float _runGage;
     public float RunMaxGage;
 
@@ -25,6 +30,8 @@ public class PlayerData : MonoBehaviour
     [HideInInspector]public float RunGage { get { return _runGage; } set { _runGage = value; OnRunGageChanged?.Invoke(); } }
 
     public float StiffnessTime;
+
+     //------------------------------------------------------
 
     public Camera Camera;
     public CinemachineVirtualCamera PlayerVirtualCamera;
