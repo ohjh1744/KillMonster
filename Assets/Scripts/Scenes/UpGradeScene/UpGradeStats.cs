@@ -16,6 +16,16 @@ public class Stat
 }
 
 [System.Serializable]
+public class BaseStat
+{
+    public float CurrentStat;
+    public float UpGradeStat;
+    public int UpGradeStatGold;
+    public int Level;
+    public int MaxLevel;
+}
+
+[System.Serializable]
 public class StatUI
 {
     public TextMeshProUGUI UpGradeStatText;
