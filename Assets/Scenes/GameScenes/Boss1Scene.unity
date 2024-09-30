@@ -6989,7 +6989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5350cbf9a5110594683fd6e49aa7eb11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 5000
+  _hp: 100
   _maxhp: 5000
   Gold: 50
   Speed: 2
@@ -9245,7 +9245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e4c94b46eaf514f851d28f12a28b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 100
+  _hp: 10
   Speed: 3
   _runGage: 1
   RunMaxGage: 1
@@ -10331,7 +10331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1881382534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10392,7 +10392,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &1881382537
 RectTransform:
