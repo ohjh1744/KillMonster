@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum Mission {데몬킹, 좀비킹, 언데드킹 }
 public class SaveData : MonoBehaviour
 {
-    [HideInInspector] public int MissionNum;
+    public bool[] ClearMissions;
     [SerializeField] private Stat DamageState;
     [SerializeField] private Stat MaxHpState;
     [SerializeField] private int _gold;
