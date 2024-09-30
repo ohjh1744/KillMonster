@@ -28,6 +28,8 @@ public class BossDeadState : BossState
     }
     public override void Enter()
     {
+        _navMesh.enabled = false;
+        _gameManager.GameState = GameState.º¸½º»ç¸Á;
         _bossDead.Dead();
         Time.timeScale = 0.5f;
         _anim.Play(_deadHash);
