@@ -10,4 +10,16 @@ public class Button : MonoBehaviour
     {
         SoundManager.Instance.PlaySFX(_clickSfx);
     }
+
+    public void ActiveUI(GameObject gameObject)
+    {
+        if (gameObject.activeSelf == false)
+        {
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
