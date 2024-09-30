@@ -46,24 +46,24 @@ public class ZoomState : AttackState
 
     void ZoomInAim()
     {
-        _playerData.IsZoom = Zoom.¡‹¿Œ;
-        _playerData.Aims[(int)Zoom.¡‹æ∆øÙ].SetActive(false);
+        _playerData.IsZoom = EZoom.ZoomIn;
+        _playerData.Aims[(int)EZoom.ZoomOut].SetActive(false);
         _anim.SetBool("isZoom", true);
         IZoomable zoomable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IZoomable>();
         zoomable.ZoomIn(_virtualCamera);
-        _playerData.Aims[(int)Zoom.¡‹¿Œ].SetActive(true);
+        _playerData.Aims[(int)EZoom.ZoomIn].SetActive(true);
 
 
     }
 
     void ZoomOutAim()
     {
-        _playerData.IsZoom = Zoom.¡‹æ∆øÙ;
-        _playerData.Aims[(int)Zoom.¡‹¿Œ].SetActive(false);
+        _playerData.IsZoom = EZoom.ZoomOut;
+        _playerData.Aims[(int)EZoom.ZoomIn].SetActive(false);
         _anim.SetBool("isZoom", false);
         IZoomable zoomable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IZoomable>();
         zoomable.ZoomOut(_virtualCamera);
-        _playerData.Aims[(int)Zoom.¡‹æ∆øÙ].SetActive(true);
+        _playerData.Aims[(int)EZoom.ZoomOut].SetActive(true);
     }
 
 }

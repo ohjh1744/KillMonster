@@ -18,7 +18,7 @@ public class SlashState : AttackState
     {
         _player = player;
         _playerData = _player.PlayerData;
-        _knifePos = _playerData.NotFireAttackPos[(int)NotFireWeapon.Į].transform;
+        _knifePos = _playerData.NotFireAttackPos[(int)ENotFireWeapon.Knife].transform;
         _playerDamage = _playerData.Damage;
         _attackLastTime = 0f;
         _audioSource = _player.AttackStateAudio;
@@ -45,11 +45,11 @@ public class SlashState : AttackState
 
     private void Slash()
     {
-        float attackTime = _playerData.NotFireWeapons[(int)NotFireWeapon.Į].GetComponent<IAttackTime>().AttackTime;
+        float attackTime = _playerData.NotFireWeapons[(int)ENotFireWeapon.Knife].GetComponent<IAttackTime>().AttackTime;
 
         if (Time.time - _attackLastTime > attackTime)
         {
-            ICuttable cuttable = _playerData.NotFireWeapons[(int)NotFireWeapon.Į].GetComponent<ICuttable>();
+            ICuttable cuttable = _playerData.NotFireWeapons[(int)ENotFireWeapon.Knife].GetComponent<ICuttable>();
             cuttable.Cut(_knifePos.position, _playerDamage, _audioSource);
 
             _attackLastTime = Time.time;

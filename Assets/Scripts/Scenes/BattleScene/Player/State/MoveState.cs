@@ -31,10 +31,10 @@ public class MoveState : MovementState
         _originSpeed = _playerData.Speed;
         _rigid = _player.Rigid;
         _cantMoveTime = _playerData.StiffnessTime;
-        _walkSoundTime = _playerData.AudioTimes[(int)Sound.°È±â];
-        _runSoundTime = _playerData.AudioTimes[(int)Sound.¶Ù±â];
-        _walkClip = _playerData.AudioClips[(int)Sound.°È±â];
-        _runClip = _playerData.AudioClips[(int)Sound.¶Ù±â];
+        _walkSoundTime = _playerData.AudioTimes[(int)ESound.Walk];
+        _runSoundTime = _playerData.AudioTimes[(int)ESound.Run];
+        _walkClip = _playerData.AudioClips[(int)ESound.Walk];
+        _runClip = _playerData.AudioClips[(int)ESound.Run];
         _audioSource = _player.MovementStateAudio;
     }
     public override void Enter()

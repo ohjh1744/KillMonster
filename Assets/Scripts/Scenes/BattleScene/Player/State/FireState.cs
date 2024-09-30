@@ -37,11 +37,11 @@ public class FireState : AttackState
     public override void Update()
     {
         Fire();
-        if ((_playerData.IsZoom == Zoom.¡‹æ∆øÙ && Input.GetMouseButtonUp(0)))
+        if ((_playerData.IsZoom == EZoom.ZoomOut && Input.GetMouseButtonUp(0)))
         {
             _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.IdleAttack]);
         }
-        if (_playerData.IsZoom == Zoom.¡‹¿Œ && Input.GetMouseButtonUp(0))
+        if (_playerData.IsZoom == EZoom.ZoomIn && Input.GetMouseButtonUp(0))
         {
             _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Zoom]);
         }
@@ -68,11 +68,11 @@ public class FireState : AttackState
 
                 _attackLastTime = Time.time;
                 _anim.SetBool("isFire", true);
-                if(_playerData.IsZoom == Zoom.¡‹æ∆øÙ)
+                if(_playerData.IsZoom == EZoom.ZoomOut)
                 {
                     _anim.Play(_fireHash, -1, 0);
                 }
-                else if(_playerData.IsZoom  == Zoom.¡‹¿Œ)
+                else if(_playerData.IsZoom  == EZoom.ZoomIn)
                 {
                     _anim.Play(_zoomFireHash, -1, 0);
                 }

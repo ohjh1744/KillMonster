@@ -6,11 +6,10 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 
-public enum FireWeapon { 주총, 보조총 }; // 이들은 상태가 따로 존재. Scene View에서 true false를 각각해줘야함.
-public enum NotFireWeapon { 칼, 수류탄 };
-public enum Zoom { 줌아웃, 줌인 };
-
-public enum Sound { 걷기, 뛰기, 총교체, 피격};
+public enum EFireWeapon { Main, Sub }; // 이들은 상태가 따로 존재. Scene View에서 true false를 각각해줘야함.
+public enum ENotFireWeapon { Knife, Grenade };
+public enum EZoom { ZoomOut, ZoomIn };
+public enum ESound { Walk, Run, ChangeFireWeapon, TakeDamage};
 
 public class PlayerData : MonoBehaviour
 {
@@ -21,15 +20,16 @@ public class PlayerData : MonoBehaviour
     public float Speed;
     [SerializeField] private float _runGage;
     public float RunMaxGage;
-    [HideInInspector] public bool IsRun;
+
+    public bool IsRun { get;  set; }
     [HideInInspector]public float RunGage { get { return _runGage; } set { _runGage = value; OnRunGageChanged?.Invoke(); } }
 
     public float StiffnessTime;
 
     public Camera Camera;
     public CinemachineVirtualCamera PlayerVirtualCamera;
-    public FireWeapon CurFireWeapon;
-    public Zoom IsZoom;
+    public EFireWeapon CurFireWeapon;
+    public EZoom IsZoom;
     [HideInInspector] public bool IsDamage;
     [HideInInspector] public bool IsSafe;
     [HideInInspector] public bool IsChangeFireWeapon;

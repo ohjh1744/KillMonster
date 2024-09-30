@@ -44,7 +44,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         _turnBloodySeconds = new WaitForSeconds(_turnBloodyTime);
         PlayerData.Hp = PlayerData.Hp + DataManager.Instance.SaveData.CurrentMaxHp;
         PlayerData.Damage = DataManager.Instance.SaveData.CurrentDamage;
-        _hitClip = PlayerData.AudioClips[(int)Sound.ÇÇ°Ý];
+        _hitClip = PlayerData.AudioClips[(int)ESound.TakeDamage];
         ChangeMovementState(MovementStates[(int)EMovementState.Idle]);
         ChangeAttackState(AttackStates[(int)EAttackState.IdleAttack]);
     }
