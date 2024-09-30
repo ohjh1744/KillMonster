@@ -4830,7 +4830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471143034ca9afa4e9b7f5c1f8781d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MissionNum: 0
+  ClearMissions: 000000
   DamageState:
     CurrentStat: 0
     UpGradeStat: 5
