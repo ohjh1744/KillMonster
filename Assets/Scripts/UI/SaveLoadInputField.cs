@@ -13,18 +13,4 @@ public class SaveLoadInputField : MonoBehaviour
         _loadInputField.onSubmit.AddListener(DataManager.Instance.Load);
     }
 
-
-    public void ShowInputField(GameObject inputUI)
-    {
-        if(inputUI.activeSelf == true)
-        {
-            inputUI.SetActive(false);
-        }
-        else
-        {
-            inputUI.SetActive(true);
-        }
-    }
-
-
 }
