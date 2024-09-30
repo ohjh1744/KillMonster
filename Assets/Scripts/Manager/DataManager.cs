@@ -59,7 +59,6 @@ public class DataManager : MonoBehaviour
         }
         string json = File.ReadAllText(path.ToString());
         SaveData = JsonUtility.FromJson<SaveData>(json);
-        _currentMissionNum = SaveData.MissionNum;
 
     }
 }
