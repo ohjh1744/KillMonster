@@ -25,14 +25,14 @@ public class MoveCamera : MonoBehaviour
 
     private void Update()
     {
-        if (_gameManager.GameState == GameState.시작 && _gameManager.IsGamePause == false)
+        if (_gameManager.GameState == GameState.시작)
         {
             Initialize();
             InputMousePos();
             RotateCamera();
             ResetRecoil();
         }
-        else if(_gameManager.GameState == GameState.끝 || _gameManager.IsGamePause ==  true)
+        else if(_gameManager.GameState == GameState.끝 || _gameManager.GameState == GameState.중단)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
