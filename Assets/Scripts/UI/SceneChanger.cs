@@ -14,6 +14,10 @@ public class SceneChanger : MonoBehaviour
 
     private Coroutine _loadingRoutine;
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void ChangeScene(string sceneName)
     {
         Time.timeScale = 1;
