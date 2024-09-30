@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
-public enum GameState { 준비, 시작, 끝}
+public enum GameState { 준비, 시작, 중단, 보스사망, 끝}
 public class GameManager : MonoBehaviour
 {
 
@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
   
     private float _finishStartTime;
     private float _currentTime;
-    public bool IsGamePause;
     private bool _isGameStart;
     public GameState GameState;
 
@@ -38,21 +37,22 @@ public class GameManager : MonoBehaviour
             StartGame();
         }
         PauseGmae();
+        BossDead();
     }
 
     private void PauseGmae()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && (GameState == GameState.시작 || GameState == GameState.중단))
         {
             if (_subUI.activeSelf == true)
             {
-                IsGamePause = false;
+                GameState = GameState.시작;
                 Time.timeScale = 1f;
                 _subUI.SetActive(false);
             }
             else
             {
-                IsGamePause = true;
+                GameState = GameState.중단;
                 Time.timeScale = 0f;
                 _subUI.SetActive(true);
             }
@@ -69,6 +69,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void BossDead()
+    {
+        if(GameState == GameState.보스사망)
+        {
+            _mainUI.SetActive(false);
+        }
+    }
 
     public void Win()
     {
