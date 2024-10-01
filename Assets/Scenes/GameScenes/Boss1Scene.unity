@@ -9246,10 +9246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hp: 10
-  Speed: 3
+  _speed: 3
   _runGage: 1
   RunMaxGage: 1
-  IsRun: 0
   StiffnessTime: 0.5
   Camera: {fileID: 963194227}
   PlayerVirtualCamera: {fileID: 581711564}
