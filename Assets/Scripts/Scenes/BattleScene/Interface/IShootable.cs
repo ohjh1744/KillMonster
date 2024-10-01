@@ -4,11 +4,10 @@ using UnityEngine;
 
 public interface IShootable 
 {
-    public int Bullet { get; set; }
-    public float ReCoil { get; set; }
+    public int Bullet { get; }
+    public float ReCoil { get;  }
     public bool IsReLoad { get; set; }
-    public void Shoot(float damage, AudioSource audioSource);
-    public void ReLoad(AudioSource audioSource);
+    public void Shoot(float damage);
+    public void ReLoad();
 
-    public GameObject FireFlash { get; set; }
 }
