@@ -9,19 +9,24 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private AudioClip _bgm;
+
     [SerializeField] private TimelineAsset _startTimeLine;
+
     [SerializeField] private GameObject _mainUI;
+
     [SerializeField] private GameObject _subUI;
+
     [SerializeField] private Image _winImage;
+
     [SerializeField] private Image _loseImage;
-  
+
     private float _finishStartTime;
+
     private float _currentTime;
+
     private bool _isGameStart;
+
     public GameState GameState;
-
-
-
 
     private void Awake()
     {
