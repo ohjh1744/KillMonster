@@ -7,9 +7,13 @@ using UnityEngine.UI;
 public class ReLoadState : AttackState
 {
     private PlayerStateMachine _player;
+
     private PlayerData _playerData;
+
     private Animator _anim;
+
     private IShootable _shootable;
+
     private int _reLoadHash = Animator.StringToHash("ReLoad");
 
     public ReLoadState(PlayerStateMachine player)
@@ -45,7 +49,7 @@ public class ReLoadState : AttackState
 
     private void ReLoad()
     {
-        _shootable.ReLoad();
+        _shootable.ReLoad(_player.ReLoadImage);
         _anim.SetBool("isReLoad", true);
         _anim.Play(_reLoadHash);
     }

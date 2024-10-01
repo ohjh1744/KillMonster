@@ -6,14 +6,17 @@ using static PlayerStateMachine;
 public class IdleAttackState : AttackState
 {
     private PlayerStateMachine _player;
+
     private PlayerData _playerData;
+
     private AudioClip _changeGunClip;
+
     private float _currentTime; 
     public IdleAttackState(PlayerStateMachine player)
     {
         _player = player;
         _playerData = player.PlayerData;
-        _changeGunClip = _playerData.AudioClips[(int)ESound.ChangeFireWeapon];
+        _changeGunClip = _player.AudioClips[(int)ESound.ChangeFireWeapon];
     }
     public override void Enter()
     {

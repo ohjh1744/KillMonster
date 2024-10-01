@@ -39,9 +39,6 @@ public class GunData
     [SerializeField] private GameObject _fireFlash;
     public GameObject FireFlash { get { return _fireFlash; } private set { } }
 
-    [SerializeField] private Image _reLoadImage;
-    public Image ReLoadImage { get { return _reLoadImage; } private set { } }
-
     [SerializeField] private BulletHitImpactPull _bulletHitImpactPull;
     public BulletHitImpactPull BulletHitImpactPull { get { return _bulletHitImpactPull; } private set { } }
 }
@@ -115,26 +112,26 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         _fireFlashRoutine = null;
     }
 
-    public void ReLoad()
+    public void ReLoad(Image reLoadImage)
     {
         _audioSource.PlayOneShot(_reLoadClip);
-        _reLoadRoutine = StartCoroutine(ReLoading());
+        _reLoadRoutine = StartCoroutine(ReLoading(reLoadImage));
     }
 
-    public IEnumerator ReLoading()
+    public IEnumerator ReLoading(Image reLoadImage)
     {
-        _gunData.ReLoadImage.gameObject.SetActive(true);
-        _gunData.ReLoadImage.fillAmount = 0;
+        reLoadImage.gameObject.SetActive(true);
+        reLoadImage.fillAmount = 0;
         float filled = 0;
 
         while (filled < _gunData.ReLoadTime)
         {
             filled += Time.deltaTime;
-            _gunData.ReLoadImage.fillAmount = Mathf.Clamp01(filled / _gunData.ReLoadTime);
+            reLoadImage.fillAmount = Mathf.Clamp01(filled / _gunData.ReLoadTime);
             yield return null;
         }
-        _gunData.ReLoadImage.fillAmount = 1;
-        _gunData.ReLoadImage.gameObject.SetActive(false);
+        reLoadImage.fillAmount = 1;
+        reLoadImage.gameObject.SetActive(false);
         IsReLoad = false;
         _reLoadRoutine = null;
 

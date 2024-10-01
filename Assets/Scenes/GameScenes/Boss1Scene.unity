@@ -7001,7 +7001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5350cbf9a5110594683fd6e49aa7eb11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 100
+  _hp: 5000
   _maxhp: 5000
   Gold: 50
   Speed: 2
@@ -9242,9 +9242,17 @@ MonoBehaviour:
   _gameManager: {fileID: 1505900810}
   _bloody: {fileID: 430705469}
   _turnBloodyTime: 1
-  MovementStateAudio: {fileID: 926984031}
-  AttackStateAudio: {fileID: 147200992}
-  ReLoadImage: {fileID: 898220128}
+  _reLoadImage: {fileID: 898220128}
+  _movementStateAudio: {fileID: 926984031}
+  _attackStateAudio: {fileID: 147200992}
+  _audioClips:
+  - {fileID: 8300000, guid: deb1a008bef85924cb1ec0fcaf7e1d81, type: 3}
+  - {fileID: 8300000, guid: 4b911063d0bd83a459d01d8c19dbb2ad, type: 3}
+  - {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
+  - {fileID: 8300000, guid: c96df8ceeae71794a9d03f99642c72f5, type: 3}
+  _audioTimes:
+  - 4
+  - 2
 --- !u!114 &1775929578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9262,34 +9270,21 @@ MonoBehaviour:
   _runGage: 1
   _runMaxGage: 1
   _stiffnessTime: 0.5
-  _curFireWeapon: 0
-  IsChangeFireWeapon: 0
-  ChangeWeaponTime: 0.5
-  FireStates:
+  _changeWeaponTime: 0.5
+  _fireStates:
   - {fileID: 228896319}
   - {fileID: 1000720302}
-  FireWeapons:
+  _fireWeapons:
   - {fileID: 1342008548}
   - {fileID: 40662012}
-  NotFireWeapons:
+  _notFireWeapons:
   - {fileID: 5626599268092206006, guid: 2327ab6a63b19cd44b95745c3d4bce35, type: 3}
   - {fileID: 1067703748461236380, guid: 3f51dc61826c9254a839ec15c021f38c, type: 3}
-  Aims:
-  - {fileID: 482649305}
-  - {fileID: 1226298625}
-  NotFireAttackPos:
+  _notFireAttackPos:
   - {fileID: 36580594}
   - {fileID: 11187122}
   Ammos: 1e0000000a000000
   _numGrenade: 5
-  AudioClips:
-  - {fileID: 8300000, guid: deb1a008bef85924cb1ec0fcaf7e1d81, type: 3}
-  - {fileID: 8300000, guid: 4b911063d0bd83a459d01d8c19dbb2ad, type: 3}
-  - {fileID: 8300000, guid: 2ae41e984ff1f3e4a840a1a46b6a8816, type: 3}
-  - {fileID: 8300000, guid: c96df8ceeae71794a9d03f99642c72f5, type: 3}
-  AudioTimes:
-  - 4
-  - 2
 --- !u!135 &1775929579
 SphereCollider:
   m_ObjectHideFlags: 0

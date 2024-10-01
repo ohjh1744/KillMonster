@@ -2,19 +2,29 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    [Header("Camera Settings")]
-    [SerializeField] private float _mouseSensitive; // 마우스 민감도
-    [SerializeField] private float _recoilResetSpeed; // 반동이 사라지는 속도
-    [SerializeField] private float _yMinAxis;
-    [SerializeField] private float _yMaxAxis;
     [SerializeField] private GameManager _gameManager;
+
+    [Header("Camera Settings")]
+
+    [SerializeField] private float _mouseSensitive; // 마우스 민감도
+
+    [SerializeField] private float _recoilResetSpeed; // 반동이 사라지는 속도
+
+    [SerializeField] private float _yMinAxis;
+
+    [SerializeField] private float _yMaxAxis;
 
 
     private float _recoil; // 반동의 크기
+
     private float _currentRecoil; // 현재 반동 값을 저장하는 변수
+
     private float _eulerAngleY;
+
     private float _eulerAngleX;
+
     private float _mouseX;
+
     private float _mouseY;
 
 

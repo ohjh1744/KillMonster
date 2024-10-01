@@ -38,26 +38,25 @@ public class PlayerData : MonoBehaviour
 
     //------------------------------------------------------
     [Header("Weapon")]
-    // 여기저기서 참조
-    [SerializeField] private EFireWeapon _curFireWeapon;
-    public EFireWeapon CurFireWeapon { get { return _curFireWeapon; } set { _curFireWeapon = value; } }
 
-
+    [SerializeField] private float _changeWeaponTime;
+    public float ChangeWeaponTime { get; private set; }
+    public EFireWeapon CurFireWeapon { get; set; }
     public EZoom IsZoom { get; set; }
-    [HideInInspector] public bool IsChangeFireWeapon;
-    public float ChangeWeaponTime;
-    // 들고있는 총 상태, 총기류들, 총기류가 아닌 무기들
-    public GameObject[] FireStates;
-    public GameObject[] FireWeapons;
-    public GameObject[] NotFireWeapons;
+    public bool IsChangeFireWeapon { get; set; }
 
-    //Aim이미지
-    public GameObject[] Aims;
+    [SerializeField] private GameObject[] _fireStates;
+    public GameObject[] FireStates { get { return _fireStates; } private set { } }
 
-    //총기가 아닌 무기들 공격위치
-    public GameObject[] NotFireAttackPos;
+    [SerializeField] private GameObject[] _fireWeapons;
+    public GameObject[] FireWeapons{get { return _fireWeapons; } private set { } }
 
-    // Fire총기류들 현재 탄약개수, 수류탄개수
+    [SerializeField] private GameObject[] _notFireWeapons;
+    public GameObject[] NotFireWeapons { get { return _notFireWeapons; } private set { } }
+
+    [SerializeField] private GameObject[] _notFireAttackPos;
+    public GameObject[] NotFireAttackPos { get { return _notFireAttackPos; } private set { } }
+
     [SerializeField]private int[] Ammos;
 
     public void SetAmmos(int fireWeapon, int value)
@@ -70,15 +69,16 @@ public class PlayerData : MonoBehaviour
     {
         return Ammos[fireWeapon];
     }
+
     [SerializeField] public int _numGrenade;
     [HideInInspector] public int NumGrenade { get { return _numGrenade; } set { _numGrenade = value; OnNumGrenadeChanged?.Invoke(); } }
 
-    [SerializeField] public AudioClip[] AudioClips;
-    [SerializeField] public float[] AudioTimes;
-
     public UnityAction OnHpChanged;
+
     public UnityAction OnAmmosChanged;
+
     public UnityAction OnNumGrenadeChanged;
+
     public UnityAction OnRunGageChanged;
 
 }

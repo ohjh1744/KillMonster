@@ -7,21 +7,37 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class MoveState : MovementState
 {
     private PlayerStateMachine _player;
+
     private PlayerData _playerData;
+
     private Animator _anim;
+
     private AudioClip _walkClip;
+
     private AudioClip _runClip;
-    private float _originSpeed;
-    private Vector3 _moveDir;
+
     private Rigidbody _rigid;
+
+    private Vector3 _moveDir;
+
+    private float _originSpeed;
+
     private bool _isRun;
+
     private bool _hasStoppedRunSound;
+
     private float _cantMoveTime;
+
     private float _curCantMoveTime;
+
     private float _walkSoundTime;
+
     private float _curWalkSoundTime;
+
     private float _runSoundTime;
+
     private float _curRunSoundTime;
+
     private AudioSource _audioSource;
 
     public MoveState(PlayerStateMachine player)
@@ -29,14 +45,15 @@ public class MoveState : MovementState
         _player = player;
         _playerData = _player.PlayerData;
         _originSpeed = _playerData.Speed;
-        _rigid = _player.Rigid;
         _cantMoveTime = _playerData.StiffnessTime;
-        _walkSoundTime = _playerData.AudioTimes[(int)ESound.Walk];
-        _runSoundTime = _playerData.AudioTimes[(int)ESound.Run];
-        _walkClip = _playerData.AudioClips[(int)ESound.Walk];
-        _runClip = _playerData.AudioClips[(int)ESound.Run];
+        _rigid = _player.Rigid;
         _audioSource = _player.MovementStateAudio;
+        _walkSoundTime = _player.AudioTimes[(int)ESound.Walk];
+        _runSoundTime = _player.AudioTimes[(int)ESound.Run];
+        _walkClip = _player.AudioClips[(int)ESound.Walk];
+        _runClip = _player.AudioClips[(int)ESound.Run];
     }
+
     public override void Enter()
     {
         Debug.Log("현재 Walk State에 진입!");

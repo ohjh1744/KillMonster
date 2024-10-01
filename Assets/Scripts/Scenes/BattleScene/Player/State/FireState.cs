@@ -8,18 +8,26 @@ public class FireState : AttackState
 {
 
     private PlayerStateMachine _player;
+
     private PlayerData _playerData;
+
     private Animator _anim;
+
     private MoveCamera _moveCamera;
 
     private float _attackLastTime;
+
     private float _playerDamage;
+
     private int _fireHash = Animator.StringToHash("Fire");
+
     private int _zoomFireHash = Animator.StringToHash("ZoomFire");
+
     public FireState(PlayerStateMachine player)
     {
         _player = player;
-        _moveCamera = _playerData.GetComponent<MoveCamera>();
+        _playerData = _player.PlayerData;
+        _moveCamera = _player.GetComponent<MoveCamera>();
         _playerDamage = _playerData.Damage;
         _attackLastTime = 0f;
     }

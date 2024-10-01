@@ -8,12 +8,17 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] private PlayerData _playerData;
+
     [SerializeField] private TextMeshProUGUI _playerHpText;
+
     [SerializeField] private TextMeshProUGUI _bulletNumText;
+
     [SerializeField] private TextMeshProUGUI _grenadeNumText;
+
     [SerializeField] private Slider _runBar;
 
     private StringBuilder _sb = new StringBuilder();
+
     private void OnEnable()
     {
         _playerData.OnHpChanged += UpdateHp;

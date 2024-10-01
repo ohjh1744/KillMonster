@@ -5,7 +5,9 @@ using UnityEngine;
 public class BulletImpact : MonoBehaviour
 {
     [SerializeField] private float _remainTime;
+
     private float _currentTime;
+
     private void Update()
     {
         _currentTime += Time.deltaTime;

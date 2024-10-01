@@ -3,9 +3,12 @@ using UnityEngine;
 public class Knife : MonoBehaviour, IAttackTime, ICuttable
 {
     [SerializeField] private AudioClip _slashClip;
+
     [SerializeField] private int _damage;
-    [SerializeField] private float _attackTime;
+
     [SerializeField] private float _range;
+
+    [SerializeField] private float _attackTime;
 
     public float AttackTime { get { return _attackTime; } set { _attackTime = value; } }
 

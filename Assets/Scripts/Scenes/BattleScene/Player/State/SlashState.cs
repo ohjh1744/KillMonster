@@ -5,13 +5,19 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class SlashState : AttackState
 {
     private PlayerStateMachine _player;
-    private Transform _knifePos;
+
     private PlayerData _playerData;
+
+    private Transform _knifePos;
+
     private Animator _anim;
+
     private AudioSource _audioSource;
 
     private float _attackLastTime;
+
     private float _playerDamage;
+
     private int _slashHash = Animator.StringToHash("Slash");
 
     public SlashState(PlayerStateMachine player)

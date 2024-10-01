@@ -8,14 +8,20 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class ThrowState : AttackState
 {
     private PlayerStateMachine _player;
-    private Transform _throwPos;
-    private GameObject grenade;
+
     private PlayerData _playerData;
+
+    private Transform _throwPos;
+
+    private GameObject grenade;
+
     private Animator _anim;
+
     private AudioSource _audioSource;
 
-    private int _throwHash = Animator.StringToHash("Throw");
     private float _attackLastTime;
+
+    private int _throwHash = Animator.StringToHash("Throw");
 
     public ThrowState(PlayerStateMachine player)
     {

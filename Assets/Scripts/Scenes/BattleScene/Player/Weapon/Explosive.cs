@@ -6,9 +6,13 @@ public abstract class Explosive : MonoBehaviour
 {
 
     [SerializeField] protected int _damage;
+
     [SerializeField] protected float _range;
+
     [SerializeField] protected GameObject _explosion;
+
     protected Rigidbody _rigid;
+
     protected Coroutine _coroutine;
 
 
