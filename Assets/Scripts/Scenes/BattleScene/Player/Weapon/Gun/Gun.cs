@@ -11,38 +11,70 @@ using UnityEngine.UI;
 [System.Serializable]
 public class GunData
 {
-    public int Damage;
-    public float AttackTime;
-    public int Bullet;
-    public float ReLoadTime;
-    public float ReCoil;
-    public float MinFov;
-    public float MaxFov;
-    public float FlashTime;
-    public GameObject FireFlash;
-    public Image ReLoadImage;
-    public BulletHitImpactPull BulletHitImpactPull;
+    [SerializeField] private int _damage;
+    public int Damage { get { return _damage; } private set { } }
+
+    [SerializeField] private float _attackTime;
+    public float AttackTime { get { return _attackTime; } private set { } }
+
+    [SerializeField] private int _bullet;
+    public int Bullet { get { return _bullet; } private set { } }
+
+    [SerializeField] private float _reLoadTIme;
+    public float ReLoadTime { get { return _reLoadTIme; } private set { } }
+
+
+    [SerializeField] private float _reColi;
+    public float ReCoil { get { return _reColi; } private set { } }
+
+    [SerializeField] private float _minFov;
+    public float MinFov { get { return _minFov; } private set { } }
+
+    [SerializeField] private float _maxFov;
+    public float MaxFov { get { return _maxFov; } private set { } }
+
+    [SerializeField] private float _flashTime;
+    public float FlashTime { get { return _flashTime; } private set { } }
+
+    [SerializeField] private GameObject _fireFlash;
+    public GameObject FireFlash { get { return _fireFlash; } private set { } }
+
+    [SerializeField] private Image _reLoadImage;
+    public Image ReLoadImage { get { return _reLoadImage; } private set { } }
+
+    [SerializeField] private BulletHitImpactPull _bulletHitImpactPull;
+    public BulletHitImpactPull BulletHitImpactPull { get { return _bulletHitImpactPull; } private set { } }
 }
 
 public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
 {
     [SerializeField] private GunData _gunData;
+
     [SerializeField] private AudioClip _shootClip;
+
     [SerializeField] private AudioClip _reLoadClip;
+
     [SerializeField] private Camera _camera;
+
     [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+
+    [SerializeField] private AudioSource _audioSource;
+
     private Coroutine _fireFlashRoutine;
+
     private WaitForSeconds _flashWaitForSeconds;
+
     private Coroutine _reLoadRoutine;
+
     private WaitForSeconds _reLoadWaitForSeconds;
+
     private LayerMask _layerMask;
 
-    public float AttackTime { get{ return _gunData.AttackTime; } set { _gunData.AttackTime = value; } }
-    public int Bullet { get { return _gunData.Bullet; } set { _gunData.Bullet = value; } }
-    public float ReCoil { get { return _gunData.ReCoil; } set { _gunData.ReCoil = value; } }
+    public float AttackTime { get { return _gunData.AttackTime; } private set { } }
+    public int Bullet { get { return _gunData.Bullet; } private set { } }
+    public float ReCoil { get { return _gunData.ReCoil; } private set { } }
     public bool IsReLoad { get; set; }
-    
-    public GameObject FireFlash { get { return _gunData.FireFlash; } set { _gunData.FireFlash = value; } }
+    public GameObject FireFlash { get { return _gunData.FireFlash; } private set { } }
 
     public void Start()
     {
@@ -50,9 +82,9 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         _flashWaitForSeconds = new WaitForSeconds(_gunData.FlashTime);
         _reLoadWaitForSeconds = new WaitForSeconds(_gunData.ReLoadTime);
     }
-    public void Shoot(float playerDamage, AudioSource audioSource)
+    public void Shoot(float playerDamage)
     {
-        audioSource.PlayOneShot(_shootClip);
+        _audioSource.PlayOneShot(_shootClip);
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100))
         {
@@ -83,9 +115,9 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         _fireFlashRoutine = null;
     }
 
-    public void ReLoad(AudioSource audioSource)
+    public void ReLoad()
     {
-        audioSource.PlayOneShot(_reLoadClip);
+        _audioSource.PlayOneShot(_reLoadClip);
         _reLoadRoutine = StartCoroutine(ReLoading());
     }
 
