@@ -34,7 +34,7 @@ public class BossRushAttack : MonoBehaviour, IBossRushAttack
 
     private void Update()
     {
-        if (IsAttack)
+        if (IsAttack && _coroutine != null)
         {
             _navMesh.SetDestination(_playerPosition.position);
         }
@@ -49,6 +49,7 @@ public class BossRushAttack : MonoBehaviour, IBossRushAttack
         if (_coroutine != null)
         {
             StopCoroutine(_coroutine);
+            _coroutine = null;
         }
     }
 
