@@ -1109,6 +1109,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9160482747514309536}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &256742066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4557156261799474837, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+    type: 3}
+  m_PrefabInstance: {fileID: 4557156262287504810}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &281009262
 GameObject:
   m_ObjectHideFlags: 0
@@ -5890,6 +5896,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bossData: {fileID: 1422332683}
   _bossHpBar: {fileID: 2052470707}
+--- !u!1 &1130393282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9160482746693890217, guid: bf42fde8c986aac4988edc46a3f70647,
+    type: 3}
+  m_PrefabInstance: {fileID: 9160482747514309536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1170274703
 GameObject:
   m_ObjectHideFlags: 0
@@ -9248,14 +9260,9 @@ MonoBehaviour:
   _hp: 10
   _speed: 3
   _runGage: 1
-  RunMaxGage: 1
-  StiffnessTime: 0.5
-  Camera: {fileID: 963194227}
-  PlayerVirtualCamera: {fileID: 581711564}
-  CurFireWeapon: 0
-  IsZoom: 0
-  IsDamage: 0
-  IsSafe: 0
+  _runMaxGage: 1
+  _stiffnessTime: 0.5
+  _curFireWeapon: 0
   IsChangeFireWeapon: 0
   ChangeWeaponTime: 0.5
   FireStates:
@@ -9274,7 +9281,7 @@ MonoBehaviour:
   - {fileID: 36580594}
   - {fileID: 11187122}
   Ammos: 1e0000000a000000
-  _numGrenade: 20
+  _numGrenade: 5
   AudioClips:
   - {fileID: 8300000, guid: deb1a008bef85924cb1ec0fcaf7e1d81, type: 3}
   - {fileID: 8300000, guid: 4b911063d0bd83a459d01d8c19dbb2ad, type: 3}
@@ -12899,12 +12906,82 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
         type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 147200992}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _virtualCamera
+      value: 
+      objectReference: {fileID: 581711564}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._bullet
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._maxFov
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._minFov
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._reColi
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._fireFlash
+      value: 
+      objectReference: {fileID: 256742066}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._flashTime
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
       propertyPath: _gunData.ReLoadImage
       value: 
       objectReference: {fileID: 898220128}
     - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
         type: 3}
+      propertyPath: _gunData._attackTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._reLoadTIme
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._reLoadImage
+      value: 
+      objectReference: {fileID: 898220128}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
       propertyPath: _gunData.BulletHitImpactPull
+      value: 
+      objectReference: {fileID: 1202286848}
+    - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
+        type: 3}
+      propertyPath: _gunData._bulletHitImpactPull
       value: 
       objectReference: {fileID: 1202286848}
     - target: {fileID: 4557156263170028036, guid: 0433d4be5d24c97419adaf5c3f1afac3,
@@ -12923,12 +13000,82 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
         type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 147200992}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _virtualCamera
+      value: 
+      objectReference: {fileID: 581711564}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._bullet
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._maxFov
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._minFov
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._reColi
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._fireFlash
+      value: 
+      objectReference: {fileID: 1130393282}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._flashTime
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
       propertyPath: _gunData.ReLoadImage
       value: 
       objectReference: {fileID: 898220128}
     - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
         type: 3}
+      propertyPath: _gunData._attackTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._reLoadTIme
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._reLoadImage
+      value: 
+      objectReference: {fileID: 898220128}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
       propertyPath: _gunData.BulletHitImpactPull
+      value: 
+      objectReference: {fileID: 1202286848}
+    - target: {fileID: 9160482746417686343, guid: bf42fde8c986aac4988edc46a3f70647,
+        type: 3}
+      propertyPath: _gunData._bulletHitImpactPull
       value: 
       objectReference: {fileID: 1202286848}
     - target: {fileID: 9160482747226653628, guid: bf42fde8c986aac4988edc46a3f70647,
