@@ -6,11 +6,19 @@ using UnityEngine.Playables;
 using System.IO;
 using System.Text;
 using UnityEngine.UI;
+using TMPro;
 
+public enum ESaveState { Before, alreadySave, Success, Fail}
+public enum ELoadState { Before, Success, Fail }
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
-    public SaveData SaveData;
+
+    [SerializeField] private SaveData _saveData;
+    public SaveData SaveData { get { return _saveData; } private set { } }
+    public ESaveState SaveState { get; set; }
+    public ELoadState LoadState { get; set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -51,8 +59,10 @@ public class DataManager : MonoBehaviour
         {
             Directory.CreateDirectory(path.ToString());
         }
+
         string json = JsonUtility.ToJson(SaveData.GameData);
         File.WriteAllText($"{path}/{saveName}.txt", json);
+        SaveState = ESaveState.Success;
     }
 
     public void Load(string loadName)
@@ -61,12 +71,14 @@ public class DataManager : MonoBehaviour
         path.Append(Application.dataPath).Append($"/Save/{loadName}.txt");
         if (File.Exists(path.ToString()) == false)
         {
-            Debug.Log("불러올 세이브  파일 없음");
+            Debug.Log("불러올 세이브 파일 없음");
+            LoadState = ELoadState.Fail;
             return;
         }
         string json = File.ReadAllText(path.ToString());
         SaveData.GameData = JsonUtility.FromJson<GameData>(json);
         Debug.Log("잘불러옴");
+        LoadState = ELoadState.Success;
 
     }
 }
