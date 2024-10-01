@@ -9220,11 +9220,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbff726138880f7448405efee9650871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameManager: {fileID: 1505900810}
   _mouseSensitive: 10
   _recoilResetSpeed: 0.01
   _yMinAxis: 40
   _yMaxAxis: 60
-  _gameManager: {fileID: 1505900810}
 --- !u!114 &1775929577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9237,12 +9237,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a2eecc6f96f4e48b96528ad2f0c63c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 0}
-  PlayerData: {fileID: 0}
+  _rigid: {fileID: 1775929566}
+  _playerData: {fileID: 1775929578}
   _gameManager: {fileID: 1505900810}
-  _bloody: {fileID: 430705469}
   _turnBloodyTime: 1
+  _bloody: {fileID: 430705469}
   _reLoadImage: {fileID: 898220128}
+  _aims:
+  - {fileID: 482649305}
+  - {fileID: 1226298625}
   _movementStateAudio: {fileID: 926984031}
   _attackStateAudio: {fileID: 147200992}
   _audioClips:

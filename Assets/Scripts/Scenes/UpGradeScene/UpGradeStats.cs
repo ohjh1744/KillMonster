@@ -5,42 +5,37 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class Stat
-{
-    public float CurrentStat;
-    public float UpGradeStat;
-    public int  UpGradeStatGold;
-    public int Level;
-    public int MaxLevel;
-}
-
-[System.Serializable]
-public class BaseStat
-{
-    public float CurrentStat;
-    public float UpGradeStat;
-    public int UpGradeStatGold;
-    public int Level;
-    public int MaxLevel;
-}
 
 [System.Serializable]
 public class StatUI
 {
-    public TextMeshProUGUI UpGradeStatText;
-    public TextMeshProUGUI UpGradeStatGoldText;
-    public TextMeshProUGUI LevelText;
+    [SerializeField] private TextMeshProUGUI _upGradeStatText;
+    public TextMeshProUGUI UpGradeStatText { get { return _upGradeStatText; } private set { } }
+
+    [SerializeField] private TextMeshProUGUI _upGradeStatGoldText;
+    public TextMeshProUGUI UpGradeStatGoldText { get { return _upGradeStatGoldText; } private set { } }
+
+    [SerializeField] private TextMeshProUGUI _levelText;
+    public TextMeshProUGUI LevelText { get { return _levelText; } private set { } }
+
 }
 
 public class UpGradeStats : MonoBehaviour
 {
     [SerializeField] private StatUI _damageUi;
+
     [SerializeField] private StatUI _maxHpUi;
+
     [SerializeField] private TextMeshProUGUI _goldText;
+
     private SaveData _saveData;
+
     private StringBuilder _sb = new StringBuilder();
 
+    private void Awake()
+    {
+        _saveData = DataManager.Instance.SaveData;
+    }
 
     private void OnEnable()
     {
@@ -62,11 +57,6 @@ public class UpGradeStats : MonoBehaviour
         _saveData.OnUpGradeMaxHpGoldChanged -= UpdateUpGradeMaxHpGold;
         _saveData.OnUpGradeDmaageLevel -= UpdateDamageLevel;
         _saveData.OnUpGradeMaxHpLevel -= UpdateMaxHpLevel;
-    }
-
-    private void Awake()
-    {
-        _saveData = DataManager.Instance.SaveData;
     }
 
     private void Start()

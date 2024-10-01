@@ -12,28 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 471143034ca9afa4e9b7f5c1f8781d0d, type: 3}
   m_Name: SaveData
   m_EditorClassIdentifier: 
-  GameData:
-    ClearMissions: 000000
-    Stat:
-    - CurrentStat: 75
-      UpGradeStat: 80
-      UpGradeStatGold: 80
-      Level: 4
-      MaxLevel: 5
-    - CurrentStat: 30
-      UpGradeStat: 40
-      UpGradeStatGold: 20
-      Level: 2
-      MaxLevel: 5
-    BaseStat:
-    - CurrentStat: 0
-      UpGradeStat: 5
-      UpGradeStatGold: 5
-      Level: 0
-      MaxLevel: 5
-    - CurrentStat: 0
-      UpGradeStat: 10
-      UpGradeStatGold: 5
-      Level: 0
-      MaxLevel: 5
-    Gold: 10
+  _gameData:
+    _clearMissions: 000000
+    _stats:
+    - _currentStat: 0
+      _upGradeStat: 5
+      _upGradeStatGold: 5
+      _level: 0
+      _maxLevel: 5
+    - _currentStat: 0
+      _upGradeStat: 10
+      _upGradeStatGold: 5
+      _level: 0
+      _maxLevel: 5
+    _baseStats:
+    - _currentStat: 0
+      _upGradeStat: 5
+      _upGradeStatGold: 5
+      _level: 0
+    - _currentStat: 0
+      _upGradeStat: 5
+      _upGradeStatGold: 5
+      _level: 0

@@ -27,13 +27,17 @@ public class DataManager : MonoBehaviour
 
     private void ClearGameData()
     {
-        for (int i = 0; i < SaveData.GameData.Stat.Length; i++)
+        for (int i = 0; i < SaveData.GameData.Stats.Length; i++)
         {
-            SaveData.GameData.Stat[i].CurrentStat = SaveData.GameData.BaseStat[i].CurrentStat;
-            SaveData.GameData.Stat[i].UpGradeStat = SaveData.GameData.BaseStat[i].UpGradeStat;
-            SaveData.GameData.Stat[i].UpGradeStatGold = SaveData.GameData.BaseStat[i].UpGradeStatGold;
-            SaveData.GameData.Stat[i].Level = SaveData.GameData.BaseStat[i].Level;
-            SaveData.GameData.Stat[i].MaxLevel = SaveData.GameData.BaseStat[i].MaxLevel;
+            SaveData.GameData.Stats[i].CurrentStat = SaveData.GameData.BaseStats[i].CurrentStat;
+            SaveData.GameData.Stats[i].UpGradeStat = SaveData.GameData.BaseStats[i].UpGradeStat;
+            SaveData.GameData.Stats[i].UpGradeStatGold = SaveData.GameData.BaseStats[i].UpGradeStatGold;
+            SaveData.GameData.Stats[i].Level = SaveData.GameData.BaseStats[i].Level;
+        }
+
+        for(int i = 0; i < SaveData.GameData.ClearMissions.Length; i++)
+        {
+            SaveData.GameData.ClearMissions[i] = false;
         }
         SaveData.Gold = 0;
     }

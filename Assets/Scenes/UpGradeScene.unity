@@ -2071,13 +2071,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageUi:
-    UpGradeStatText: {fileID: 1498876784}
-    UpGradeStatGoldText: {fileID: 1848249490}
-    LevelText: {fileID: 1085263386}
+    _upGradeStatText: {fileID: 1498876784}
+    _upGradeStatGoldText: {fileID: 1848249490}
+    _levelText: {fileID: 1085263386}
   _maxHpUi:
-    UpGradeStatText: {fileID: 999150263}
-    UpGradeStatGoldText: {fileID: 1281013621}
-    LevelText: {fileID: 1171028490}
+    _upGradeStatText: {fileID: 999150263}
+    _upGradeStatGoldText: {fileID: 1281013621}
+    _levelText: {fileID: 1171028490}
   _goldText: {fileID: 216354703}
 --- !u!114 &1161076946
 MonoBehaviour:

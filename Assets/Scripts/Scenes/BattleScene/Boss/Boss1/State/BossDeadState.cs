@@ -34,7 +34,7 @@ public class BossDeadState : BossState
         Time.timeScale = 0.5f;
         _anim.Play(_deadHash);
         DataManager.Instance.SaveData.Gold += _bossData.Gold;
-        DataManager.Instance.SaveData.GameData.ClearMissions[(int)EMission.데몬킹] = true;
+        DataManager.Instance.SaveData.GameData.ClearMissions[(int)EMission.DemonKing] = true;
         Debug.Log("BossDeadState 들어옴");
     }
 
