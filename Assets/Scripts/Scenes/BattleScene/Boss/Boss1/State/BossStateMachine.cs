@@ -54,11 +54,6 @@ public class BossStateMachine : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        _state?.FixedUpdate();
-    }
-
     public void ChangeState(BossState newState)
     {
         if (_state != null)

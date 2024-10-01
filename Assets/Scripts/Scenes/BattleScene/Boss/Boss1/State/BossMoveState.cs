@@ -6,15 +6,21 @@ using UnityEngine.AI;
 public class BossMoveState : BossState
 {
     private BossStateMachine _boss;
+
     private BossData _bossData;
+
     private BossMove _bossMove;
+
     private BossHitAttack _bossHitAttack;
+
     private NavMeshAgent _navMesh;
+
     private Transform _player;
+
     private float _speed;
 
-
     private float probability;
+
     private float _bossUpsetHp;
     public BossMoveState(BossStateMachine boss)
     {
@@ -76,10 +82,6 @@ public class BossMoveState : BossState
         Debug.Log("BossMoveState¿¡ ³ª°¨");
     }
 
-    public override void FixedUpdate()
-    {
-
-    }
 
 
 }

@@ -6,10 +6,15 @@ using UnityEngine.AI;
 public class BossSecondAttackState : BossState
 {
     private BossStateMachine _boss;
+
     private BossData _bossData;
+
     private NavMeshAgent _navMesh;
+
     private IBossHitAttack _bossHitAttack;
+
     private Animator _anim;
+
     private int _secondAttackHash = Animator.StringToHash("SecondAttack");
     public BossSecondAttackState(BossStateMachine boss)
     {
@@ -42,12 +47,6 @@ public class BossSecondAttackState : BossState
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
     }
-
-    public override void FixedUpdate()
-    {
-
-    }
-
     public override void Exit()
     {
         _bossHitAttack.StopAttack();

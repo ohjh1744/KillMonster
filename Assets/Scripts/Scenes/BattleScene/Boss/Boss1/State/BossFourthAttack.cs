@@ -7,13 +7,21 @@ using UnityEngine.UI;
 public class BossFourthAttack : BossState
 {
     private BossStateMachine _boss;
+
     private BossData _bossData;
+
     private NavMeshAgent _navMesh;
+
     private IBossWorldAreaAttack _bossWorldAreaAttack;
+
     private Animator _anim;
+
     private Animator _warningAnim;
+
     private int _warningAnimTrueHash = Animator.StringToHash("WarningImageTrue");
+
     private int _warningAnimFalseHash = Animator.StringToHash("WarningImageFalse");
+
     private int _FourthAttackHash = Animator.StringToHash("FourthAttack");
     public BossFourthAttack(BossStateMachine boss)
     {
@@ -46,11 +54,6 @@ public class BossFourthAttack : BossState
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
-    }
-
-    public override void FixedUpdate()
-    {
-
     }
 
     public override void Exit()

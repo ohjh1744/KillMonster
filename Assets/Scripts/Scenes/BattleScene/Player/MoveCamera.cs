@@ -42,7 +42,7 @@ public class MoveCamera : MonoBehaviour
             RotateCamera();
             ResetRecoil();
         }
-        else if(_gameManager.GameState == GameState.끝 || _gameManager.GameState == GameState.중단)
+        else if(_gameManager.GameState == GameState.승리 || _gameManager.GameState == GameState.패배 || _gameManager.GameState == GameState.중단)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
