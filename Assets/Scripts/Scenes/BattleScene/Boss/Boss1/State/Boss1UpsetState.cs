@@ -4,53 +4,58 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BossFourthAttack : BossState
+public class Boss1UpsetState : BossState
 {
-    private BossStateMachine _boss;
+    private Boss1StateMachine _boss;
 
     private BossData _bossData;
 
+    private BossUpset _bossUpset;
+
     private NavMeshAgent _navMesh;
 
-    private IBossWorldAreaAttack _bossWorldAreaAttack;
-
-    private Animator _anim;
+    private Animator anim;
 
     private Animator _warningAnim;
+
+    private float _upsetTime;
+
+    private float _currentTIme;
+
+    private int _upsetHash = Animator.StringToHash("Upset");
 
     private int _warningAnimTrueHash = Animator.StringToHash("WarningImageTrue");
 
     private int _warningAnimFalseHash = Animator.StringToHash("WarningImageFalse");
 
-    private int _FourthAttackHash = Animator.StringToHash("FourthAttack");
-    public BossFourthAttack(BossStateMachine boss)
+    public Boss1UpsetState(Boss1StateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
-        _navMesh = _boss.GetComponent<NavMeshAgent>(); 
-        _bossWorldAreaAttack = _boss.GetComponent<IBossWorldAreaAttack>();
-        _anim = _boss.GetComponent<Animator>();
-        _warningAnim = _boss.FourthAttackWarningImage.GetComponent<Animator>();
+        _bossUpset = _boss.GetComponent<BossUpset>();
+        _navMesh = _boss.GetComponent<NavMeshAgent>();
+        anim = _boss.GetComponent<Animator>();
+        _upsetTime = _bossData.UpsetTime;
+        _warningAnim = _boss.UpsetWarningImage.GetComponent<Animator>();
     }
     public override void Enter()
     {
-        Debug.Log("BossFourthAttack 진입");
+        Debug.Log("BossUpsetState 진입");
         _navMesh.enabled = false;
-        _boss.transform.LookAt(_boss.Player.transform);
-        _anim.Play(_FourthAttackHash, -1, 0);
-        _bossWorldAreaAttack.IsAttack = true;
-        _bossWorldAreaAttack.Attack(_bossData.Damage, _FourthAttackHash);
+        anim.Play(_upsetHash);
         _warningAnim.Play(_warningAnimTrueHash);
+        _bossUpset.TurnUpset(_bossData);
     }
 
     public override void Update()
     {
+        _currentTIme += Time.deltaTime;
         if (_bossData.Hp < 1)
         {
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
         }
-        else if (_bossWorldAreaAttack.IsAttack == false)
+        else if (_currentTIme > _upsetTime)
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
@@ -58,9 +63,11 @@ public class BossFourthAttack : BossState
 
     public override void Exit()
     {
-        _bossWorldAreaAttack.StopAttack();
         _warningAnim.Play(_warningAnimFalseHash);
         _boss._isChange = false;
-        Debug.Log("BossFourthAttack 나감");
+        _currentTIme = 0;
+        Debug.Log("BossUpsetState 나감");
     }
+
+
 }

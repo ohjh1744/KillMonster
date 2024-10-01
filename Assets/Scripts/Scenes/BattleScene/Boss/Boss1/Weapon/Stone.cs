@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class Stone : MonoBehaviour, IThrowable
 {
-    [SerializeField]private float _damage;
-    [SerializeField]private float _power;
-    [SerializeField]private float _remainTime;
     [SerializeField] private Rigidbody _rigid;
+
     [SerializeField] private AudioClip _throwClip;
 
+    [SerializeField] private float _damage;
+
+    [SerializeField] private float _power;
+
+    [SerializeField] private float _remainTime;
+
     private Vector3 _targetPos;
+
     private float _bossDamage;
     public Vector3 Target { get { return _targetPos; } set { _targetPos = value; } }
 

@@ -4,25 +4,40 @@ using UnityEngine;
 
 public class BossHitAttack : MonoBehaviour, IBossHitAttack
 {
-    private bool _isAttack;
-    public float AttackDistance;
     [SerializeField] Transform _attackPos;
+
     [SerializeField] AudioSource _audioSource;
+
     [SerializeField] AudioClip _attackClip;
+
     [SerializeField] private GameObject _hitPoint;
+
     [SerializeField] private float _range;
+
     [SerializeField] private float _damage;
+
     [SerializeField] private float _pullPower;
+
     [SerializeField] private float _finishAttackTime;
+
     [SerializeField] private float _showHitTime;
+
+    [SerializeField] private float _attackDistance;
+    public float AttackDistance { get; set; }
+
+    private bool _isAttack;
+    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
+
     private WaitForSeconds _FinishAttackSeconds;
+
     private WaitForSeconds _showHitSeconds;
+
     private Coroutine _coroutine;
 
-    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
+
     void Awake()
     {
-        IsAttack = true;
+        _isAttack = true;
         _FinishAttackSeconds = new WaitForSeconds(_finishAttackTime);
         _showHitSeconds = new WaitForSeconds(_showHitTime);
     }
@@ -65,7 +80,7 @@ public class BossHitAttack : MonoBehaviour, IBossHitAttack
         }
 
         yield return _FinishAttackSeconds;
-        IsAttack = false;
+        _isAttack = false;
         _coroutine = null;
 
     }

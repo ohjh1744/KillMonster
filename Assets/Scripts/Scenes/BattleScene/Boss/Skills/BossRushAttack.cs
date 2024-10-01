@@ -5,25 +5,40 @@ using UnityEngine.AI;
 
 public class BossRushAttack : MonoBehaviour, IBossRushAttack
 {
-    private bool _isAttack;
     [SerializeField] private AudioSource _audioSource;
+
     [SerializeField] private AudioClip _attackClip;
+
     [SerializeField] private NavMeshAgent _navMesh;
+
     [SerializeField] private Animator _anim;
+
     [SerializeField] private Transform _playerPosition;
+
     [SerializeField] private float _rushSpeed;
+
     [SerializeField] private float _damage;
+
     [SerializeField] private float _pullPower;
+
     [SerializeField] private float _range;
+
     [SerializeField] private float _attackNum;
+
     [SerializeField] private float _waitRushTime;
+
     [SerializeField] private float _damageRateTime;
 
+    private bool _isAttack;
+    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
+
     private WaitForSeconds _damageRateSeconds;
+
     private WaitForSeconds _waitRushSeconds;
+
     private Coroutine _coroutine;
 
-    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
+
     void Awake()
     {
         IsAttack = false;

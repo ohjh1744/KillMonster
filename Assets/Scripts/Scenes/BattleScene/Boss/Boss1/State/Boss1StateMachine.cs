@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 public enum EBossState {Idle, Move, Upset, Dead, FirstAttack, SecondAttack, ThirdAttack, FourthAttack, Size}
-public class BossStateMachine : MonoBehaviour
+public class Boss1StateMachine : MonoBehaviour
 {
     [HideInInspector] public BossData BossData;
     [HideInInspector] public Rigidbody Rigid;
@@ -29,14 +29,14 @@ public class BossStateMachine : MonoBehaviour
     {
         Rigid = GetComponent<Rigidbody>();
         BossData = GetComponent<BossData>();
-        BossStates[(int)EBossState.Idle] = new BossIdleState(this);
-        BossStates[(int)EBossState.Move] = new BossMoveState(this);
-        BossStates[(int)EBossState.Upset] = new BossUpsetState(this);
-        BossStates[(int)EBossState.Dead] = new BossDeadState(this);
-        BossStates[(int)EBossState.FirstAttack] = new BossFirstAttackState(this);
-        BossStates[(int)EBossState.SecondAttack] = new BossSecondAttackState(this);
-        BossStates[(int)EBossState.ThirdAttack] = new BossThirdAttackState(this);
-        BossStates[(int)EBossState.FourthAttack] = new BossFourthAttack(this);
+        BossStates[(int)EBossState.Idle] = new Boss1IdleState(this);
+        BossStates[(int)EBossState.Move] = new Boss1MoveState(this);
+        BossStates[(int)EBossState.Upset] = new Boss1UpsetState(this);
+        BossStates[(int)EBossState.Dead] = new Boss1DeadState(this);
+        BossStates[(int)EBossState.FirstAttack] = new Boss1FirstAttackState(this);
+        BossStates[(int)EBossState.SecondAttack] = new Boss1SecondAttackState(this);
+        BossStates[(int)EBossState.ThirdAttack] = new Boss1ThirdAttackState(this);
+        BossStates[(int)EBossState.FourthAttack] = new Boss1FourthAttack(this);
         seconds = new WaitForSeconds(_changeStateTime);
     }
     private void Start()

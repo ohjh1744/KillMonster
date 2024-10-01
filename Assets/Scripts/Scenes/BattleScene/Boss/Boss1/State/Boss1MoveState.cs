@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossMoveState : BossState
+public class Boss1MoveState : BossState
 {
-    private BossStateMachine _boss;
+    private Boss1StateMachine _boss;
 
     private BossData _bossData;
 
@@ -22,7 +22,7 @@ public class BossMoveState : BossState
     private float probability;
 
     private float _bossUpsetHp;
-    public BossMoveState(BossStateMachine boss)
+    public Boss1MoveState(Boss1StateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;

@@ -7,10 +7,11 @@ public class BossUpset : MonoBehaviour
 {
 
     [SerializeField] AudioSource _audioSource;
+
     [SerializeField] AudioClip _upsetClip;
 
-
     private int _moveHash = Animator.StringToHash("Walk");
+
     private float _curMoveSoundTime;
 
     public void TurnUpset(BossData bossData)

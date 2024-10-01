@@ -6,27 +6,43 @@ using UnityEngine;
 
 public class BossWorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
 {
-    private bool _isAttack;
-    [SerializeField] private float _damage;
-    [SerializeField] private float _range;
-    [SerializeField] private float _attackNum;
-    [SerializeField] private float _waitRoarTime;
-    [SerializeField] private float _damageRateTime;
     [SerializeField] private CinemachineVirtualCamera _playerNoiseCamera;
+
     [SerializeField] private GameObject _safeZone;
+
     [SerializeField] private Transform[] _safeZonePoints;
+
     [SerializeField] private AudioSource _audioSource;
+
     [SerializeField] private AudioClip _attackClip;
+
     [SerializeField] private Animator _anim;
 
+    [SerializeField] private float _damage;
+
+    [SerializeField] private float _range;
+
+    [SerializeField] private float _attackNum;
+
+    [SerializeField] private float _waitRoarTime;
+
+    [SerializeField] private float _damageRateTime;
+
     private int _originPriority;
+
     private int _safeZonePointNum;
+
     private int _IdleHash = Animator.StringToHash("Idle");
+
     private WaitForSeconds _damageRateSeconds;
+
     private WaitForSeconds _waitRoarSeconds;
+
     private Coroutine _coroutine;
 
+    private bool _isAttack;
     public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
+
     void Awake()
     {
         IsAttack = true;
