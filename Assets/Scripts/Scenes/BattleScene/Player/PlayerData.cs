@@ -13,9 +13,11 @@ public enum ESound { Walk, Run, ChangeFireWeapon, TakeDamage};
 
 public class PlayerData : MonoBehaviour
 {
-    // 기본 스텟
+    [Header("Basic Stat")]
     [SerializeField] private float _hp;
     public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
+    public bool IsSafe { get; set; }
+    public bool IsDamage { get; set; }
 
     private float _damage;
     public float Damage { get { return _damage; } set { _damage = value; } }
@@ -23,22 +25,25 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private float _speed;
     public float Speed { get { return _speed; } set { _speed = value; } }
 
+    public bool IsRun { get; set; }
+
     [SerializeField] private float _runGage;
-    public float RunMaxGage;
+    public float RunGage { get { return _runGage; } set { _runGage = value; OnRunGageChanged?.Invoke(); } }
 
-    public bool IsRun { get;  set; }
-    [HideInInspector]public float RunGage { get { return _runGage; } set { _runGage = value; OnRunGageChanged?.Invoke(); } }
+    [SerializeField] private float _runMaxGage;
+    public float RunMaxGage { get { return _runMaxGage; } private set { } }
 
-    public float StiffnessTime;
+    [SerializeField] private float _stiffnessTime;
+    public float StiffnessTime { get { return _stiffnessTime; } private set { } }
 
-     //------------------------------------------------------
+    //------------------------------------------------------
+    [Header("Weapon")]
+    // 여기저기서 참조
+    [SerializeField] private EFireWeapon _curFireWeapon;
+    public EFireWeapon CurFireWeapon { get { return _curFireWeapon; } set { _curFireWeapon = value; } }
 
-    public Camera Camera;
-    public CinemachineVirtualCamera PlayerVirtualCamera;
-    public EFireWeapon CurFireWeapon;
-    public EZoom IsZoom;
-    [HideInInspector] public bool IsDamage;
-    [HideInInspector] public bool IsSafe;
+
+    public EZoom IsZoom { get; set; }
     [HideInInspector] public bool IsChangeFireWeapon;
     public float ChangeWeaponTime;
     // 들고있는 총 상태, 총기류들, 총기류가 아닌 무기들

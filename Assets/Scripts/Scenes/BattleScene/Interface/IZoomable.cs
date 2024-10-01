@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IZoomable 
 {
-    void ZoomIn(CinemachineVirtualCamera _virtualCamera);
-    void ZoomOut(CinemachineVirtualCamera camera_virtualCamera);
+    void ZoomIn();
+    void ZoomOut();
 
 }

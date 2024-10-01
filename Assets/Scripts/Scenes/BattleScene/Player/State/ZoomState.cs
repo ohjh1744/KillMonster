@@ -15,8 +15,6 @@ public class ZoomState : AttackState
     {
         _player = player;
         _playerData = _player.PlayerData;
-        _camera = _playerData.Camera;
-        _virtualCamera = _playerData.PlayerVirtualCamera;
     }
 
     public override void Enter()
@@ -50,7 +48,7 @@ public class ZoomState : AttackState
         _playerData.Aims[(int)EZoom.ZoomOut].SetActive(false);
         _anim.SetBool("isZoom", true);
         IZoomable zoomable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IZoomable>();
-        zoomable.ZoomIn(_virtualCamera);
+        zoomable.ZoomIn();
         _playerData.Aims[(int)EZoom.ZoomIn].SetActive(true);
 
 
@@ -62,7 +60,7 @@ public class ZoomState : AttackState
         _playerData.Aims[(int)EZoom.ZoomIn].SetActive(false);
         _anim.SetBool("isZoom", false);
         IZoomable zoomable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IZoomable>();
-        zoomable.ZoomOut(_virtualCamera);
+        zoomable.ZoomOut();
         _playerData.Aims[(int)EZoom.ZoomOut].SetActive(true);
     }
 

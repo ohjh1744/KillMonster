@@ -11,7 +11,6 @@ public class FireState : AttackState
     private PlayerData _playerData;
     private Animator _anim;
     private MoveCamera _moveCamera;
-    private Camera _camera;
     private AudioSource _audioSource;
 
     private float _attackLastTime;
@@ -21,8 +20,6 @@ public class FireState : AttackState
     public FireState(PlayerStateMachine player)
     {
         _player = player;
-        _playerData = _player.PlayerData;
-        _camera = _player.PlayerData.Camera;
         _moveCamera = _playerData.GetComponent<MoveCamera>();
         _playerDamage = _playerData.Damage;
         _attackLastTime = 0f;
@@ -61,7 +58,7 @@ public class FireState : AttackState
             if (Time.time - _attackLastTime > attackTime)
             {
                 IShootable shootable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IShootable>();
-                shootable.Shoot(_camera, _playerDamage, _audioSource);
+                shootable.Shoot(_playerDamage, _audioSource);
                 _moveCamera.ApplyRecoil(shootable.ReCoil);
 
                 _playerData.SetAmmos((int)_playerData.CurFireWeapon , _playerData.GetAmmos((int)_playerData.CurFireWeapon) - 1);

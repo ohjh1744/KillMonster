@@ -29,6 +29,8 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
     [SerializeField] private GunData _gunData;
     [SerializeField] private AudioClip _shootClip;
     [SerializeField] private AudioClip _reLoadClip;
+    [SerializeField] private Camera _camera;
+    [SerializeField] private CinemachineVirtualCamera _virtualCamera;
     private Coroutine _fireFlashRoutine;
     private WaitForSeconds _flashWaitForSeconds;
     private Coroutine _reLoadRoutine;
@@ -48,17 +50,17 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
         _flashWaitForSeconds = new WaitForSeconds(_gunData.FlashTime);
         _reLoadWaitForSeconds = new WaitForSeconds(_gunData.ReLoadTime);
     }
-    public void Shoot(Camera camera, float playerDamage, AudioSource audioSource)
+    public void Shoot(float playerDamage, AudioSource audioSource)
     {
         audioSource.PlayOneShot(_shootClip);
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 100))
         {
             if(hit.collider.tag != "Player")
             {
                 GameObject bulletImpact = _gunData.BulletHitImpactPull.Get();
                 bulletImpact.transform.position = hit.point;
-                Vector3 bulletAngle = camera.transform.position - hit.point;
+                Vector3 bulletAngle = _camera.transform.position - hit.point;
                 bulletImpact.transform.rotation = Quaternion.LookRotation(bulletAngle);
             }
 
@@ -106,13 +108,13 @@ public class Gun : MonoBehaviour, IAttackTime, IShootable, IZoomable
 
     }
 
-    public void ZoomIn(CinemachineVirtualCamera camera)
+    public void ZoomIn()
     {
-        camera.m_Lens.FieldOfView = _gunData.MinFov;
+        _virtualCamera.m_Lens.FieldOfView = _gunData.MinFov;
     }
 
-    public void ZoomOut(CinemachineVirtualCamera camera)
+    public void ZoomOut()
     {
-        camera.m_Lens.FieldOfView = _gunData.MaxFov;
+        _virtualCamera.m_Lens.FieldOfView = _gunData.MaxFov;
     }
 }
