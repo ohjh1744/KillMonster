@@ -27,7 +27,7 @@ public class BossSecondAttackState : BossState
         _boss.transform.LookAt(_boss.transform);
         _anim.Play(_secondAttackHash, -1, 0);
         _bossHitAttack.IsAttack = true;
-        _bossHitAttack.Attack(_bossData.BasicDamage);
+        _bossHitAttack.Attack(_bossData.Damage);
     }
 
     public override void Update()

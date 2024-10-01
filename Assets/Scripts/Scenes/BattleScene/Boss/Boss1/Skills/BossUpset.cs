@@ -18,7 +18,7 @@ public class BossUpset : MonoBehaviour
         _audioSource.clip = _upsetClip;
         _audioSource.Play();
         bossData.IsUpset = true;
-        bossData.BasicDamage *= 2;
+        bossData.Damage *= 2;
         bossData.Speed *= 2;
     }
 }

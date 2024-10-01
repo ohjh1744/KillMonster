@@ -27,7 +27,7 @@ public class BossFirstAttackState : BossState
         _anim.Play(_firstAttackHash, -1, 0);
         _bossThrowAttack.Target = _boss.Player.transform;
         _bossThrowAttack.IsAttack = true;
-        _bossThrowAttack.Attack(_bossData.BasicDamage);
+        _bossThrowAttack.Attack(_bossData.Damage);
     }
 
     public override void Update()

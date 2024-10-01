@@ -27,7 +27,7 @@ public class BossThirdAttackState : BossState
         _boss.transform.LookAt(_boss.Player.transform);
         _anim.Play(_ThirdAttackHash, -1, 0);
         _bossRushAttack.IsAttack = true;
-        _bossRushAttack.Attack(_bossData.Speed, _bossData.BasicDamage);
+        _bossRushAttack.Attack(_bossData.Speed, _bossData.Damage);
     }
 
     public override void Update()

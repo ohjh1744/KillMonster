@@ -31,7 +31,7 @@ public class BossFourthAttack : BossState
         _boss.transform.LookAt(_boss.Player.transform);
         _anim.Play(_FourthAttackHash, -1, 0);
         _bossWorldAreaAttack.IsAttack = true;
-        _bossWorldAreaAttack.Attack(_bossData.BasicDamage, _FourthAttackHash);
+        _bossWorldAreaAttack.Attack(_bossData.Damage, _FourthAttackHash);
         _warningAnim.Play(_warningAnimTrueHash);
     }
 

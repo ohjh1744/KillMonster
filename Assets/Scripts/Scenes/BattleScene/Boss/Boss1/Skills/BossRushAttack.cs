@@ -39,7 +39,7 @@ public class BossRushAttack : MonoBehaviour, IBossRushAttack
             _navMesh.SetDestination(_playerPosition.position);
         }
     }
-    public void Attack(float basicSpeed,int basicDamage)
+    public void Attack(float basicSpeed,float basicDamage)
     {
         _coroutine = StartCoroutine(RushAttack(basicSpeed, basicDamage));
     }
@@ -54,7 +54,7 @@ public class BossRushAttack : MonoBehaviour, IBossRushAttack
     }
 
 
-    private IEnumerator RushAttack(float basicSpeed, int basicDamage)
+    private IEnumerator RushAttack(float basicSpeed, float basicDamage)
     {
         _anim.speed = 0;
         _navMesh.speed = 0;

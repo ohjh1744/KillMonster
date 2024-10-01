@@ -27,7 +27,7 @@ public class BossHitAttack : MonoBehaviour, IBossHitAttack
         _showHitSeconds = new WaitForSeconds(_showHitTime);
     }
 
-    public void Attack(int bossDamage)
+    public void Attack(float bossDamage)
     {
         _coroutine = StartCoroutine(HitAttack(bossDamage));
     }
@@ -40,7 +40,7 @@ public class BossHitAttack : MonoBehaviour, IBossHitAttack
         }
     }
 
-    private IEnumerator  HitAttack(int bossDamage)
+    private IEnumerator  HitAttack(float bossDamage)
     {
         _hitPoint.SetActive(true);
         _audioSource.clip = _attackClip;

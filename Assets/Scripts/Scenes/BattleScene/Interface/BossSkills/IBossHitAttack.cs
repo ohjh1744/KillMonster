@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IBossHitAttack 
 {
     public bool IsAttack { get; set; }
-    public void Attack(int bossDamage);
+    public void Attack(float bossDamage);
     public void StopAttack();
 
 }

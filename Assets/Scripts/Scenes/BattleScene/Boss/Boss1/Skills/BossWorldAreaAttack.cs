@@ -35,7 +35,7 @@ public class BossWorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
         _originPriority = _playerNoiseCamera.Priority;
     }
 
-    public void Attack(int bossDamage, int animHash)
+    public void Attack(float bossDamage, int animHash)
     {
         _coroutine = StartCoroutine(RoarAttack(bossDamage, animHash));
     }
@@ -48,7 +48,7 @@ public class BossWorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
         }
     }
 
-    private IEnumerator RoarAttack(int bossDamage, int animHash)
+    private IEnumerator RoarAttack(float bossDamage, int animHash)
     {
         if (_safeZone != null)
         {
