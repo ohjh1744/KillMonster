@@ -8,11 +8,14 @@ using UnityEngine.UI;
 public class MainSceneUI: MonoBehaviour
 {
     [SerializeField] private InputField _saveInputField;
-    [SerializeField] private InputField _loadInputField;
-    [SerializeField] private TextMeshProUGUI _saveText;
-    [SerializeField] private TextMeshProUGUI _loadText;
-    [SerializeField] private float _textActivefalseTime;
 
+    [SerializeField] private InputField _loadInputField;
+
+    [SerializeField] private TextMeshProUGUI _saveText;
+
+    [SerializeField] private TextMeshProUGUI _loadText;
+
+    [SerializeField] private float _textActivefalseTime;
 
     private StringBuilder sb = new StringBuilder();
 
