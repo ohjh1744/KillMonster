@@ -6983,12 +6983,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 5000
   _maxhp: 5000
-  Gold: 50
-  Speed: 2
-  BasicDamage: 5
-  UpsetTime: 4
-  IsUpset: 0
-  DeadTime: 4
+  _gold: 50
+  _speed: 2
+  _damage: 5
+  _upsetTime: 4
+  _deadTime: 4
 --- !u!114 &1422332684
 MonoBehaviour:
   m_ObjectHideFlags: 0
