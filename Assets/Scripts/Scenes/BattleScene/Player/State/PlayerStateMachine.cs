@@ -168,8 +168,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         if(PlayerData.Hp < 1)
         {
             PlayerData.Hp = 0f;
-            _gameManager.GameState = GameState.³¡;
-            _gameManager.Lose();
+            _gameManager.GameState = GameState.ÆÐ¹è;
         }
     }
 

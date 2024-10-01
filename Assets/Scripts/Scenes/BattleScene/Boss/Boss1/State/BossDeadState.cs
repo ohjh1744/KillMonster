@@ -7,13 +7,21 @@ using UnityEngine.AI;
 public class BossDeadState : BossState
 {
     private BossStateMachine _boss;
+
     private BossData _bossData;
+
     private BossDead _bossDead;
+
     private NavMeshAgent _navMesh;
+
     private GameManager _gameManager;
+
     private Animator _anim;
+
     private float _deadTime;
+
     private float _currentTime;
+
     private int _deadHash = Animator.StringToHash("Dead");
 
     public BossDeadState(BossStateMachine boss)
@@ -43,14 +51,8 @@ public class BossDeadState : BossState
         _currentTime += Time.deltaTime;
         if(_currentTime > _deadTime)
         {
-            _gameManager.GameState = GameState.³¡;
-            _gameManager.Win();
+            _gameManager.GameState = GameState.½Â¸®;
         }
-    }
-
-    public override void FixedUpdate()
-    {
-
     }
 
     public override void Exit()
