@@ -6,12 +6,17 @@ using UnityEngine.UI;
 public class VolumChanger : MonoBehaviour
 {
     [SerializeField] private Slider _bgmSlider;
+
     [SerializeField] private Slider _sfxSlider;
+
     [SerializeField] private Slider _bossSoundSlider;
+
     [SerializeField] private Slider _playerSoundSlider;
 
     [SerializeField] private AudioSource _bossAudioSource;
+
     [SerializeField] private AudioSource _playerAudioSource1;
+
     [SerializeField] private AudioSource _playerAudioSource2;
 
     private void Awake()
