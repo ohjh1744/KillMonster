@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainSceneUI: MonoBehaviour
+public class MainSceneUIController: MonoBehaviour
 {
     [SerializeField] private InputField _saveInputField;
 
