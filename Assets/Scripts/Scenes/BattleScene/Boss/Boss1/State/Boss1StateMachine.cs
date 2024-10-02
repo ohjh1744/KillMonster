@@ -33,7 +33,7 @@ public class Boss1StateMachine : MonoBehaviour
     public bool _isChange { get; set; }
     private Coroutine _coroutine { get; set; }
 
-    private WaitForSeconds seconds;
+    private WaitForSeconds _seconds;
     
 
     private void Awake()
@@ -46,7 +46,7 @@ public class Boss1StateMachine : MonoBehaviour
         BossStates[(int)EBossState.SecondAttack] = new Boss1SecondAttackState(this);
         BossStates[(int)EBossState.ThirdAttack] = new Boss1ThirdAttackState(this);
         BossStates[(int)EBossState.FourthAttack] = new Boss1FourthAttack(this);
-        seconds = new WaitForSeconds(_changeStateTime);
+        _seconds = new WaitForSeconds(_changeStateTime);
     }
     private void Start()
     {
@@ -79,7 +79,7 @@ public class Boss1StateMachine : MonoBehaviour
         while (true)
         {
             StateProbability = Random.Range(0, 100);
-            yield return seconds;
+            yield return _seconds;
         }
     }
 
