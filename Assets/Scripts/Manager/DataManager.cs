@@ -54,7 +54,7 @@ public class DataManager : MonoBehaviour
     public void Save(string saveName)
     {
         StringBuilder path = new StringBuilder();
-        path.Append(Application.dataPath).Append("/Save");
+        path.Append(Application.persistentDataPath).Append("/Save");
         if (Directory.Exists(path.ToString()) == false)
         {
             Directory.CreateDirectory(path.ToString());
@@ -68,7 +68,7 @@ public class DataManager : MonoBehaviour
     public void Load(string loadName)
     {
         StringBuilder path = new StringBuilder();
-        path.Append(Application.dataPath).Append($"/Save/{loadName}.txt");
+        path.Append(Application.persistentDataPath).Append($"/Save/{loadName}.txt");
         if (File.Exists(path.ToString()) == false)
         {
             Debug.Log("Cant Find Save File");
