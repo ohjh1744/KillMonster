@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: ad449e270e219f84eaf359bc0da838af
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Boss1Scene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
     path: Assets/Scenes/MissionSelectScene.unity
     guid: 492e5b156adc7c74daba7fcf88640153
   - enabled: 1
     path: Assets/Scenes/UpGradeScene.unity
     guid: c7cdcd907e122564586dbe77b757844a
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Boss1Scene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9eb07e2d669e9c94e9d7d3c782a916f7,
       type: 2}

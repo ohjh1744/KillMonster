@@ -23,7 +23,7 @@ MonoBehaviour:
     - _currentStat: 0
       _upGradeStat: 10
       _upGradeStatGold: 5
-      _level: 5
+      _level: 0
       _maxLevel: 5
     _baseStats:
     - _currentStat: 0
@@ -34,5 +34,5 @@ MonoBehaviour:
     - _currentStat: 0
       _upGradeStat: 10
       _upGradeStatGold: 5
-      _level: 5
-      _maxLevel: 0
+      _level: 0
+      _maxLevel: 5
