@@ -20,7 +20,7 @@ public class StatUI
 
 }
 
-public class UpGradeStats : MonoBehaviour
+public class UpGradeSceneUIController : MonoBehaviour
 {
     [SerializeField] private StatUI _damageUi;
 
