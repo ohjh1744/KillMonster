@@ -71,13 +71,13 @@ public class DataManager : MonoBehaviour
         path.Append(Application.dataPath).Append($"/Save/{loadName}.txt");
         if (File.Exists(path.ToString()) == false)
         {
-            Debug.Log("불러올 세이브 파일 없음");
+            Debug.Log("Cant Find Save File");
             LoadState = ELoadState.Fail;
             return;
         }
         string json = File.ReadAllText(path.ToString());
         SaveData.GameData = JsonUtility.FromJson<GameData>(json);
-        Debug.Log("잘불러옴");
+        Debug.Log("Comoplete");
         LoadState = ELoadState.Success;
 
     }
