@@ -9625,7 +9625,7 @@ MonoBehaviour:
   _notFireAttackPos:
   - {fileID: 36580594}
   - {fileID: 11187122}
-  Ammos: 1e0000000a000000
+  _ammos: 1e0000000a000000
   _numGrenade: 5
 --- !u!135 &1775929579
 SphereCollider:
