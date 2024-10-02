@@ -4,21 +4,31 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BossUpsetState : BossState
+public class Boss1UpsetState : BossState
 {
-    private BossStateMachine _boss;
+    private Boss1StateMachine _boss;
+
     private BossData _bossData;
+
     private BossUpset _bossUpset;
+
     private NavMeshAgent _navMesh;
+
     private Animator anim;
+
     private Animator _warningAnim;
+
     private float _upsetTime;
 
     private float _currentTIme;
+
     private int _upsetHash = Animator.StringToHash("Upset");
+
     private int _warningAnimTrueHash = Animator.StringToHash("WarningImageTrue");
+
     private int _warningAnimFalseHash = Animator.StringToHash("WarningImageFalse");
-    public BossUpsetState(BossStateMachine boss)
+
+    public Boss1UpsetState(Boss1StateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
@@ -49,11 +59,6 @@ public class BossUpsetState : BossState
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
-    }
-
-    public override void FixedUpdate()
-    {
-
     }
 
     public override void Exit()

@@ -6,14 +6,17 @@ using static PlayerStateMachine;
 public class IdleAttackState : AttackState
 {
     private PlayerStateMachine _player;
+
     private PlayerData _playerData;
+
     private AudioClip _changeGunClip;
+
     private float _currentTime; 
     public IdleAttackState(PlayerStateMachine player)
     {
         _player = player;
         _playerData = player.PlayerData;
-        _changeGunClip = _playerData.AudioClips[(int)Sound.ÃÑ±³Ã¼];
+        _changeGunClip = _player.AudioClips[(int)ESound.ChangeFireWeapon];
     }
     public override void Enter()
     {
@@ -34,11 +37,11 @@ public class IdleAttackState : AttackState
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                SwapFireWeapon(FireWeapon.ÁÖÃÑ);
+                SwapFireWeapon(EFireWeapon.Main);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                SwapFireWeapon(FireWeapon.º¸Á¶ÃÑ);
+                SwapFireWeapon(EFireWeapon.Sub);
             }
 
             if(Input.GetMouseButtonDown(0))
@@ -69,7 +72,7 @@ public class IdleAttackState : AttackState
         Debug.Log("Idle Attack State¿¡¼­ ³ª°¨!");
     }
 
-    private void SwapFireWeapon(FireWeapon afterFireWeapon)
+    private void SwapFireWeapon(EFireWeapon afterFireWeapon)
     {
         SoundManager.Instance.PlaySFX(_changeGunClip);
         _playerData.IsChangeFireWeapon = true;

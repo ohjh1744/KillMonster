@@ -6,13 +6,17 @@ using UnityEngine;
 public class Grenade : Explosive, IAttackTime, IThrowable
 {
     [SerializeField] private AudioClip _throwClip;
-    [SerializeField] private AudioClip _explodeClip;
-    [SerializeField] private float _attackTime;
-    [SerializeField] private float _power;
-    private float _playerDamage;
-    public float AttackTime { get { return _attackTime; } set { _attackTime = value; } }
 
+    [SerializeField] private AudioClip _explodeClip;
+
+    [SerializeField] private float _power;
+
+    private float _playerDamage;
+
+    [SerializeField] private float _attackTime;
+    public float AttackTime { get { return _attackTime; } set { _attackTime = value; } }
     public Vector3 Target { get; set; }
+
     public void Throw(float damage, AudioSource audioSource)
     {
         audioSource.PlayOneShot(_throwClip);

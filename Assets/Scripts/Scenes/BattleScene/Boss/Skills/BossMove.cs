@@ -6,12 +6,18 @@ using UnityEngine.AI;
 public class BossMove : MonoBehaviour
 {
     [SerializeField] Animator _anim;
+
     [SerializeField] Transform _player;
+
     [SerializeField] AudioSource _audioSource;
+
     [SerializeField] AudioClip _moveClip;
+
+
     [SerializeField] NavMeshAgent _navMesh;
 
     private int _moveHash = Animator.StringToHash("Walk");
+
     private float _curMoveSoundTime;
 
     public void PlayMoveSound()

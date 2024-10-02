@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletHitImpactPull : MonoBehaviour
 {
     [SerializeField]private GameObject BulletImpact;
+
     private List<GameObject>_pool;
 
     public void Awake()

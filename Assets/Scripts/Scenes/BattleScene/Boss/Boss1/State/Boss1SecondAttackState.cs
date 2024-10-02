@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossSecondAttackState : BossState
+public class Boss1SecondAttackState : BossState
 {
-    private BossStateMachine _boss;
+    private Boss1StateMachine _boss;
+
     private BossData _bossData;
+
     private NavMeshAgent _navMesh;
+
     private IBossHitAttack _bossHitAttack;
+
     private Animator _anim;
+
     private int _secondAttackHash = Animator.StringToHash("SecondAttack");
-    public BossSecondAttackState(BossStateMachine boss)
+    public Boss1SecondAttackState(Boss1StateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
@@ -27,7 +32,7 @@ public class BossSecondAttackState : BossState
         _boss.transform.LookAt(_boss.transform);
         _anim.Play(_secondAttackHash, -1, 0);
         _bossHitAttack.IsAttack = true;
-        _bossHitAttack.Attack(_bossData.BasicDamage);
+        _bossHitAttack.Attack(_bossData.Damage);
     }
 
     public override void Update()
@@ -42,12 +47,6 @@ public class BossSecondAttackState : BossState
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
     }
-
-    public override void FixedUpdate()
-    {
-
-    }
-
     public override void Exit()
     {
         _bossHitAttack.StopAttack();

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BossHitPoint : MonoBehaviour, IDamagable
 {
     [SerializeField] private BossData _bossData;
+
     [SerializeField] private Slider _bossHpBar;
 
     private void OnEnable()

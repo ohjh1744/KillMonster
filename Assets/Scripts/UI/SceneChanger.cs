@@ -7,13 +7,21 @@ using UnityEngine.UI;
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField] private Image _loadingImage;
+
     [SerializeField] private Slider _loadingBar;
+
     [SerializeField] private Image _loadingBG;
+
     [SerializeField] private GameObject _mainUI;
+
     [SerializeField] private float _loadingTime;
 
     private Coroutine _loadingRoutine;
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void ChangeScene(string sceneName)
     {
         Time.timeScale = 1;

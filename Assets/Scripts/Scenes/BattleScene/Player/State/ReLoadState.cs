@@ -7,17 +7,19 @@ using UnityEngine.UI;
 public class ReLoadState : AttackState
 {
     private PlayerStateMachine _player;
+
     private PlayerData _playerData;
+
     private Animator _anim;
+
     private IShootable _shootable;
+
     private int _reLoadHash = Animator.StringToHash("ReLoad");
-    private AudioSource _audioSource;
 
     public ReLoadState(PlayerStateMachine player)
     {
         _player = player;
         _playerData = _player.PlayerData;
-        _audioSource = _player.AttackStateAudio;
     }
 
     public override void Enter()
@@ -47,7 +49,7 @@ public class ReLoadState : AttackState
 
     private void ReLoad()
     {
-        _shootable.ReLoad(_audioSource);
+        _shootable.ReLoad(_player.ReLoadImage);
         _anim.SetBool("isReLoad", true);
         _anim.Play(_reLoadHash);
     }

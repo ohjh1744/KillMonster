@@ -3,16 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BossThirdAttackState : BossState
+public class Boss1ThirdAttackState : BossState
 {
-    private BossStateMachine _boss;
+    private Boss1StateMachine _boss;
+
     private BossData _bossData;
+
     private NavMeshAgent _navMesh;
+
     private IBossRushAttack _bossRushAttack;
+
     private Animator _anim;
+
     private int _ThirdAttackHash = Animator.StringToHash("ThirdAttack");
 
-    public BossThirdAttackState(BossStateMachine boss)
+    public Boss1ThirdAttackState(Boss1StateMachine boss)
     {
         this._boss = boss;
         _anim = _boss.GetComponent<Animator>();
@@ -27,7 +32,7 @@ public class BossThirdAttackState : BossState
         _boss.transform.LookAt(_boss.Player.transform);
         _anim.Play(_ThirdAttackHash, -1, 0);
         _bossRushAttack.IsAttack = true;
-        _bossRushAttack.Attack(_bossData.Speed, _bossData.BasicDamage);
+        _bossRushAttack.Attack(_bossData.Speed, _bossData.Damage);
     }
 
     public override void Update()
@@ -41,11 +46,6 @@ public class BossThirdAttackState : BossState
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
-    }
-
-    public override void FixedUpdate()
-    {
-
     }
 
     public override void Exit()

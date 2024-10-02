@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAttackTime
 {
-   public float AttackTime { get; set; }
+   public float AttackTime { get; }
 }

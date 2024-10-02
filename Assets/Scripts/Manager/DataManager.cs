@@ -6,11 +6,19 @@ using UnityEngine.Playables;
 using System.IO;
 using System.Text;
 using UnityEngine.UI;
+using TMPro;
 
+public enum ESaveState { Before, alreadySave, Success, Fail}
+public enum ELoadState { Before, Success, Fail }
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance { get; private set; }
-    public SaveData SaveData;
+
+    [SerializeField] private SaveData _saveData;
+    public SaveData SaveData { get { return _saveData; } private set { } }
+    public ESaveState SaveState { get; set; }
+    public ELoadState LoadState { get; set; }
+
     private void Awake()
     {
         if (Instance == null)
@@ -27,13 +35,17 @@ public class DataManager : MonoBehaviour
 
     private void ClearGameData()
     {
-        for (int i = 0; i < SaveData.GameData.Stat.Length; i++)
+        for (int i = 0; i < SaveData.GameData.Stats.Length; i++)
         {
-            SaveData.GameData.Stat[i].CurrentStat = SaveData.GameData.BaseStat[i].CurrentStat;
-            SaveData.GameData.Stat[i].UpGradeStat = SaveData.GameData.BaseStat[i].UpGradeStat;
-            SaveData.GameData.Stat[i].UpGradeStatGold = SaveData.GameData.BaseStat[i].UpGradeStatGold;
-            SaveData.GameData.Stat[i].Level = SaveData.GameData.BaseStat[i].Level;
-            SaveData.GameData.Stat[i].MaxLevel = SaveData.GameData.BaseStat[i].MaxLevel;
+            SaveData.GameData.Stats[i].CurrentStat = SaveData.GameData.BaseStats[i].CurrentStat;
+            SaveData.GameData.Stats[i].UpGradeStat = SaveData.GameData.BaseStats[i].UpGradeStat;
+            SaveData.GameData.Stats[i].UpGradeStatGold = SaveData.GameData.BaseStats[i].UpGradeStatGold;
+            SaveData.GameData.Stats[i].Level = SaveData.GameData.BaseStats[i].Level;
+        }
+
+        for(int i = 0; i < SaveData.GameData.ClearMissions.Length; i++)
+        {
+            SaveData.GameData.ClearMissions[i] = false;
         }
         SaveData.Gold = 0;
     }
@@ -47,8 +59,10 @@ public class DataManager : MonoBehaviour
         {
             Directory.CreateDirectory(path.ToString());
         }
+
         string json = JsonUtility.ToJson(SaveData.GameData);
         File.WriteAllText($"{path}/{saveName}.txt", json);
+        SaveState = ESaveState.Success;
     }
 
     public void Load(string loadName)
@@ -57,12 +71,14 @@ public class DataManager : MonoBehaviour
         path.Append(Application.dataPath).Append($"/Save/{loadName}.txt");
         if (File.Exists(path.ToString()) == false)
         {
-            Debug.Log("불러올 세이브  파일 없음");
+            Debug.Log("불러올 세이브 파일 없음");
+            LoadState = ELoadState.Fail;
             return;
         }
         string json = File.ReadAllText(path.ToString());
         SaveData.GameData = JsonUtility.FromJson<GameData>(json);
         Debug.Log("잘불러옴");
+        LoadState = ELoadState.Success;
 
     }
 }

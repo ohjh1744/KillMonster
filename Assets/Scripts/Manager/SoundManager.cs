@@ -6,10 +6,8 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; private set; }
 
-    //SoundManager gameobject아래에 bgm, sfx object를 자식으로 둠.
-    // 배경음은 거리상관없이 2d사운드식으로
     [SerializeField] private AudioSource _bgm;
-    //레벨업 같은 소리는 2d사운드식으로 거리상관없이 그냥 들리도록하기위해서
+
     public AudioSource Sfx;
 
     private void Awake()

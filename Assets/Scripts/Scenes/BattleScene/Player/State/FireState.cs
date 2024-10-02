@@ -8,25 +8,28 @@ public class FireState : AttackState
 {
 
     private PlayerStateMachine _player;
+
     private PlayerData _playerData;
+
     private Animator _anim;
+
     private MoveCamera _moveCamera;
-    private Camera _camera;
-    private AudioSource _audioSource;
 
     private float _attackLastTime;
+
     private float _playerDamage;
+
     private int _fireHash = Animator.StringToHash("Fire");
+
     private int _zoomFireHash = Animator.StringToHash("ZoomFire");
+
     public FireState(PlayerStateMachine player)
     {
         _player = player;
         _playerData = _player.PlayerData;
-        _camera = _player.PlayerData.Camera;
-        _moveCamera = _playerData.GetComponent<MoveCamera>();
+        _moveCamera = _player.GetComponent<MoveCamera>();
         _playerDamage = _playerData.Damage;
         _attackLastTime = 0f;
-        _audioSource = _player.AttackStateAudio;
     }
 
     public override void Enter()
@@ -37,11 +40,11 @@ public class FireState : AttackState
     public override void Update()
     {
         Fire();
-        if ((_playerData.IsZoom == Zoom.¡‹æ∆øÙ && Input.GetMouseButtonUp(0)))
+        if ((_playerData.IsZoom == EZoom.ZoomOut && Input.GetMouseButtonUp(0)))
         {
             _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.IdleAttack]);
         }
-        if (_playerData.IsZoom == Zoom.¡‹¿Œ && Input.GetMouseButtonUp(0))
+        if (_playerData.IsZoom == EZoom.ZoomIn && Input.GetMouseButtonUp(0))
         {
             _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Zoom]);
         }
@@ -61,18 +64,18 @@ public class FireState : AttackState
             if (Time.time - _attackLastTime > attackTime)
             {
                 IShootable shootable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IShootable>();
-                shootable.Shoot(_camera, _playerDamage, _audioSource);
+                shootable.Shoot(_playerDamage);
                 _moveCamera.ApplyRecoil(shootable.ReCoil);
 
                 _playerData.SetAmmos((int)_playerData.CurFireWeapon , _playerData.GetAmmos((int)_playerData.CurFireWeapon) - 1);
 
                 _attackLastTime = Time.time;
                 _anim.SetBool("isFire", true);
-                if(_playerData.IsZoom == Zoom.¡‹æ∆øÙ)
+                if(_playerData.IsZoom == EZoom.ZoomOut)
                 {
                     _anim.Play(_fireHash, -1, 0);
                 }
-                else if(_playerData.IsZoom  == Zoom.¡‹¿Œ)
+                else if(_playerData.IsZoom  == EZoom.ZoomIn)
                 {
                     _anim.Play(_zoomFireHash, -1, 0);
                 }

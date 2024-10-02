@@ -6,46 +6,57 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 
-public enum FireWeapon { 주총, 보조총 }; // 이들은 상태가 따로 존재. Scene View에서 true false를 각각해줘야함.
-public enum NotFireWeapon { 칼, 수류탄 };
-public enum Zoom { 줌아웃, 줌인 };
-
-public enum Sound { 걷기, 뛰기, 총교체, 피격};
+public enum EFireWeapon { Main, Sub }; // 이들은 상태가 따로 존재. Scene View에서 true false를 각각해줘야함.
+public enum ENotFireWeapon { Knife, Grenade };
+public enum EZoom { ZoomOut, ZoomIn };
+public enum ESound { Walk, Run, ChangeFireWeapon, TakeDamage};
 
 public class PlayerData : MonoBehaviour
 {
+    [Header("Basic Stat")]
     [SerializeField] private float _hp;
-    [HideInInspector] public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
+    public float Hp { get { return _hp; } set { _hp = value; OnHpChanged?.Invoke(); } }
+    public bool IsSafe { get; set; }
+    public bool IsDamage { get; set; }
+
     private float _damage;
-    [HideInInspector] public float Damage { get { return _damage; } set { _damage = value; } }
-    public float Speed;
+    public float Damage { get { return _damage; } set { _damage = value; } }
+
+    [SerializeField] private float _speed;
+    public float Speed { get { return _speed; } set { _speed = value; } }
+
+    public bool IsRun { get; set; }
+
     [SerializeField] private float _runGage;
-    public float RunMaxGage;
-    [HideInInspector] public bool IsRun;
-    [HideInInspector]public float RunGage { get { return _runGage; } set { _runGage = value; OnRunGageChanged?.Invoke(); } }
+    public float RunGage { get { return _runGage; } set { _runGage = value; OnRunGageChanged?.Invoke(); } }
 
-    public float StiffnessTime;
+    [SerializeField] private float _runMaxGage;
+    public float RunMaxGage { get { return _runMaxGage; } private set { } }
 
-    public Camera Camera;
-    public CinemachineVirtualCamera PlayerVirtualCamera;
-    public FireWeapon CurFireWeapon;
-    public Zoom IsZoom;
-    [HideInInspector] public bool IsDamage;
-    [HideInInspector] public bool IsSafe;
-    [HideInInspector] public bool IsChangeFireWeapon;
-    public float ChangeWeaponTime;
-    // 들고있는 총 상태, 총기류들, 총기류가 아닌 무기들
-    public GameObject[] FireStates;
-    public GameObject[] FireWeapons;
-    public GameObject[] NotFireWeapons;
+    [SerializeField] private float _stiffnessTime;
+    public float StiffnessTime { get { return _stiffnessTime; } private set { } }
 
-    //Aim이미지
-    public GameObject[] Aims;
+    //------------------------------------------------------
+    [Header("Weapon")]
 
-    //총기가 아닌 무기들 공격위치
-    public GameObject[] NotFireAttackPos;
+    [SerializeField] private float _changeWeaponTime;
+    public float ChangeWeaponTime { get; private set; }
+    public EFireWeapon CurFireWeapon { get; set; }
+    public EZoom IsZoom { get; set; }
+    public bool IsChangeFireWeapon { get; set; }
 
-    // Fire총기류들 현재 탄약개수, 수류탄개수
+    [SerializeField] private GameObject[] _fireStates;
+    public GameObject[] FireStates { get { return _fireStates; } private set { } }
+
+    [SerializeField] private GameObject[] _fireWeapons;
+    public GameObject[] FireWeapons{get { return _fireWeapons; } private set { } }
+
+    [SerializeField] private GameObject[] _notFireWeapons;
+    public GameObject[] NotFireWeapons { get { return _notFireWeapons; } private set { } }
+
+    [SerializeField] private GameObject[] _notFireAttackPos;
+    public GameObject[] NotFireAttackPos { get { return _notFireAttackPos; } private set { } }
+
     [SerializeField]private int[] Ammos;
 
     public void SetAmmos(int fireWeapon, int value)
@@ -58,15 +69,16 @@ public class PlayerData : MonoBehaviour
     {
         return Ammos[fireWeapon];
     }
+
     [SerializeField] public int _numGrenade;
     [HideInInspector] public int NumGrenade { get { return _numGrenade; } set { _numGrenade = value; OnNumGrenadeChanged?.Invoke(); } }
 
-    [SerializeField] public AudioClip[] AudioClips;
-    [SerializeField] public float[] AudioTimes;
-
     public UnityAction OnHpChanged;
+
     public UnityAction OnAmmosChanged;
+
     public UnityAction OnNumGrenadeChanged;
+
     public UnityAction OnRunGageChanged;
 
 }

@@ -5,21 +5,28 @@ using UnityEngine;
 
 public class BossThrowAttack : MonoBehaviour, IBossThrowAttack
 {
-    private bool _isAttack;
-    [SerializeField] private float _finishAttackTime;
-    [SerializeField] private float _showHitTime;
     [SerializeField] AudioSource _audioSource;
+
     [SerializeField] private GameObject _throwObject;
-    [SerializeField] private Transform ThrowPos;
+
     [SerializeField] private GameObject _hitPoint;
+
+    [SerializeField] private Transform ThrowPos;
+
     [SerializeField] private Animator _anim;
-    [HideInInspector]private Transform _target;
+
+    [SerializeField] private float _finishAttackTime;
+
+    [SerializeField] private float _showHitTime;
+    public Transform Target {  get;  set; }
 
     private WaitForSeconds _FinishAttackSeconds;
+
     private WaitForSeconds _showHitSeconds;
+
     private  Coroutine _coroutine;
 
-    public Transform Target { get { return _target; } set { _target = value; } }
+    private bool _isAttack;
     public bool IsAttack { get { return _isAttack; }  set { _isAttack = value; } }
 
     public void Awake()
