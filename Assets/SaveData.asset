@@ -13,26 +13,26 @@ MonoBehaviour:
   m_Name: SaveData
   m_EditorClassIdentifier: 
   _gameData:
-    _clearMissions: 010000
+    _clearMissions: 000000
     _stats:
-    - _currentStat: 15
-      _upGradeStat: 20
-      _upGradeStatGold: 20
-      _level: 2
+    - _currentStat: 0
+      _upGradeStat: 5
+      _upGradeStatGold: 5
+      _level: 0
       _maxLevel: 5
-    - _currentStat: 70
-      _upGradeStat: 80
-      _upGradeStatGold: 40
-      _level: 3
+    - _currentStat: 0
+      _upGradeStat: 10
+      _upGradeStatGold: 5
+      _level: 5
       _maxLevel: 5
     _baseStats:
     - _currentStat: 0
       _upGradeStat: 5
       _upGradeStatGold: 5
       _level: 0
-      _maxLevel: 0
+      _maxLevel: 5
     - _currentStat: 0
       _upGradeStat: 10
       _upGradeStatGold: 5
-      _level: 0
+      _level: 5
       _maxLevel: 0
