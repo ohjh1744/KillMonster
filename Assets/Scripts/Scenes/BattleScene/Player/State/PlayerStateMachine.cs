@@ -84,7 +84,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     private void Update()
     {
 
-        if(_gameManager.GameState == GameState.시작)
+        if(_gameManager.GameState == EGameState.Start)
         {
             Dead();
             UpRunGage();
@@ -135,7 +135,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
 
     public void TakeDamage(float damage)
     {
-       if(_gameManager.GameState == GameState.시작)
+       if(_gameManager.GameState == EGameState.Start)
         {
             SoundManager.Instance.PlaySFX(AudioClips[(int)ESound.TakeDamage]);
             PlayerData.IsDamage = true;
@@ -168,7 +168,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         if(PlayerData.Hp < 1)
         {
             PlayerData.Hp = 0f;
-            _gameManager.GameState = GameState.패배;
+            _gameManager.GameState = EGameState.Lose;
         }
     }
 

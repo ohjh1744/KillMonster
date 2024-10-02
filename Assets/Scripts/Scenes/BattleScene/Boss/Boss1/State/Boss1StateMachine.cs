@@ -48,7 +48,7 @@ public class Boss1StateMachine : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (GameManager.GameState == GameState.시작 || GameManager.GameState == GameState.보스사망)
+        if (GameManager.GameState == EGameState.Start || GameManager.GameState == EGameState.BossDead)
         {
             _state?.Update();
         }

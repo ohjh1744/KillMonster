@@ -37,7 +37,7 @@ public class Boss1DeadState : BossState
     public override void Enter()
     {
         _navMesh.enabled = false;
-        _gameManager.GameState = GameState.º¸½º»ç¸Á;
+        _gameManager.GameState = EGameState.BossDead;
         _bossDead.Dead();
         Time.timeScale = 0.5f;
         _anim.Play(_deadHash);
@@ -51,7 +51,7 @@ public class Boss1DeadState : BossState
         _currentTime += Time.deltaTime;
         if(_currentTime > _deadTime)
         {
-            _gameManager.GameState = GameState.½Â¸®;
+            _gameManager.GameState = EGameState.Win;
         }
     }
 
