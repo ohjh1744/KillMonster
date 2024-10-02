@@ -44,8 +44,8 @@ public class UpGradeStats : MonoBehaviour
         _saveData.OnGoldChanged += UpdateGold;
         _saveData.OnUpGradeDamageGoldChanged += UpdateUpGradeDamageGold;
         _saveData.OnUpGradeMaxHpGoldChanged += UpdateUpGradeMaxHpGold;
-        _saveData.OnUpGradeDmaageLevel += UpdateDamageLevel;
-        _saveData.OnUpGradeMaxHpLevel += UpdateMaxHpLevel;
+        _saveData.OnDamaageLevel += UpdateDamageLevel;
+        _saveData.OnMaxHpLevel += UpdateMaxHpLevel;
     }
 
     private void OnDisable()
@@ -55,8 +55,8 @@ public class UpGradeStats : MonoBehaviour
         _saveData.OnGoldChanged -= UpdateGold;
         _saveData.OnUpGradeDamageGoldChanged -= UpdateUpGradeDamageGold;
         _saveData.OnUpGradeMaxHpGoldChanged -= UpdateUpGradeMaxHpGold;
-        _saveData.OnUpGradeDmaageLevel -= UpdateDamageLevel;
-        _saveData.OnUpGradeMaxHpLevel -= UpdateMaxHpLevel;
+        _saveData.OnDamaageLevel -= UpdateDamageLevel;
+        _saveData.OnMaxHpLevel -= UpdateMaxHpLevel;
     }
 
     private void Start()

@@ -73,8 +73,8 @@ public class SaveData : ScriptableObject
     public int Gold { get { return GameData.Gold; } set { GameData.Gold = value; OnGoldChanged?.Invoke(); } }
     public int UpGradeDamageGold { get { return _gameData.Stats[(int)EStatType.Damage].UpGradeStatGold; } set { _gameData.Stats[(int)EStatType.Damage].UpGradeStatGold = value; OnUpGradeDamageGoldChanged?.Invoke(); } }
     public int UpGradeMaxHpGold { get { return _gameData.Stats[(int)EStatType.MaxHp].UpGradeStatGold; } set { _gameData.Stats[(int)EStatType.MaxHp].UpGradeStatGold = value; OnUpGradeMaxHpGoldChanged?.Invoke(); } }
-    public int UpGradeDamageLevel { get { return _gameData.Stats[(int)EStatType.Damage].Level; } set { _gameData.Stats[(int)EStatType.Damage].Level = value; OnUpGradeDmaageLevel?.Invoke(); } }
-    public int UpGradeMaxHpLevel { get { return _gameData.Stats[(int)EStatType.MaxHp].Level; } set { _gameData.Stats[(int)EStatType.MaxHp].Level = value; OnUpGradeMaxHpLevel?.Invoke(); } }
+    public int UpGradeDamageLevel { get { return _gameData.Stats[(int)EStatType.Damage].Level; } set { _gameData.Stats[(int)EStatType.Damage].Level = value; OnDamaageLevel?.Invoke(); } }
+    public int UpGradeMaxHpLevel { get { return _gameData.Stats[(int)EStatType.MaxHp].Level; } set { _gameData.Stats[(int)EStatType.MaxHp].Level = value; OnMaxHpLevel?.Invoke(); } }
     public int DamageMaxLevel { get { return _gameData.Stats[(int)EStatType.Damage].MaxLevel; } private set { } }
     public int MaxHpMaxLevel { get { return _gameData.Stats[(int)EStatType.MaxHp].MaxLevel; }  private set { } }
 
@@ -86,6 +86,6 @@ public class SaveData : ScriptableObject
     public UnityAction OnGoldChanged;
     public UnityAction OnUpGradeDamageGoldChanged;
     public UnityAction OnUpGradeMaxHpGoldChanged;
-    public UnityAction OnUpGradeDmaageLevel;
-    public UnityAction OnUpGradeMaxHpLevel;
+    public UnityAction OnDamaageLevel;
+    public UnityAction OnMaxHpLevel;
 }
