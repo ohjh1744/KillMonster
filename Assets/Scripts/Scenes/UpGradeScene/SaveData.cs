@@ -28,23 +28,6 @@ public class Stat
 }
 
 [System.Serializable]
-public class BaseStat
-{
-    [SerializeField] private float _currentStat;
-    public float CurrentStat { get { return _currentStat; }  private set { } }
-
-    [SerializeField] private float _upGradeStat;
-    public float UpGradeStat { get { return _upGradeStat; } private set { } }
-
-    [SerializeField] private int _upGradeStatGold;
-    public int UpGradeStatGold { get { return _upGradeStatGold; } private set { } }
-
-    [SerializeField] private int _level;
-    public int Level { get { return _level; } private set { } }
-}
-
-
-[System.Serializable]
 public class GameData
 {
     [SerializeField] private bool[] _clearMissions;
@@ -53,8 +36,8 @@ public class GameData
     [SerializeField]private  Stat[] _stats;
     public Stat[] Stats { get { return _stats; } private set { } }
 
-    [SerializeField] private BaseStat[] _baseStats;
-    public BaseStat[] BaseStats { get { return _baseStats; } private set { } }
+    [SerializeField] private Stat[] _baseStats;
+    public Stat[] BaseStats { get { return _baseStats; } private set { } }
 
     public int Gold { get; set; }
 
