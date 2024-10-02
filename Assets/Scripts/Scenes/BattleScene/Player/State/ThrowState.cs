@@ -13,7 +13,7 @@ public class ThrowState : AttackState
 
     private Transform _throwPos;
 
-    private GameObject grenade;
+    private GameObject _grenade;
 
     private Animator _anim;
 
@@ -61,11 +61,11 @@ public class ThrowState : AttackState
         {
             _anim.SetBool("isThrow", true);
             _anim.Play(_throwHash);
-            grenade = GameObject.Instantiate(_playerData.NotFireWeapons[(int)ENotFireWeapon.Grenade]);
-            grenade.transform.position = _throwPos.position;
-            grenade.transform.rotation = _throwPos.transform.rotation;
+            _grenade = GameObject.Instantiate(_playerData.NotFireWeapons[(int)ENotFireWeapon.Grenade]);
+            _grenade.transform.position = _throwPos.position;
+            _grenade.transform.rotation = _throwPos.transform.rotation;
             _playerData.NumGrenade--;
-            IThrowable throwable = grenade.GetComponent<IThrowable>();
+            IThrowable throwable = _grenade.GetComponent<IThrowable>();
             throwable.Throw(DataManager.Instance.SaveData.Damage, _audioSource);
 
             _attackLastTime = Time.time;
