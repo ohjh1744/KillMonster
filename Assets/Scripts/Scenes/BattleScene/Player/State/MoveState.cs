@@ -24,7 +24,7 @@ public class MoveState : MovementState
 
     private bool _isRun;
 
-    // 뛰고 난 후 못뛰는 상황이라면, 체크. 이 변수가 없으면 걷는소리가 안남.
+    // 뛰고 난 후 못뛰는 상황이라면 체크. 이 변수가 없으면 걷는소리가 안남.
     private bool _hasStoppedRunSound;
 
     private float _cantMoveTime;
