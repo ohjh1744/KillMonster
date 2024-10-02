@@ -7325,15 +7325,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd2d980a5c33bd418507f572925f962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BossData: {fileID: 0}
-  Rigid: {fileID: 0}
-  GameManager: {fileID: 1505900810}
+  _bossData: {fileID: 1422332683}
+  _gameManager: {fileID: 1505900810}
   _changeStateTime: 5
-  Player: {fileID: 1775929562}
-  FourthAttackWarningImage: {fileID: 1630210684}
-  UpsetWarningImage: {fileID: 855086288}
-  StateProbability: 0
-  _isChange: 0
+  _player: {fileID: 1775929562}
+  _fourthAttackWarningImage: {fileID: 1630210684}
+  _upsetWarningImage: {fileID: 855086288}
 --- !u!195 &1422332685
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7398,7 +7395,7 @@ MonoBehaviour:
   _pullPower: 10
   _finishAttackTime: 3
   _showHitTime: 1
-  _attackDistance: 0
+  _attackDistance: 5
 --- !u!114 &1422332688
 MonoBehaviour:
   m_ObjectHideFlags: 0
