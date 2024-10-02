@@ -57,17 +57,17 @@ public class PlayerData : MonoBehaviour
     [SerializeField] private GameObject[] _notFireAttackPos;
     public GameObject[] NotFireAttackPos { get { return _notFireAttackPos; } private set { } }
 
-    [SerializeField]private int[] Ammos;
+    [SerializeField]private int[] _ammos;
 
     public void SetAmmos(int fireWeapon, int value)
     {
-        Ammos[fireWeapon] = value;
+        _ammos[fireWeapon] = value;
         OnAmmosChanged?.Invoke();
     }
 
     public int GetAmmos(int fireWeapon)
     {
-        return Ammos[fireWeapon];
+        return _ammos[fireWeapon];
     }
 
     [SerializeField] public int _numGrenade;
