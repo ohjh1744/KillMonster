@@ -6423,7 +6423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f3bf700e147cf47ac6cde7961bffdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletImpact: {fileID: 1620494225402142894, guid: 976b06a919538ce4a8d265d62cd67587,
+  _bulletImpact: {fileID: 1620494225402142894, guid: 976b06a919538ce4a8d265d62cd67587,
     type: 3}
 --- !u!1 &1203526459
 GameObject:
