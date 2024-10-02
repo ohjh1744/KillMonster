@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletHitImpactPull : MonoBehaviour
 {
-    [SerializeField]private GameObject BulletImpact;
+    [SerializeField]private GameObject _bulletImpact;
 
     private List<GameObject>_pool;
 
@@ -28,7 +28,7 @@ public class BulletHitImpactPull : MonoBehaviour
 
         if (select == null)
         {
-            select = Instantiate(BulletImpact, transform);
+            select = Instantiate(_bulletImpact, transform);
             _pool.Add(select);
         }
 
