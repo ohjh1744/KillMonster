@@ -144,7 +144,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         }
     }
 
-    IEnumerator TurnBloodyScreen()
+    private IEnumerator TurnBloodyScreen()
     {
         _bloody.gameObject.SetActive(true);
 
