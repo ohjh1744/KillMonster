@@ -8,27 +8,36 @@ using UnityEngine.UI;
 public enum EBossState {Idle, Move, Upset, Dead, FirstAttack, SecondAttack, ThirdAttack, FourthAttack, Size}
 public class Boss1StateMachine : MonoBehaviour
 {
-    [HideInInspector] public BossData BossData;
-    [HideInInspector] public Rigidbody Rigid;
-    public GameManager GameManager;
-    [SerializeField] private float _changeStateTime;
-    [SerializeField] public GameObject Player;
-    public Image FourthAttackWarningImage;
-    public Image UpsetWarningImage;
-    private BossState _state;
-    public BossState[] BossStates = new BossState[(int)EBossState.Size];
-    //[HideInInspector] 
-    public int StateProbability;
-    public bool _isChange;
+    [SerializeField] private BossData _bossData;
+    public BossData BossData { get { return _bossData; } private set { } }
 
-    public Coroutine _coroutine;
+    [SerializeField] private GameManager _gameManager;
+    public GameManager GameManager { get { return _gameManager; } private set { } }
+
+    [SerializeField] private float _changeStateTime;
+
+    [SerializeField] private GameObject _player;
+    public GameObject Player { get { return _player; } private set { } }
+
+    [SerializeField] private Image _fourthAttackWarningImage;
+    public Image FourthAttackWarningImage { get { return _fourthAttackWarningImage; } private set { } }
+
+    [SerializeField] private Image _upsetWarningImage;
+    public Image UpsetWarningImage { get { return _upsetWarningImage; } private set { } }
+
+    private BossState _state;
+
+    private BossState[] _bossStates = new BossState[(int)EBossState.Size];
+    public BossState[] BossStates { get { return _bossStates; } private set { } }
+    public int StateProbability { get; private set; }
+    public bool _isChange { get; set; }
+    private Coroutine _coroutine { get; set; }
+
     private WaitForSeconds seconds;
     
 
     private void Awake()
     {
-        Rigid = GetComponent<Rigidbody>();
-        BossData = GetComponent<BossData>();
         BossStates[(int)EBossState.Idle] = new Boss1IdleState(this);
         BossStates[(int)EBossState.Move] = new Boss1MoveState(this);
         BossStates[(int)EBossState.Upset] = new Boss1UpsetState(this);
