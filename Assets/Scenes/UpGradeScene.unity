@@ -2769,7 +2769,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1161076945}
-        m_TargetAssemblyTypeName: UpGradeStats, Assembly-CSharp
+        m_TargetAssemblyTypeName: UpGradeSceneUIController, Assembly-CSharp
         m_MethodName: UpGradeDamage
         m_Mode: 1
         m_Arguments:
