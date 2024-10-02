@@ -23,7 +23,7 @@ public class BossHitAttack : MonoBehaviour, IBossHitAttack
     [SerializeField] private float _showHitTime;
 
     [SerializeField] private float _attackDistance;
-    public float AttackDistance { get; set; }
+    public float AttackDistance { get { return _attackDistance; } private set { } }
 
     private bool _isAttack;
     public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
