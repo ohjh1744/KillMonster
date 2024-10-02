@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SelectMissionSceneUI : MonoBehaviour
+public class SelectMissionSceneUIController : MonoBehaviour
 {
     [SerializeField] private GameObject[] missions;
 
