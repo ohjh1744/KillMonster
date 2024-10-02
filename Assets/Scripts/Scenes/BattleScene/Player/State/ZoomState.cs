@@ -42,7 +42,7 @@ public class ZoomState : AttackState
         Debug.Log("Zoom State에서 나감");
     }
 
-    void ZoomInAim()
+    private void ZoomInAim()
     {
         _playerData.IsZoom = EZoom.ZoomIn;
         _player.Aims[(int)EZoom.ZoomOut].SetActive(false);
@@ -54,7 +54,7 @@ public class ZoomState : AttackState
 
     }
 
-    void ZoomOutAim()
+    private void ZoomOutAim()
     {
         _playerData.IsZoom = EZoom.ZoomOut;
         _player.Aims[(int)EZoom.ZoomIn].SetActive(false);
