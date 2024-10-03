@@ -45,7 +45,7 @@ public class Boss1StateMachine : MonoBehaviour
         BossStates[(int)EBossState.FirstAttack] = new Boss1FirstAttackState(this);
         BossStates[(int)EBossState.SecondAttack] = new Boss1SecondAttackState(this);
         BossStates[(int)EBossState.ThirdAttack] = new Boss1ThirdAttackState(this);
-        BossStates[(int)EBossState.FourthAttack] = new Boss1FourthAttack(this);
+        BossStates[(int)EBossState.FourthAttack] = new Boss1FourthAttackState(this);
         _seconds = new WaitForSeconds(_changeStateTime);
     }
     private void Start()
