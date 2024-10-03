@@ -11,7 +11,7 @@ public class BossThrowAttack : MonoBehaviour, IBossThrowAttack
 
     [SerializeField] private GameObject _hitPoint;
 
-    [SerializeField] private Transform ThrowPos;
+    [SerializeField] private Transform _thhrowPos;
 
     [SerializeField] private Animator _anim;
 
@@ -61,7 +61,7 @@ public class BossThrowAttack : MonoBehaviour, IBossThrowAttack
 
         Destroy(hitPoint);
         GameObject throwObject = Instantiate(_throwObject);
-        throwObject.transform.position = ThrowPos.position;
+        throwObject.transform.position = _thhrowPos.position;
         IThrowable throwable = throwObject.GetComponent<IThrowable>();
         throwable.Target = hitPointPostion;
         throwable.Throw(bossBasicDamage, _audioSource);
