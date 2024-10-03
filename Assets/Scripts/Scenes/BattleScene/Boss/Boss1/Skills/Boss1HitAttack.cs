@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossHitAttack : MonoBehaviour, IBossHitAttack
+public class Boss1HitAttack : MonoBehaviour, IBossHitAttack
 {
     [SerializeField] Transform _attackPos;
 

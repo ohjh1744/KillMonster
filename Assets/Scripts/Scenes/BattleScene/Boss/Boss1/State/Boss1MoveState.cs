@@ -27,7 +27,7 @@ public class Boss1MoveState : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _bossMove = _boss.GetComponent<BossMove>();
-        _bossHitAttack = _boss.GetComponent<BossHitAttack>();
+        _bossHitAttack = _boss.GetComponent<IBossHitAttack>();
         _navMesh = _boss.GetComponent<NavMeshAgent>();
         _player = _boss.Player.transform;
         _bossUpsetHp = _bossData.Hp / 2;

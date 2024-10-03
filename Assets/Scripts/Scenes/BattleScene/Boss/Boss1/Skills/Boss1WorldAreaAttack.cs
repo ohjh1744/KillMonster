@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 
 
-public class BossWorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
+public class BossWorld1AreaAttack : MonoBehaviour, IBossWorldAreaAttack
 {
     [SerializeField] private CinemachineVirtualCamera _playerNoiseCamera;
 
