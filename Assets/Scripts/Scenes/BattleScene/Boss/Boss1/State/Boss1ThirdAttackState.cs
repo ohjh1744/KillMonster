@@ -15,7 +15,7 @@ public class Boss1ThirdAttackState : BossState
 
     private Animator _anim;
 
-    private int _ThirdAttackHash = Animator.StringToHash("ThirdAttack");
+    private int _thirdAttackHash = Animator.StringToHash("ThirdAttack");
 
     public Boss1ThirdAttackState(Boss1StateMachine boss)
     {
@@ -30,7 +30,7 @@ public class Boss1ThirdAttackState : BossState
     {
         Debug.Log("BossThirdAttack ¡¯¿‘");
         _boss.transform.LookAt(_boss.Player.transform);
-        _anim.Play(_ThirdAttackHash, -1, 0);
+        _anim.Play(_thirdAttackHash, -1, 0);
         _bossRushAttack.IsAttack = true;
         _bossRushAttack.Attack(_bossData.Speed, _bossData.Damage);
     }
