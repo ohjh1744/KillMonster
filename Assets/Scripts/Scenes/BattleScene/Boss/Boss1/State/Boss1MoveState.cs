@@ -11,7 +11,7 @@ public class Boss1MoveState : BossState
 
     private BossMove _bossMove;
 
-    private BossHitAttack _bossHitAttack;
+    private IBossHitAttack _bossHitAttack;
 
     private NavMeshAgent _navMesh;
 
