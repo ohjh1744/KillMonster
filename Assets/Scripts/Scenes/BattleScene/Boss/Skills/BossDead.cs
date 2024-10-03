@@ -11,7 +11,7 @@ public class BossDead : MonoBehaviour
 
     [SerializeField] private CinemachineVirtualCamera _bossCamera;
 
-    [SerializeField] private int priorityCamera;
+    [SerializeField] private int _priorityCamera;
 
     private float _deadTime;
 
@@ -19,7 +19,7 @@ public class BossDead : MonoBehaviour
 
     public void Dead()
     {
-        _bossCamera.Priority = priorityCamera;
+        _bossCamera.Priority = _priorityCamera;
         _audioSource.Stop();
         _audioSource.clip = _deadClip;
         _audioSource.Play();

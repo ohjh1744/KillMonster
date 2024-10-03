@@ -14,13 +14,13 @@ public class Boss1UpsetState : BossState
 
     private NavMeshAgent _navMesh;
 
-    private Animator anim;
+    private Animator _anim;
 
     private Animator _warningAnim;
 
     private float _upsetTime;
 
-    private float _currentTIme;
+    private float _currentTime;
 
     private int _upsetHash = Animator.StringToHash("Upset");
 
@@ -34,7 +34,7 @@ public class Boss1UpsetState : BossState
         _bossData = _boss.BossData;
         _bossUpset = _boss.GetComponent<BossUpset>();
         _navMesh = _boss.GetComponent<NavMeshAgent>();
-        anim = _boss.GetComponent<Animator>();
+        _anim = _boss.GetComponent<Animator>();
         _upsetTime = _bossData.UpsetTime;
         _warningAnim = _boss.UpsetWarningImage.GetComponent<Animator>();
     }
@@ -42,20 +42,20 @@ public class Boss1UpsetState : BossState
     {
         Debug.Log("BossUpsetState 진입");
         _navMesh.enabled = false;
-        anim.Play(_upsetHash);
+        _anim.Play(_upsetHash);
         _warningAnim.Play(_warningAnimTrueHash);
         _bossUpset.TurnUpset(_bossData);
     }
 
     public override void Update()
     {
-        _currentTIme += Time.deltaTime;
+        _currentTime += Time.deltaTime;
         if (_bossData.Hp < 1)
         {
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
         }
-        else if (_currentTIme > _upsetTime)
+        else if (_currentTime > _upsetTime)
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
@@ -65,7 +65,7 @@ public class Boss1UpsetState : BossState
     {
         _warningAnim.Play(_warningAnimFalseHash);
         _boss._isChange = false;
-        _currentTIme = 0;
+        _currentTime = 0;
         Debug.Log("BossUpsetState 나감");
     }
 
