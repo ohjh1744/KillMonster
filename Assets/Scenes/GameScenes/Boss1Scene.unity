@@ -7370,7 +7370,7 @@ MonoBehaviour:
     type: 3}
   _hitPoint: {fileID: 8271209036096396231, guid: bef51befbefe26041b544835f4dd319b,
     type: 3}
-  ThrowPos: {fileID: 52005450}
+  _thhrowPos: {fileID: 52005450}
   _anim: {fileID: 158112538}
   _finishAttackTime: 2
   _showHitTime: 1
