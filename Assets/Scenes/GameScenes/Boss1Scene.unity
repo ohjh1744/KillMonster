@@ -7589,7 +7589,7 @@ MonoBehaviour:
   _audioSource: {fileID: 1422332690}
   _deadClip: {fileID: 8300000, guid: 0fb253507891be94babff0dbf290aabe, type: 3}
   _bossCamera: {fileID: 327579494}
-  priorityCamera: 40
+  _priorityCamera: 40
 --- !u!1 &1458277237
 GameObject:
   m_ObjectHideFlags: 0
