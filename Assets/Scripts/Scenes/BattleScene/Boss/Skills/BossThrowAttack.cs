@@ -20,7 +20,7 @@ public class BossThrowAttack : MonoBehaviour, IBossThrowAttack
     [SerializeField] private float _showHitTime;
     public Transform Target {  get;  set; }
 
-    private WaitForSeconds _FinishAttackSeconds;
+    private WaitForSeconds _finishAttackSeconds;
 
     private WaitForSeconds _showHitSeconds;
 
@@ -32,7 +32,7 @@ public class BossThrowAttack : MonoBehaviour, IBossThrowAttack
     public void Awake()
     {
         IsAttack = true;
-        _FinishAttackSeconds = new WaitForSeconds(_finishAttackTime);
+        _finishAttackSeconds = new WaitForSeconds(_finishAttackTime);
         _showHitSeconds = new WaitForSeconds(_showHitTime);
     }
 
@@ -66,7 +66,7 @@ public class BossThrowAttack : MonoBehaviour, IBossThrowAttack
         throwable.Target = hitPointPostion;
         throwable.Throw(bossBasicDamage, _audioSource);
 
-        yield return _FinishAttackSeconds;
+        yield return _finishAttackSeconds;
 
         IsAttack = false;
         _coroutine = null;
