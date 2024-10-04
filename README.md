@@ -51,12 +51,13 @@
 ![image](https://github.com/user-attachments/assets/ee296a55-61e6-4d2f-ac51-409b4b678168)
 
 
-### 영상링크 
-https://www.youtube.com/watch?v=DZ-xE_EvJ2s
-https://www.youtube.com/watch?v=EC6bs9xG4Xg
 
 </div>
 </details>
+
+### 영상링크 
+https://www.youtube.com/watch?v=DZ-xE_EvJ2s
+https://www.youtube.com/watch?v=EC6bs9xG4Xg
 
 
 
