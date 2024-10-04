@@ -13449,7 +13449,7 @@ PrefabInstance:
     - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
         type: 3}
       propertyPath: _gunData._reLoadTIme
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4557156262260475477, guid: 0433d4be5d24c97419adaf5c3f1afac3,
         type: 3}
