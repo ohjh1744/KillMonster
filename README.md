@@ -56,7 +56,10 @@
 </details>
 
 ### 영상링크 
+#### 플레이장면
 https://www.youtube.com/watch?v=DZ-xE_EvJ2s
+
+#### DataLoad장면
 https://www.youtube.com/watch?v=EC6bs9xG4Xg
 
 
