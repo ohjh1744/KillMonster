@@ -28,9 +28,13 @@ public class Boss1StateMachine : MonoBehaviour
     private BossState _state;
 
     private BossState[] _bossStates = new BossState[(int)EBossState.Size];
+
     public BossState[] BossStates { get { return _bossStates; } private set { } }
+
     public int StateProbability { get; private set; }
+
     public bool _isChange { get; set; }
+
     private Coroutine _coroutine { get; set; }
 
     private WaitForSeconds _seconds;
