@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private AudioSource _bgm;
 
-    public AudioSource Sfx;
+    [SerializeField] private AudioSource _sfx;
 
     private void Awake()
     {
@@ -55,22 +55,22 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
-        Sfx.PlayOneShot(clip);
+        _sfx.PlayOneShot(clip);
     }
 
     public void SetSFX(float volume, float pitch = 1f)
     {
-        Sfx.volume = volume;
-        Sfx.pitch = pitch;
+        _sfx.volume = volume;
+        _sfx.pitch = pitch;
     }
 
     public void StopSFX()
     {
-        if (Sfx.isPlaying == false)
+        if (_sfx.isPlaying == false)
         {
             return;
         }
-        Sfx.Stop();
+        _sfx.Stop();
     }
 
 }

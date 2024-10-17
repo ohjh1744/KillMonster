@@ -12126,7 +12126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bgm: {fileID: 1767064978}
-  Sfx: {fileID: 1822721357}
+  _sfx: {fileID: 1822721357}
 --- !u!4 &2142500793
 Transform:
   m_ObjectHideFlags: 0
