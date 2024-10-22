@@ -11,6 +11,8 @@ public class MoveState : MovementState
 
     private Animator _anim;
 
+    private int _isRunHash = Animator.StringToHash("isRun");
+
     private AudioClip _walkClip;
 
     private AudioClip _runClip;
@@ -148,7 +150,7 @@ public class MoveState : MovementState
                 _playerData.IsRun = true;
                 _playerData.RunGage -= Time.deltaTime;
                 _playerData.Speed = _originSpeed * 2;
-                _anim.SetBool("isRun", true);
+                _anim.SetBool(_isRunHash, true);
             }
             else
             {
@@ -166,6 +168,6 @@ public class MoveState : MovementState
     {
         _isRun = false;
         _playerData.Speed = _originSpeed;
-        _anim.SetBool("isRun", false);
+        _anim.SetBool(_isRunHash, false);
     }
 }

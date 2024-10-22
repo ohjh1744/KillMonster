@@ -22,6 +22,8 @@ public class ThrowState : AttackState
 
     private int _throwHash = Animator.StringToHash("Throw");
 
+    private int _isThrowHash = Animator.StringToHash("isThrow");
+
     public ThrowState(PlayerStateMachine player)
     {
         _player = player;
@@ -48,7 +50,7 @@ public class ThrowState : AttackState
     public override void Exit()
     {
         Debug.Log("Throw State¿¡ ³ª°¨");
-        _anim.SetBool("isThrow", false);
+        _anim.SetBool(_isThrowHash, false);
     }
 
 
@@ -58,7 +60,7 @@ public class ThrowState : AttackState
 
         if (Time.time - _attackLastTime > attackTime && _playerData.NumGrenade > 0)
         {
-            _anim.SetBool("isThrow", true);
+            _anim.SetBool(_isThrowHash, true);
             _anim.Play(_throwHash);
             _grenade = GameObject.Instantiate(_playerData.NotFireWeapons[(int)ENotFireWeapon.Grenade]);
             _grenade.transform.position = _throwPos.position;

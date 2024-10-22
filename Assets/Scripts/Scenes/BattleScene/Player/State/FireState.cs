@@ -21,6 +21,8 @@ public class FireState : AttackState
 
     private int _fireHash = Animator.StringToHash("Fire");
 
+    private int _isFireHash = Animator.StringToHash("isFIre");
+
     private int _zoomFireHash = Animator.StringToHash("ZoomFire");
 
     public FireState(PlayerStateMachine player)
@@ -53,7 +55,7 @@ public class FireState : AttackState
     public override void Exit()
     {
         Debug.Log("Fire State에서 나감!");
-        _anim.SetBool("isFire", false);
+        _anim.SetBool(_isFireHash, false);
     }
     private void Fire()
     {
@@ -70,7 +72,7 @@ public class FireState : AttackState
                 _playerData.SetAmmos((int)_playerData.CurFireWeapon , _playerData.GetAmmos((int)_playerData.CurFireWeapon) - 1);
 
                 _attackLastTime = Time.time;
-                _anim.SetBool("isFire", true);
+                _anim.SetBool(_isFireHash, true);
                 if(_playerData.IsZoom == EZoom.ZoomOut)
                 {
                     _anim.Play(_fireHash, -1, 0);
