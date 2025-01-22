@@ -105,7 +105,7 @@ public class MoveState : MovementState
     }
     private void Walk()
     {
-        _moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        _moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
         Vector3 dir = _player.transform.rotation * _moveDir * _playerData.Speed;
         dir.y = 0f;
 
