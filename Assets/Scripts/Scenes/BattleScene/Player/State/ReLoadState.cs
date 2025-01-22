@@ -10,9 +10,11 @@ public class ReLoadState : AttackState
 
     private PlayerData _playerData;
 
+    private IShootable _shootable;
+
     private Animator _anim;
 
-    private IShootable _shootable;
+    private int _isReLoadhash = Animator.StringToHash("isReLoad");
 
     private int _reLoadHash = Animator.StringToHash("ReLoad");
 
@@ -43,14 +45,14 @@ public class ReLoadState : AttackState
     {
         Debug.Log("ReLoadState에서 나감!");
 
-        _anim.SetBool("isReLoad", false);
+        _anim.SetBool(_isReLoadhash, false);
         _playerData.SetAmmos((int)_playerData.CurFireWeapon, _shootable.Bullet);
     }
 
     private void ReLoad()
     {
         _shootable.ReLoad(_player.ReLoadImage);
-        _anim.SetBool("isReLoad", true);
+        _anim.SetBool(_isReLoadhash, true);
         _anim.Play(_reLoadHash);
     }
 

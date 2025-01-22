@@ -11,6 +11,8 @@ public class ZoomState : AttackState
     private PlayerStateMachine _player;
 
     private Animator _anim;
+
+    private int _isZoomHash = Animator.StringToHash("isZoom");
     public ZoomState(PlayerStateMachine player)
     {
         _player = player;
@@ -46,7 +48,7 @@ public class ZoomState : AttackState
     {
         _playerData.IsZoom = EZoom.ZoomIn;
         _player.Aims[(int)EZoom.ZoomOut].SetActive(false);
-        _anim.SetBool("isZoom", true);
+        _anim.SetBool(_isZoomHash, true);
         IZoomable zoomable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IZoomable>();
         zoomable.ZoomIn();
         _player.Aims[(int)EZoom.ZoomIn].SetActive(true);
@@ -58,7 +60,7 @@ public class ZoomState : AttackState
     {
         _playerData.IsZoom = EZoom.ZoomOut;
         _player.Aims[(int)EZoom.ZoomIn].SetActive(false);
-        _anim.SetBool("isZoom", false);
+        _anim.SetBool(_isZoomHash, false);
         IZoomable zoomable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IZoomable>();
         zoomable.ZoomOut();
         _player.Aims[(int)EZoom.ZoomOut].SetActive(true);

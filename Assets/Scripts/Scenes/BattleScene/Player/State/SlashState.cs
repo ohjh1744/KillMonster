@@ -19,6 +19,8 @@ public class SlashState : AttackState
 
     private int _slashHash = Animator.StringToHash("Slash");
 
+    private int _isSlashHash = Animator.StringToHash("isSlash");
+
     public SlashState(PlayerStateMachine player)
     {
         _player = player;
@@ -45,7 +47,7 @@ public class SlashState : AttackState
     public override void Exit()
     {
         Debug.Log("현재 SlashState에서 나감!");
-        _anim.SetBool("isSlash", false);
+        _anim.SetBool(_isSlashHash, false);
     }
 
     private void Slash()
@@ -58,7 +60,7 @@ public class SlashState : AttackState
             cuttable.Cut(_knifePos.position, _playerDamage, _audioSource);
 
             _attackLastTime = Time.time;
-            _anim.SetBool("isSlash", true);
+            _anim.SetBool(_isSlashHash, true);
             _anim.Play(_slashHash);
         }
     }
