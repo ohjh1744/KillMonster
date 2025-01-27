@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Boss1SecondAttackState : BossState
+public class BossSecondAttackState : BossState
 {
-    private Boss1StateMachine _boss;
+    private BossStateMachine _boss;
 
     private BossData _bossData;
 
@@ -16,7 +16,7 @@ public class Boss1SecondAttackState : BossState
     private Animator _anim;
 
     private int _secondAttackHash = Animator.StringToHash("SecondAttack");
-    public Boss1SecondAttackState(Boss1StateMachine boss)
+    public BossSecondAttackState(BossStateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;

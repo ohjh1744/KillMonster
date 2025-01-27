@@ -3,36 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Boss1FirstAttackState : BossState
+public class BossThirdAttackState : BossState
 {
-    private Boss1StateMachine _boss;
+    private BossStateMachine _boss;
 
     private BossData _bossData;
 
     private NavMeshAgent _navMesh;
 
-    private IBossThrowAttack _bossThrowAttack;
+    private IBossRushAttack _bossRushAttack;
 
     private Animator _anim;
 
-    private int _firstAttackHash = Animator.StringToHash("FirstAttack");
-    public Boss1FirstAttackState(Boss1StateMachine boss)
+    private int _thirdAttackHash = Animator.StringToHash("ThirdAttack");
+
+    public BossThirdAttackState(BossStateMachine boss)
     {
         this._boss = boss;
+        _anim = _boss.GetComponent<Animator>();
         _bossData = _boss.BossData;
         _navMesh = _boss.GetComponent<NavMeshAgent>();
-        _bossThrowAttack = boss.GetComponent<IBossThrowAttack>();
-        _anim = _boss.GetComponent<Animator>();
+        _bossRushAttack = _bossData.GetComponent<IBossRushAttack>();
+        _bossRushAttack.IsAttack = true;
     }
     public override void Enter()
     {
-        Debug.Log("BossFirstAttack 진입");
-        _navMesh.enabled = false;
+        Debug.Log("BossThirdAttack 진입");
         _boss.transform.LookAt(_boss.Player.transform);
-        _anim.Play(_firstAttackHash, -1, 0);
-        _bossThrowAttack.Target = _boss.Player.transform;
-        _bossThrowAttack.IsAttack = true;
-        _bossThrowAttack.Attack(_bossData.Damage);
+        _anim.Play(_thirdAttackHash, -1, 0);
+        _bossRushAttack.IsAttack = true;
+        _bossRushAttack.Attack(_bossData.Speed, _bossData.Damage);
     }
 
     public override void Update()
@@ -42,7 +42,7 @@ public class Boss1FirstAttackState : BossState
             _boss._isChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
         }
-        else if (_bossThrowAttack.IsAttack == false)
+        else if (_bossRushAttack.IsAttack == false)
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
@@ -50,8 +50,8 @@ public class Boss1FirstAttackState : BossState
 
     public override void Exit()
     {
-        _bossThrowAttack.StopAttack();
+        _bossRushAttack.StopAttack();
         _boss._isChange = false;
-        Debug.Log("BossFirstAttack 나감");
+        Debug.Log("BossThirdAttack 나감");
     }
 }

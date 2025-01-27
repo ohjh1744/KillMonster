@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class Boss1FourthAttackState : BossState
+public class BossFourthAttackState : BossState
 {
-    private Boss1StateMachine _boss;
+    private BossStateMachine _boss;
 
     private BossData _bossData;
 
@@ -23,7 +23,7 @@ public class Boss1FourthAttackState : BossState
     private int _warningAnimFalseHash = Animator.StringToHash("WarningImageFalse");
 
     private int _FourthAttackHash = Animator.StringToHash("FourthAttack");
-    public Boss1FourthAttackState(Boss1StateMachine boss)
+    public BossFourthAttackState(BossStateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;

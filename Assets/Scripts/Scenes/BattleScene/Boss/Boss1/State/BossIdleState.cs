@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss1IdleState : BossState
+public class BossIdleState : BossState
 {
-    private Boss1StateMachine _boss;
+    private BossStateMachine _boss;
 
     private BossData _bossData;
-    public Boss1IdleState(Boss1StateMachine boss)
+    public BossIdleState(BossStateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 public enum EBossState {Idle, Move, Upset, Dead, FirstAttack, SecondAttack, ThirdAttack, FourthAttack, Size}
-public class Boss1StateMachine : MonoBehaviour
+public class BossStateMachine : MonoBehaviour
 {
     [SerializeField] private BossData _bossData;
     public BossData BossData { get { return _bossData; } private set { } }
@@ -42,14 +42,14 @@ public class Boss1StateMachine : MonoBehaviour
 
     private void Awake()
     {
-        BossStates[(int)EBossState.Idle] = new Boss1IdleState(this);
-        BossStates[(int)EBossState.Move] = new Boss1MoveState(this);
-        BossStates[(int)EBossState.Upset] = new Boss1UpsetState(this);
-        BossStates[(int)EBossState.Dead] = new Boss1DeadState(this);
-        BossStates[(int)EBossState.FirstAttack] = new Boss1FirstAttackState(this);
-        BossStates[(int)EBossState.SecondAttack] = new Boss1SecondAttackState(this);
-        BossStates[(int)EBossState.ThirdAttack] = new Boss1ThirdAttackState(this);
-        BossStates[(int)EBossState.FourthAttack] = new Boss1FourthAttackState(this);
+        BossStates[(int)EBossState.Idle] = new BossIdleState(this);
+        BossStates[(int)EBossState.Move] = new BossMoveState(this);
+        BossStates[(int)EBossState.Upset] = new BossUpsetState(this);
+        BossStates[(int)EBossState.Dead] = new BossDeadState(this);
+        BossStates[(int)EBossState.FirstAttack] = new BossFirstAttackState(this);
+        BossStates[(int)EBossState.SecondAttack] = new BossSecondAttackState(this);
+        BossStates[(int)EBossState.ThirdAttack] = new BossThirdAttackState(this);
+        BossStates[(int)EBossState.FourthAttack] = new BossFourthAttackState(this);
         _seconds = new WaitForSeconds(_changeStateTime);
     }
     private void Start()

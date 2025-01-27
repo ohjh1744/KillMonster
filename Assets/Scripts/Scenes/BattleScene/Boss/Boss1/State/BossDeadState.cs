@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Boss1DeadState : BossState
+public class BossDeadState : BossState
 {
-    private Boss1StateMachine _boss;
+    private BossStateMachine _boss;
 
     private BossData _bossData;
 
@@ -24,7 +24,7 @@ public class Boss1DeadState : BossState
 
     private int _deadHash = Animator.StringToHash("Dead");
 
-    public Boss1DeadState(Boss1StateMachine boss)
+    public BossDeadState(BossStateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
