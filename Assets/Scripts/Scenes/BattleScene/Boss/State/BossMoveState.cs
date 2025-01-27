@@ -25,7 +25,7 @@ public class BossMoveState : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _bossMove = _boss.GetComponent<BossMove>();
-        _bossHitAttack = _boss.GetComponent<Boss1HitAttack>();
+        _bossHitAttack = _boss.GetComponent<BossHitAttack>();
         _navMesh = _boss.GetComponent<NavMeshAgent>();
         _player = _boss.Player.transform;
         _bossUpsetHp = _bossData.Hp / 2;
@@ -53,22 +53,22 @@ public class BossMoveState : BossState
             _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Upset]);
         }
-        if (_boss.StateProbability <= 30 && _boss.IsChange == false)
+        if ((_boss.StateProbability < _boss.MaxProb[0] && _boss.StateProbability >= _boss.MinProb[0]) && _boss.IsChange == false)
         {
             _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.FirstAttack]);
         }
-        if (Vector3.Distance(_player.position, _boss.transform.position) < _bossHitAttack.AttackDistance && _boss.IsChange == false)
+        if ((_boss.StateProbability < _boss.MaxProb[1] && _boss.StateProbability >= _boss.MinProb[1]) && _boss.IsChange == false)
         {
             _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.SecondAttack]);
         }
-        if ((_boss.StateProbability > 30 && _boss.StateProbability <= 60) && _boss.IsChange == false)
+        if ((_boss.StateProbability < _boss.MaxProb[2] && _boss.StateProbability >= _boss.MinProb[2]) && _boss.IsChange == false)
         {
             _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.ThirdAttack]);
         }
-        if (_bossData.IsUpset == true && (_boss.StateProbability > 60 && _boss.StateProbability <= 90) && _boss.IsChange == false)
+        if (_bossData.IsUpset == true && (_boss.StateProbability < _boss.MaxProb[3] && _boss.StateProbability >= _boss.MinProb[3]) && _boss.IsChange == false)
         {
             _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.FourthAttack]);

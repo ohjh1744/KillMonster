@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Boss1ThrowAttack : BossAttack
+public class BossThrowAttack : BossAttack
 {
     [SerializeField] AudioSource _audioSource;
 

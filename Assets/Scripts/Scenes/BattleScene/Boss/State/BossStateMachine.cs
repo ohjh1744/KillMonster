@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public enum EBossState {Idle, Move, Upset, Dead, FirstAttack, SecondAttack, ThirdAttack, FourthAttack, Size}
 
-public enum EBossAttack {ThrowAttack, HitAttack, RushAttack, WorldArea, Size}
+public enum EBossAttack {ThrowAttack, HitAttack, RushAttack, WorldAreaAttack, Size}
 public class BossStateMachine : MonoBehaviour
 {
     [SerializeField] private BossData _bossData;
@@ -29,12 +29,22 @@ public class BossStateMachine : MonoBehaviour
 
     private BossState _state;
 
+    [SerializeField] private EBossAttack[] _bossAttacks; 
+
     private BossState[] _bossStates = new BossState[(int)EBossState.Size];
 
     public BossState[] BossStates { get { return _bossStates; } private set { } }
 
     [SerializeField] private int _stateProb;
     public int StateProbability { get { return _stateProb; } private set { } }
+
+    [SerializeField] private int[] _minProb;
+
+    public int[] MinProb { get { return _minProb; } private set { } }
+
+    [SerializeField] private int[] _maxProb;
+
+    public int[] MaxProb { get { return _maxProb; } private set { } }
 
     [SerializeField] private bool _isChange;
     public bool IsChange { get { return _isChange; } set { _isChange = value; } }
@@ -50,10 +60,10 @@ public class BossStateMachine : MonoBehaviour
         BossStates[(int)EBossState.Move] = new BossMoveState(this);
         BossStates[(int)EBossState.Upset] = new BossUpsetState(this);
         BossStates[(int)EBossState.Dead] = new BossDeadState(this);
-        BossStates[(int)EBossState.FirstAttack] = new BossFirstAttackState(this);
-        BossStates[(int)EBossState.SecondAttack] = new BossSecondAttackState(this);
-        BossStates[(int)EBossState.ThirdAttack] = new BossThirdAttackState(this);
-        BossStates[(int)EBossState.FourthAttack] = new BossFourthAttackState(this);
+        BossStates[(int)EBossState.FirstAttack] = new BossFirstAttackState(this, _bossAttacks[0]);
+        BossStates[(int)EBossState.SecondAttack] = new BossSecondAttackState(this, _bossAttacks[1]);
+        BossStates[(int)EBossState.ThirdAttack] = new BossThirdAttackState(this, _bossAttacks[2]);
+        BossStates[(int)EBossState.FourthAttack] = new BossFourthAttackState(this, _bossAttacks[3]);
         _seconds = new WaitForSeconds(_changeStateTime);
     }
     private void Start()
@@ -80,6 +90,27 @@ public class BossStateMachine : MonoBehaviour
 
         _state = newState;
         _state.Enter();
+    }
+
+    public BossAttack SetAttack(EBossAttack bossAttack)
+    {
+        switch (bossAttack)
+        {
+            case EBossAttack.ThrowAttack:
+                return GetComponent<BossThrowAttack>();
+                break;
+            case EBossAttack.HitAttack:
+                return GetComponent<BossHitAttack>();
+                break;
+            case EBossAttack.RushAttack:
+                return GetComponent<BossRushAttack>();
+                break;
+            case EBossAttack.WorldAreaAttack:
+                return GetComponent<BossWorldAreaAttack>();
+                break;
+            default:
+                return null;
+        }
     }
 
 

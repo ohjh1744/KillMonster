@@ -11,17 +11,17 @@ public class BossSecondAttackState : BossState
 
     private NavMeshAgent _navMesh;
 
-    private BossAttack _bossHitAttack;
+    private BossAttack _bossAttack;
 
     private Animator _anim;
 
     private int _secondAttackHash = Animator.StringToHash("SecondAttack");
-    public BossSecondAttackState(BossStateMachine boss)
+    public BossSecondAttackState(BossStateMachine boss, EBossAttack bossAttack)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _bossData.GetComponent<NavMeshAgent>();
-        _bossHitAttack = boss.GetComponent<Boss1HitAttack>();
+        _bossAttack = boss.SetAttack(bossAttack);
         _anim = _boss.GetComponent<Animator>();
 
     }
@@ -31,8 +31,9 @@ public class BossSecondAttackState : BossState
         _navMesh.enabled = false;
         _boss.transform.LookAt(_boss.transform);
         _anim.Play(_secondAttackHash, -1, 0);
-        _bossHitAttack.IsAttack = true;
-        _bossHitAttack.Attack(_bossData.Damage);
+        _bossAttack.Target = _boss.Player.transform;
+        _bossAttack.IsAttack = true;
+        _bossAttack.Attack(_bossData.Damage);
     }
 
     public override void Update()
@@ -42,14 +43,14 @@ public class BossSecondAttackState : BossState
             _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
         }
-        if (_bossHitAttack.IsAttack == false)
+        if (_bossAttack.IsAttack == false)
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
     }
     public override void Exit()
     {
-        _bossHitAttack.StopAttack();
+        _bossAttack.StopAttack();
         _boss.IsChange = false;
         Debug.Log("BossSecondAttack ³ª°¨");
     }

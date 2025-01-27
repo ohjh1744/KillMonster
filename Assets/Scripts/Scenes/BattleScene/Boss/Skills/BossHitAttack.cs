@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class Boss1HitAttack : BossAttack
+public class BossHitAttack : BossAttack
 {
     [SerializeField] Transform _attackPos;
 

@@ -7331,6 +7331,11 @@ MonoBehaviour:
   _player: {fileID: 1775929562}
   _fourthAttackWarningImage: {fileID: 1630210684}
   _upsetWarningImage: {fileID: 855086288}
+  _bossAttacks: 00000000010000000200000003000000
+  _stateProb: 0
+  _minProb: 0000000015000000290000003d000000
+  _maxProb: 14000000280000003c00000050000000
+  _isChange: 0
 --- !u!195 &1422332685
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7365,6 +7370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc06a66ad26c5444c88df12cd01bcf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAttack: 0
+  _attackDistance: 0
   _audioSource: {fileID: 1422332690}
   _throwObject: {fileID: 5286935547350647327, guid: 71e179f6eb83d5e4595e86bbe89f5357,
     type: 3}
@@ -7386,16 +7393,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce776b7f3ba41ec40b6f86df7e84a7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAttack: 0
+  _attackDistance: 3
   _attackPos: {fileID: 437870697}
   _audioSource: {fileID: 1422332690}
   _attackClip: {fileID: 8300000, guid: 2c35928109173b44ea96c9363f59df5f, type: 3}
   _hitPoint: {fileID: 967795166}
-  _range: 3
   _damage: 5
   _pullPower: 10
   _finishAttackTime: 3
   _showHitTime: 1
-  _attackDistance: 5
 --- !u!114 &1422332688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7408,6 +7415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1abb6dec69d9f448b3ffd7f2e8097b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAttack: 0
+  _attackDistance: 4
   _audioSource: {fileID: 1422332690}
   _attackClip: {fileID: 8300000, guid: 8713071b8d70c7a418f06644c4ee7271, type: 3}
   _navMesh: {fileID: 1422332685}
@@ -7416,7 +7425,6 @@ MonoBehaviour:
   _rushSpeed: 5
   _damage: 5
   _pullPower: 10
-  _range: 4
   _attackNum: 4
   _waitRushTime: 1
   _damageRateTime: 1
@@ -7432,6 +7440,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf16790e25a16945b0d6f3306b3eafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAttack: 0
+  _attackDistance: 30
   _playerNoiseCamera: {fileID: 915914778}
   _safeZone: {fileID: 1458277237}
   _safeZonePoints:
@@ -7443,7 +7453,6 @@ MonoBehaviour:
   _attackClip: {fileID: 8300000, guid: 08fa23af8587d544bb0dc35c67853486, type: 3}
   _anim: {fileID: 158112538}
   _damage: 5
-  _range: 30
   _attackNum: 3
   _waitRoarTime: 5
   _damageRateTime: 1
@@ -9604,7 +9613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23e4c94b46eaf514f851d28f12a28b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: 100
+  _hp: 100000
   _speed: 3
   _runGage: 1
   _runMaxGage: 1

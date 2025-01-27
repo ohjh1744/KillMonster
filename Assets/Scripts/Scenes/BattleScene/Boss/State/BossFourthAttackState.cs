@@ -12,7 +12,7 @@ public class BossFourthAttackState : BossState
 
     private NavMeshAgent _navMesh;
 
-    private BossAttack _bossWorldAreaAttack;
+    private BossAttack _bossAttack;
 
     private Animator _anim;
 
@@ -23,12 +23,12 @@ public class BossFourthAttackState : BossState
     private int _warningAnimFalseHash = Animator.StringToHash("WarningImageFalse");
 
     private int _FourthAttackHash = Animator.StringToHash("FourthAttack");
-    public BossFourthAttackState(BossStateMachine boss)
+    public BossFourthAttackState(BossStateMachine boss, EBossAttack bossAttack)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
-        _navMesh = _boss.GetComponent<NavMeshAgent>(); 
-        _bossWorldAreaAttack = _boss.GetComponent<Boss1WorldAreaAttack>();
+        _navMesh = _boss.GetComponent<NavMeshAgent>();
+        _bossAttack = _boss.SetAttack(bossAttack);
         _anim = _boss.GetComponent<Animator>();
         _warningAnim = _boss.FourthAttackWarningImage.GetComponent<Animator>();
     }
@@ -38,8 +38,9 @@ public class BossFourthAttackState : BossState
         _navMesh.enabled = false;
         _boss.transform.LookAt(_boss.Player.transform);
         _anim.Play(_FourthAttackHash, -1, 0);
-        _bossWorldAreaAttack.IsAttack = true;
-        _bossWorldAreaAttack.Attack(_bossData.Damage, _FourthAttackHash);
+        _bossAttack.Target = _boss.Player.transform;
+        _bossAttack.IsAttack = true;
+        _bossAttack.Attack(_bossData.Damage, _FourthAttackHash);
         _warningAnim.Play(_warningAnimTrueHash);
     }
 
@@ -50,7 +51,7 @@ public class BossFourthAttackState : BossState
             _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
         }
-        else if (_bossWorldAreaAttack.IsAttack == false)
+        else if (_bossAttack.IsAttack == false)
         {
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
         }
@@ -58,7 +59,7 @@ public class BossFourthAttackState : BossState
 
     public override void Exit()
     {
-        _bossWorldAreaAttack.StopAttack();
+        _bossAttack.StopAttack();
         _warningAnim.Play(_warningAnimFalseHash);
         _boss.IsChange = false;
         Debug.Log("BossFourthAttack ³ª°¨");

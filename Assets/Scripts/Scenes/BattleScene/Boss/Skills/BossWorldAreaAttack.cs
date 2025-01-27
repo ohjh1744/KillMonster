@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 
 
-public class Boss1WorldAreaAttack : BossAttack
+public class BossWorldAreaAttack : BossAttack
 {
     [SerializeField] private CinemachineVirtualCamera _playerNoiseCamera;
 
