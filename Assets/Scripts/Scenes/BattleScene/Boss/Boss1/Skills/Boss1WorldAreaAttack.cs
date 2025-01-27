@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 
 
-public class Boss1WorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
+public class Boss1WorldAreaAttack : BossAttack
 {
     [SerializeField] private CinemachineVirtualCamera _playerNoiseCamera;
 
@@ -19,8 +19,6 @@ public class Boss1WorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
     [SerializeField] private Animator _anim;
 
     [SerializeField] private float _damage;
-
-    [SerializeField] private float _range;
 
     [SerializeField] private float _attackNum;
 
@@ -40,9 +38,6 @@ public class Boss1WorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
 
     private Coroutine _coroutine;
 
-    private bool _isAttack;
-    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
-
     void Awake()
     {
         IsAttack = true;
@@ -51,12 +46,12 @@ public class Boss1WorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
         _originPriority = _playerNoiseCamera.Priority;
     }
 
-    public void Attack(float bossDamage, int animHash)
+    public override void Attack(float bossDamage, int animHash)
     {
         _coroutine = StartCoroutine(RoarAttack(bossDamage, animHash));
     }
 
-    public void StopAttack()
+    public override void StopAttack()
     {
         if (_coroutine != null)
         {
@@ -85,7 +80,7 @@ public class Boss1WorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
         int num = 0;
         while (num < _attackNum)
         {
-            Collider[] hits = Physics.OverlapSphere(transform.position, _range, LayerMask.GetMask("Damagable"));
+            Collider[] hits = Physics.OverlapSphere(transform.position, AttackDistance, LayerMask.GetMask("Damagable"));
             if (hits.Length > 0)
             {
                 foreach (Collider hit in hits)
@@ -121,7 +116,7 @@ public class Boss1WorldAreaAttack : MonoBehaviour, IBossWorldAreaAttack
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _range);
+        Gizmos.DrawWireSphere(transform.position, AttackDistance);
     }
 
 }

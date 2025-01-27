@@ -12,7 +12,7 @@ public class BossFourthAttackState : BossState
 
     private NavMeshAgent _navMesh;
 
-    private IBossWorldAreaAttack _bossWorldAreaAttack;
+    private BossAttack _bossWorldAreaAttack;
 
     private Animator _anim;
 
@@ -28,7 +28,7 @@ public class BossFourthAttackState : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _boss.GetComponent<NavMeshAgent>(); 
-        _bossWorldAreaAttack = _boss.GetComponent<IBossWorldAreaAttack>();
+        _bossWorldAreaAttack = _boss.GetComponent<Boss1WorldAreaAttack>();
         _anim = _boss.GetComponent<Animator>();
         _warningAnim = _boss.FourthAttackWarningImage.GetComponent<Animator>();
     }
@@ -47,7 +47,7 @@ public class BossFourthAttackState : BossState
     {
         if (_bossData.Hp < 1)
         {
-            _boss._isChange = true;
+            _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
         }
         else if (_bossWorldAreaAttack.IsAttack == false)
@@ -60,7 +60,7 @@ public class BossFourthAttackState : BossState
     {
         _bossWorldAreaAttack.StopAttack();
         _warningAnim.Play(_warningAnimFalseHash);
-        _boss._isChange = false;
+        _boss.IsChange = false;
         Debug.Log("BossFourthAttack ³ª°¨");
     }
 }

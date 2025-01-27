@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Boss1ThrowAttack : MonoBehaviour, IBossThrowAttack
+public class Boss1ThrowAttack : BossAttack
 {
     [SerializeField] AudioSource _audioSource;
 
@@ -18,7 +18,6 @@ public class Boss1ThrowAttack : MonoBehaviour, IBossThrowAttack
     [SerializeField] private float _finishAttackTime;
 
     [SerializeField] private float _showHitTime;
-    public Transform Target {  get;  set; }
 
     private WaitForSeconds _finishAttackSeconds;
 
@@ -26,8 +25,6 @@ public class Boss1ThrowAttack : MonoBehaviour, IBossThrowAttack
 
     private  Coroutine _coroutine;
 
-    private bool _isAttack;
-    public bool IsAttack { get { return _isAttack; }  set { _isAttack = value; } }
 
     public void Awake()
     {
@@ -36,12 +33,12 @@ public class Boss1ThrowAttack : MonoBehaviour, IBossThrowAttack
         _showHitSeconds = new WaitForSeconds(_showHitTime);
     }
 
-    public void Attack(float bossBasicDamage)
+    public override void Attack(float bossBasicDamage)
     {
         _coroutine = StartCoroutine(ThrowAttack( bossBasicDamage));
     }
 
-    public void StopAttack()
+    public override void StopAttack()
     {
         if(_coroutine != null)
         {
@@ -53,6 +50,7 @@ public class Boss1ThrowAttack : MonoBehaviour, IBossThrowAttack
     private IEnumerator ThrowAttack(float bossBasicDamage)
     {
         GameObject hitPoint = Instantiate(_hitPoint);
+        Debug.Log(Target.position);
         Vector3 hitPointPostion = Target.position;
         hitPointPostion.y = 0.1f;
         hitPoint.transform.position = hitPointPostion;

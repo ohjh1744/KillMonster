@@ -52,7 +52,7 @@ public class BossUpsetState : BossState
         _currentTime += Time.deltaTime;
         if (_bossData.Hp < 1)
         {
-            _boss._isChange = true;
+            _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
         }
         else if (_currentTime > _upsetTime)
@@ -64,7 +64,7 @@ public class BossUpsetState : BossState
     public override void Exit()
     {
         _warningAnim.Play(_warningAnimFalseHash);
-        _boss._isChange = false;
+        _boss.IsChange = false;
         _currentTime = 0;
         Debug.Log("BossUpsetState ³ª°¨");
     }

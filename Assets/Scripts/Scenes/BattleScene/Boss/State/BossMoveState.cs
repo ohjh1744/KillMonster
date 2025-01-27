@@ -11,7 +11,7 @@ public class BossMoveState : BossState
 
     private BossMove _bossMove;
 
-    private IBossHitAttack _bossHitAttack;
+    private BossAttack _bossHitAttack;
 
     private NavMeshAgent _navMesh;
 
@@ -19,15 +19,13 @@ public class BossMoveState : BossState
 
     private float _speed;
 
-    private float probability;
-
     private float _bossUpsetHp;
     public BossMoveState(BossStateMachine boss)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
         _bossMove = _boss.GetComponent<BossMove>();
-        _bossHitAttack = _boss.GetComponent<IBossHitAttack>();
+        _bossHitAttack = _boss.GetComponent<Boss1HitAttack>();
         _navMesh = _boss.GetComponent<NavMeshAgent>();
         _player = _boss.Player.transform;
         _bossUpsetHp = _bossData.Hp / 2;
@@ -45,34 +43,34 @@ public class BossMoveState : BossState
     {
         _bossMove.PlayMoveSound();
         _bossMove.Move();
-        if(_bossData.Hp < 1)
+        if (_bossData.Hp < 1)
         {
-            _boss._isChange = true;
+            _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
         }
-        if (_bossData.IsUpset == false && _bossData.Hp < _bossUpsetHp && _boss._isChange == false)
+        if (_bossData.IsUpset == false && _bossData.Hp < _bossUpsetHp && _boss.IsChange == false)
         {
-            _boss._isChange = true;
+            _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Upset]);
         }
-        if (_boss.StateProbability <= 30 && _boss._isChange == false)
+        if (_boss.StateProbability <= 30 && _boss.IsChange == false)
         {
-            _boss._isChange = true;
+            _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.FirstAttack]);
         }
-        if (Vector3.Distance(_player.position, _boss.transform.position) < _bossHitAttack.AttackDistance && _boss._isChange == false)
+        if (Vector3.Distance(_player.position, _boss.transform.position) < _bossHitAttack.AttackDistance && _boss.IsChange == false)
         {
-            _boss._isChange = true;
+            _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.SecondAttack]);
         }
-        if ((_boss.StateProbability > 30 && _boss.StateProbability <= 60) && _boss._isChange == false)
+        if ((_boss.StateProbability > 30 && _boss.StateProbability <= 60) && _boss.IsChange == false)
         {
-            _boss._isChange = true;
+            _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.ThirdAttack]);
         }
-        if (_bossData.IsUpset == true && (_boss.StateProbability > 60 && _boss.StateProbability <= 90) && _boss._isChange == false)
+        if (_bossData.IsUpset == true && (_boss.StateProbability > 60 && _boss.StateProbability <= 90) && _boss.IsChange == false)
         {
-            _boss._isChange = true;
+            _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.FourthAttack]);
         }
     }

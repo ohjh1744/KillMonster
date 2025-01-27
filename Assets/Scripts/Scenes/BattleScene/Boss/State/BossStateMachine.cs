@@ -6,6 +6,8 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 public enum EBossState {Idle, Move, Upset, Dead, FirstAttack, SecondAttack, ThirdAttack, FourthAttack, Size}
+
+public enum EBossAttack {ThrowAttack, HitAttack, RushAttack, WorldArea, Size}
 public class BossStateMachine : MonoBehaviour
 {
     [SerializeField] private BossData _bossData;
@@ -31,9 +33,11 @@ public class BossStateMachine : MonoBehaviour
 
     public BossState[] BossStates { get { return _bossStates; } private set { } }
 
-    public int StateProbability { get; private set; }
+    [SerializeField] private int _stateProb;
+    public int StateProbability { get { return _stateProb; } private set { } }
 
-    public bool _isChange { get; set; }
+    [SerializeField] private bool _isChange;
+    public bool IsChange { get { return _isChange; } set { _isChange = value; } }
 
     private Coroutine _coroutine { get; set; }
 
@@ -78,11 +82,12 @@ public class BossStateMachine : MonoBehaviour
         _state.Enter();
     }
 
+
     IEnumerator ChangeStateProbability()
     {
         while (true)
         {
-            StateProbability = Random.Range(0, 100);
+            _stateProb = Random.Range(0, 100);
             yield return _seconds;
         }
     }

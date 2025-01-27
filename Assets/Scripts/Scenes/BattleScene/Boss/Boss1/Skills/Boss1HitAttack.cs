@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss1HitAttack : MonoBehaviour, IBossHitAttack
+public class Boss1HitAttack : BossAttack
 {
     [SerializeField] Transform _attackPos;
 
@@ -12,8 +12,6 @@ public class Boss1HitAttack : MonoBehaviour, IBossHitAttack
 
     [SerializeField] private GameObject _hitPoint;
 
-    [SerializeField] private float _range;
-
     [SerializeField] private float _damage;
 
     [SerializeField] private float _pullPower;
@@ -21,12 +19,6 @@ public class Boss1HitAttack : MonoBehaviour, IBossHitAttack
     [SerializeField] private float _finishAttackTime;
 
     [SerializeField] private float _showHitTime;
-
-    [SerializeField] private float _attackDistance;
-    public float AttackDistance { get { return _attackDistance; } private set { } }
-
-    private bool _isAttack;
-    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
 
     private WaitForSeconds _FinishAttackSeconds;
 
@@ -37,17 +29,17 @@ public class Boss1HitAttack : MonoBehaviour, IBossHitAttack
 
     void Awake()
     {
-        _isAttack = true;
+        IsAttack = true;
         _FinishAttackSeconds = new WaitForSeconds(_finishAttackTime);
         _showHitSeconds = new WaitForSeconds(_showHitTime);
     }
 
-    public void Attack(float bossDamage)
+    public override void Attack(float bossDamage)
     {
         _coroutine = StartCoroutine(HitAttack(bossDamage));
     }
 
-    public void StopAttack()
+    public override void StopAttack()
     {
         if (_coroutine != null)
         {
@@ -64,7 +56,7 @@ public class Boss1HitAttack : MonoBehaviour, IBossHitAttack
         yield return _showHitSeconds;
 
         _hitPoint.SetActive(false);
-        Collider[] hits = Physics.OverlapSphere(_attackPos.position, _range, LayerMask.GetMask("Damagable"));
+        Collider[] hits = Physics.OverlapSphere(_attackPos.position, AttackDistance, LayerMask.GetMask("Damagable"));
         if (hits.Length > 0)
         {
             foreach (Collider hit in hits)
@@ -80,7 +72,7 @@ public class Boss1HitAttack : MonoBehaviour, IBossHitAttack
         }
 
         yield return _FinishAttackSeconds;
-        _isAttack = false;
+        IsAttack = false;
         _coroutine = null;
 
     }
@@ -88,6 +80,6 @@ public class Boss1HitAttack : MonoBehaviour, IBossHitAttack
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(_attackPos.position, _range);
+        Gizmos.DrawWireSphere(_attackPos.position, AttackDistance);
     }
 }

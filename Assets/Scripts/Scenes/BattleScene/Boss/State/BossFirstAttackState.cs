@@ -11,7 +11,7 @@ public class BossFirstAttackState : BossState
 
     private NavMeshAgent _navMesh;
 
-    private IBossThrowAttack _bossThrowAttack;
+    private BossAttack _bossThrowAttack;
 
     private Animator _anim;
 
@@ -21,7 +21,7 @@ public class BossFirstAttackState : BossState
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _boss.GetComponent<NavMeshAgent>();
-        _bossThrowAttack = boss.GetComponent<IBossThrowAttack>();
+        _bossThrowAttack = boss.GetComponent<Boss1ThrowAttack>();
         _anim = _boss.GetComponent<Animator>();
     }
     public override void Enter()
@@ -39,7 +39,7 @@ public class BossFirstAttackState : BossState
     {
         if (_bossData.Hp < 1)
         {
-            _boss._isChange = true;
+            _boss.IsChange = true;
             _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
         }
         else if (_bossThrowAttack.IsAttack == false)
@@ -51,7 +51,7 @@ public class BossFirstAttackState : BossState
     public override void Exit()
     {
         _bossThrowAttack.StopAttack();
-        _boss._isChange = false;
+        _boss.IsChange = false;
         Debug.Log("BossFirstAttack ³ª°¨");
     }
 }

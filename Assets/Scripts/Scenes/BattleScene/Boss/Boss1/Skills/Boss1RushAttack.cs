@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Boss1RushAttack : MonoBehaviour, IBossRushAttack
+public class Boss1RushAttack : BossAttack
 {
     [SerializeField] private AudioSource _audioSource;
 
@@ -21,16 +21,12 @@ public class Boss1RushAttack : MonoBehaviour, IBossRushAttack
 
     [SerializeField] private float _pullPower;
 
-    [SerializeField] private float _range;
-
     [SerializeField] private float _attackNum;
 
     [SerializeField] private float _waitRushTime;
 
     [SerializeField] private float _damageRateTime;
 
-    private bool _isAttack;
-    public bool IsAttack { get { return _isAttack; } set { _isAttack = value; } }
 
     private WaitForSeconds _damageRateSeconds;
 
@@ -54,12 +50,12 @@ public class Boss1RushAttack : MonoBehaviour, IBossRushAttack
             _navMesh.SetDestination(_playerPosition.position);
         }
     }
-    public void Attack(float basicSpeed,float basicDamage)
+    public override void Attack(float basicSpeed,float basicDamage)
     {
         _coroutine = StartCoroutine(RushAttack(basicSpeed, basicDamage));
     }
 
-    public void StopAttack()
+    public override void StopAttack()
     {
         if (_coroutine != null)
         {
@@ -84,7 +80,7 @@ public class Boss1RushAttack : MonoBehaviour, IBossRushAttack
         int num = 0;
         while ( num < _attackNum)
         {
-            Collider[] hits = Physics.OverlapSphere(transform.position, _range, LayerMask.GetMask("Damagable"));
+            Collider[] hits = Physics.OverlapSphere(transform.position, AttackDistance, LayerMask.GetMask("Damagable"));
             if (hits.Length > 0)
             {
                 foreach (Collider hit in hits)
@@ -106,12 +102,13 @@ public class Boss1RushAttack : MonoBehaviour, IBossRushAttack
         _navMesh.speed = originSpeed;
         IsAttack = false;
         _coroutine = null;
+        Debug.Log("³¡!!");
 
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, _range);
+        Gizmos.DrawWireSphere(transform.position, AttackDistance);
     }
 }
