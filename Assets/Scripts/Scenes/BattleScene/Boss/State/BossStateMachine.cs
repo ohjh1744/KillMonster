@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public enum EBossState {Idle, Move, Upset, Dead, FirstAttack, SecondAttack, ThirdAttack, FourthAttack, Size}
 
-public enum EBossAttack {ThrowAttack, HitAttack, RushAttack, WorldAreaAttack, Size}
 public class BossStateMachine : MonoBehaviour
 {
     [SerializeField] private BossData _bossData;
@@ -29,7 +28,7 @@ public class BossStateMachine : MonoBehaviour
 
     private BossState _state;
 
-    [SerializeField] private EBossAttack[] _bossAttacks; 
+    [SerializeField] private BossAttack[] _bossAttacks;
 
     private BossState[] _bossStates = new BossState[(int)EBossState.Size];
 
@@ -91,28 +90,6 @@ public class BossStateMachine : MonoBehaviour
         _state = newState;
         _state.Enter();
     }
-
-    public BossAttack SetAttack(EBossAttack bossAttack)
-    {
-        switch (bossAttack)
-        {
-            case EBossAttack.ThrowAttack:
-                return GetComponent<BossThrowAttack>();
-                break;
-            case EBossAttack.HitAttack:
-                return GetComponent<BossHitAttack>();
-                break;
-            case EBossAttack.RushAttack:
-                return GetComponent<BossRushAttack>();
-                break;
-            case EBossAttack.WorldAreaAttack:
-                return GetComponent<BossWorldAreaAttack>();
-                break;
-            default:
-                return null;
-        }
-    }
-
 
     IEnumerator ChangeStateProbability()
     {

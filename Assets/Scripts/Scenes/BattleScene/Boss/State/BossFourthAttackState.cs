@@ -23,12 +23,12 @@ public class BossFourthAttackState : BossState
     private int _warningAnimFalseHash = Animator.StringToHash("WarningImageFalse");
 
     private int _FourthAttackHash = Animator.StringToHash("FourthAttack");
-    public BossFourthAttackState(BossStateMachine boss, EBossAttack bossAttack)
+    public BossFourthAttackState(BossStateMachine boss, BossAttack bossAttack)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _boss.GetComponent<NavMeshAgent>();
-        _bossAttack = _boss.SetAttack(bossAttack);
+        _bossAttack = bossAttack;
         _anim = _boss.GetComponent<Animator>();
         _warningAnim = _boss.FourthAttackWarningImage.GetComponent<Animator>();
     }

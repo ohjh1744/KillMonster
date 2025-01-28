@@ -16,12 +16,12 @@ public class BossSecondAttackState : BossState
     private Animator _anim;
 
     private int _secondAttackHash = Animator.StringToHash("SecondAttack");
-    public BossSecondAttackState(BossStateMachine boss, EBossAttack bossAttack)
+    public BossSecondAttackState(BossStateMachine boss, BossAttack bossAttack)
     {
         this._boss = boss;
         _bossData = _boss.BossData;
         _navMesh = _bossData.GetComponent<NavMeshAgent>();
-        _bossAttack = boss.SetAttack(bossAttack);
+        _bossAttack = bossAttack;
         _anim = _boss.GetComponent<Animator>();
 
     }

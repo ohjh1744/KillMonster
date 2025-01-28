@@ -17,13 +17,13 @@ public class BossThirdAttackState : BossState
 
     private int _thirdAttackHash = Animator.StringToHash("ThirdAttack");
 
-    public BossThirdAttackState(BossStateMachine boss, EBossAttack bossAttack)
+    public BossThirdAttackState(BossStateMachine boss, BossAttack bossAttack)
     {
         this._boss = boss;
         _anim = _boss.GetComponent<Animator>();
         _bossData = _boss.BossData;
         _navMesh = _boss.GetComponent<NavMeshAgent>();
-        _bossAttack = _boss.SetAttack(bossAttack);
+        _bossAttack = bossAttack;
     }
     public override void Enter()
     {
