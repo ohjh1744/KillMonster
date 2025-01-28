@@ -38,7 +38,8 @@ public class GameData
     [SerializeField] private Stat[] _baseStats;
     public Stat[] BaseStats { get { return _baseStats; } private set { } }
 
-    public int Gold { get; set; }
+    [SerializeField] private int _gold;
+    public int Gold { get { return _gold; } set { _gold = value; } }
 
 }
 

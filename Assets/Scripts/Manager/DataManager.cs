@@ -77,7 +77,7 @@ public class DataManager : MonoBehaviour
         }
         string json = File.ReadAllText(path.ToString());
         SaveData.GameData = JsonUtility.FromJson<GameData>(json);
-        Debug.Log("Comoplete");
+        Debug.Log(path);
         LoadState = ELoadState.Success;
 
     }

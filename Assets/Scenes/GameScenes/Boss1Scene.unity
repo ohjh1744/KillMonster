@@ -7331,7 +7331,11 @@ MonoBehaviour:
   _player: {fileID: 1775929562}
   _fourthAttackWarningImage: {fileID: 1630210684}
   _upsetWarningImage: {fileID: 855086288}
-  _bossAttacks: 00000000010000000200000003000000
+  _bossAttacks:
+  - {fileID: 1422332686}
+  - {fileID: 1422332687}
+  - {fileID: 1422332688}
+  - {fileID: 1422332689}
   _stateProb: 0
   _minProb: 0000000015000000290000003d000000
   _maxProb: 14000000280000003c00000050000000
