@@ -73,12 +73,12 @@ public class PlayerData : MonoBehaviour
     [SerializeField] public int _numGrenade;
     [HideInInspector] public int NumGrenade { get { return _numGrenade; } set { _numGrenade = value; OnNumGrenadeChanged?.Invoke(); } }
 
-    public UnityAction OnHpChanged;
+    public event UnityAction OnHpChanged;
 
-    public UnityAction OnAmmosChanged;
+    public event UnityAction OnAmmosChanged;
 
-    public UnityAction OnNumGrenadeChanged;
+    public event UnityAction OnNumGrenadeChanged;
 
-    public UnityAction OnRunGageChanged;
+    public event UnityAction OnRunGageChanged;
 
 }

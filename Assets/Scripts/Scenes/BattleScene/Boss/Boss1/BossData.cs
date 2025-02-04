@@ -36,5 +36,5 @@ public class BossData : MonoBehaviour
 
 
 
-    public UnityAction OnHpChanged;
+    public event UnityAction OnHpChanged;
 }

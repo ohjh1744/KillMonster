@@ -62,13 +62,13 @@ public class SaveData : ScriptableObject
     public int MaxHpMaxLevel { get { return _gameData.Stats[(int)EStatType.MaxHp].MaxLevel; }  private set { } }
 
 
-    public UnityAction OnCurrentDamageChanged;
-    public UnityAction OnCurrentMaxhpChanged;
-    public UnityAction OnUpGradeDamageChanged;
-    public UnityAction OnUpGradeMaxHpChagned;
-    public UnityAction OnGoldChanged;
-    public UnityAction OnUpGradeDamageGoldChanged;
-    public UnityAction OnUpGradeMaxHpGoldChanged;
-    public UnityAction OnDamaageLevel;
-    public UnityAction OnMaxHpLevel;
+    public event UnityAction OnCurrentDamageChanged;
+    public event UnityAction OnCurrentMaxhpChanged;
+    public event UnityAction OnUpGradeDamageChanged;
+    public event UnityAction OnUpGradeMaxHpChagned;
+    public event UnityAction OnGoldChanged;
+    public event UnityAction OnUpGradeDamageGoldChanged;
+    public event UnityAction OnUpGradeMaxHpGoldChanged;
+    public event UnityAction OnDamaageLevel;
+    public event UnityAction OnMaxHpLevel;
 }
