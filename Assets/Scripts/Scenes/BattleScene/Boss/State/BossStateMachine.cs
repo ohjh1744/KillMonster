@@ -26,13 +26,13 @@ public class BossStateMachine : MonoBehaviour
     [SerializeField] private Image _upsetWarningImage;
     public Image UpsetWarningImage { get { return _upsetWarningImage; } private set { } }
 
-    private BossState _state;
+    private IState _state;
 
     [SerializeField] private BossAttack[] _bossAttacks;
 
-    private BossState[] _bossStates = new BossState[(int)EBossState.Size];
+    private IState[] _bossStates = new BossState[(int)EBossState.Size];
 
-    public BossState[] BossStates { get { return _bossStates; } private set { } }
+    public IState[] BossStates { get { return _bossStates; } private set { } }
 
     [SerializeField] private int _stateProb;
     public int StateProbability { get { return _stateProb; } private set { } }
@@ -80,7 +80,7 @@ public class BossStateMachine : MonoBehaviour
         }
     }
 
-    public void ChangeState(BossState newState)
+    public void ChangeState(IState newState)
     {
         if (_state != null)
         {
