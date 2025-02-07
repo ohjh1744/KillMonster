@@ -7,9 +7,9 @@ public enum EMovementState { Idle, Walk, Size };
 public enum EAttackState { IdleAttack, Fire, Slash, Throw, Zoom, ReLoad, Size };
 public class PlayerStateMachine : MonoBehaviour, IDamagable
 {
-    private MovementState _currentMovementState;
+    private IState _currentMovementState;
 
-    private AttackState _currentAttackState;
+    private IState _currentAttackState;
 
     [SerializeField] private Rigidbody _rigid;
     public Rigidbody Rigid { get { return _rigid; } private set { } }
@@ -20,11 +20,11 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     [SerializeField] private GameManager _gameManager;
 
 
-    private MovementState[] _movementStates = new MovementState[(int)EMovementState.Size];
-    public MovementState[] MovementStates { get { return _movementStates; } private set { } }
+    private IState[] _movementStates = new IState[(int)EMovementState.Size];
+    public IState[] MovementStates { get { return _movementStates; } private set { } }
 
-    private AttackState[] _attackStates = new AttackState[(int)EAttackState.Size];
-    public AttackState[] AttackStates { get { return _attackStates; } private set { } }
+    private IState[] _attackStates = new IState[(int)EAttackState.Size];
+    public IState[] AttackStates { get { return _attackStates; } private set { } }
 
 
     [Header("UI")]
@@ -110,7 +110,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
     }
 
 
-    public void ChangeMovementState(MovementState newState)
+    public void ChangeMovementState(IState newState)
     {
         if (_currentMovementState != null)
         {
@@ -121,7 +121,7 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         _currentMovementState.Enter();     
     }
 
-    public void ChangeAttackState(AttackState newState)
+    public void ChangeAttackState(IState newState)
     {
         if (_currentAttackState != null)
         {
