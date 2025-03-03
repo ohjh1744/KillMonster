@@ -28,11 +28,12 @@ public class BossThirdAttackState : BossState
     public override void Enter()
     {
         Debug.Log("BossThirdAttack 진입");
+        _navMesh.enabled = false;
         _boss.transform.LookAt(_boss.Player.transform);
         _anim.Play(_thirdAttackHash, -1, 0);
         _bossAttack.Target = _boss.Player.transform;
         _bossAttack.IsAttack = true;
-        _bossAttack.Attack(_bossData.Speed, _bossData.Damage);
+        DoAttack();
     }
 
     public override void Update()
@@ -54,5 +55,21 @@ public class BossThirdAttackState : BossState
         _bossAttack.StopAttack();
         _boss.IsChange = false;
         Debug.Log("BossThirdAttack 나감");
+    }
+
+    private void DoAttack()
+    {
+        switch (_bossAttack.AttackType)
+        {
+            case AttackType.BaseAttack:
+                _bossAttack.Attack(_bossData.Damage);
+                break;
+            case AttackType.UsingSpeedAttack:
+                _bossAttack.Attack(_bossData.Speed, _bossData.Damage);
+                break;
+            case AttackType.UsingAnimAttack:
+                _bossAttack.Attack(_bossData.Damage, _thirdAttackHash);
+                break;
+        }
     }
 }

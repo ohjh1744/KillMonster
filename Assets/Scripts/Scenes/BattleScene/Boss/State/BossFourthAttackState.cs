@@ -40,10 +40,10 @@ public class BossFourthAttackState : BossState
         _anim.Play(_FourthAttackHash, -1, 0);
         _bossAttack.Target = _boss.Player.transform;
         _bossAttack.IsAttack = true;
-        _bossAttack.Attack(_bossData.Damage, _FourthAttackHash);
+        DoAttack();
         _warningAnim.Play(_warningAnimTrueHash);
     }
-
+    
     public override void Update()
     {
         if (_bossData.Hp < 1)
@@ -64,4 +64,21 @@ public class BossFourthAttackState : BossState
         _boss.IsChange = false;
         Debug.Log("BossFourthAttack ³ª°¨");
     }
+
+    private void DoAttack()
+    {
+        switch (_bossAttack.AttackType)
+        {
+            case AttackType.BaseAttack:
+                _bossAttack.Attack(_bossData.Damage);
+                break;
+            case AttackType.UsingSpeedAttack:
+                _bossAttack.Attack(_bossData.Speed, _bossData.Damage);
+                break;
+            case AttackType.UsingAnimAttack:
+                _bossAttack.Attack(_bossData.Damage, _FourthAttackHash);
+                break;
+        }
+    }
+
 }
