@@ -7376,6 +7376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAttack: 0
   _attackDistance: 0
+  _attackType: 0
   _audioSource: {fileID: 1422332690}
   _throwObject: {fileID: 5286935547350647327, guid: 71e179f6eb83d5e4595e86bbe89f5357,
     type: 3}
@@ -7399,6 +7400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAttack: 0
   _attackDistance: 3
+  _attackType: 0
   _attackPos: {fileID: 437870697}
   _audioSource: {fileID: 1422332690}
   _attackClip: {fileID: 8300000, guid: 2c35928109173b44ea96c9363f59df5f, type: 3}
@@ -7421,6 +7423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAttack: 0
   _attackDistance: 4
+  _attackType: 1
   _audioSource: {fileID: 1422332690}
   _attackClip: {fileID: 8300000, guid: 8713071b8d70c7a418f06644c4ee7271, type: 3}
   _navMesh: {fileID: 1422332685}
@@ -7446,6 +7449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isAttack: 0
   _attackDistance: 30
+  _attackType: 2
   _playerNoiseCamera: {fileID: 915914778}
   _safeZone: {fileID: 1458277237}
   _safeZonePoints:

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum AttackType {BaseAttack, UsingSpeedAttack, UsingAnimAttack}
 public abstract class BossAttack : MonoBehaviour
 {
     [SerializeField] private bool _isAttack;
@@ -9,6 +11,9 @@ public abstract class BossAttack : MonoBehaviour
 
     [SerializeField] private float _attackDistance;
     public float AttackDistance { get { return _attackDistance; } private set { } }
+
+    [SerializeField] private AttackType _attackType;
+    public AttackType AttackType { get { return _attackType; } private set { } }
 
     private Transform _target;
     public Transform Target { get { return _target; } set { _target = value; } }

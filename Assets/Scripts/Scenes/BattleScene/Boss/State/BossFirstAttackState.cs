@@ -32,7 +32,7 @@ public class BossFirstAttackState : BossState
         _anim.Play(_firstAttackHash, -1, 0);
         _bossAttack.Target = _boss.Player.transform;
         _bossAttack.IsAttack = true;
-        _bossAttack.Attack(_bossData.Damage);
+        DoAttack();
     }
 
     public override void Update()
@@ -54,4 +54,22 @@ public class BossFirstAttackState : BossState
         _boss.IsChange = false;
         Debug.Log("BossFirstAttack ³ª°¨");
     }
+
+    private void DoAttack()
+    {
+        switch (_bossAttack.AttackType)
+        {
+            case AttackType.BaseAttack:
+                _bossAttack.Attack(_bossData.Damage);
+                break;
+            case AttackType.UsingSpeedAttack:
+                _bossAttack.Attack(_bossData.Speed, _bossData.Damage);
+                break;
+            case AttackType.UsingAnimAttack:
+                _bossAttack.Attack(_bossData.Damage, _firstAttackHash);
+                break;
+        }
+    }
+
+    
 }

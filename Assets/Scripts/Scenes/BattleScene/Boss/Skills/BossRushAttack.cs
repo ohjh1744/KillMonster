@@ -45,7 +45,7 @@ public class BossRushAttack : BossAttack
 
     private void Update()
     {
-        if (IsAttack && _coroutine != null)
+        if (IsAttack && _coroutine != null && _navMesh.enabled == true)
         {
             _navMesh.SetDestination(_playerPosition.position);
         }
@@ -67,11 +67,13 @@ public class BossRushAttack : BossAttack
 
     private IEnumerator RushAttack(float basicSpeed, float basicDamage)
     {
+
         _anim.speed = 0;
         _navMesh.speed = 0;
 
         yield return _waitRushSeconds;
 
+        _navMesh.enabled = true;
         _audioSource.clip = _attackClip;
         _audioSource.Play();
         _anim.speed = 1;
