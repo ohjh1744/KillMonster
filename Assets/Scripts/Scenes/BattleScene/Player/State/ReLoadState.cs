@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class ReLoadState : AttackState
 {
-    private PlayerStateMachine _player;
-
     private PlayerData _playerData;
 
     private IShootable _shootable;
@@ -18,10 +16,9 @@ public class ReLoadState : AttackState
 
     private int _reLoadHash = Animator.StringToHash("ReLoad");
 
-    public ReLoadState(PlayerStateMachine player)
+    public ReLoadState(PlayerStateMachine player): base(player)
     {
-        _player = player;
-        _playerData = _player.PlayerData;
+        _playerData = Player.PlayerData;
     }
 
     public override void Enter()
@@ -37,7 +34,7 @@ public class ReLoadState : AttackState
     {
         if (_shootable.IsReLoad == false)
         {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.IdleAttack]);
+            Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.IdleAttack]);
         }
     }
 
@@ -51,7 +48,7 @@ public class ReLoadState : AttackState
 
     private void ReLoad()
     {
-        _shootable.ReLoad(_player.ReLoadImage);
+        _shootable.ReLoad(Player.ReLoadImage);
         _anim.SetBool(_isReLoadhash, true);
         _anim.Play(_reLoadHash);
     }

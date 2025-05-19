@@ -5,7 +5,6 @@ using static PlayerStateMachine;
 
 public class IdleAttackState : AttackState
 {
-    private PlayerStateMachine _player;
 
     private PlayerData _playerData;
 
@@ -14,12 +13,11 @@ public class IdleAttackState : AttackState
     private AudioSource _audio;
 
     private float _currentTime; 
-    public IdleAttackState(PlayerStateMachine player)
+    public IdleAttackState(PlayerStateMachine player): base(player)
     {
-        _player = player;
-        _playerData = player.PlayerData;
-        _changeGunClip = _player.AudioClips[(int)ESound.ChangeFireWeapon];
-        _audio = _player.AttackStateAudio;
+        _playerData = Player.PlayerData;
+        _changeGunClip = Player.AudioClips[(int)ESound.ChangeFireWeapon];
+        _audio = Player.AttackStateAudio;
     }
     public override void Enter()
     {
@@ -49,23 +47,23 @@ public class IdleAttackState : AttackState
 
             if(Input.GetMouseButtonDown(0))
             {
-                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Fire]);
+                Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.Fire]);
             }
             if(Input.GetMouseButtonDown(1))
             {
-                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Zoom]);
+                Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.Zoom]);
             }
             if(Input.GetKeyDown(KeyCode.Z))
             {
-                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Slash]);
+                Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.Slash]);
             }
             if (Input.GetKeyDown(KeyCode.R) || _playerData.GetAmmos((int)_playerData.CurFireWeapon) == 0)
             {
-                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.ReLoad]);
+                Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.ReLoad]);
             }
             if (Input.GetKeyDown(KeyCode.T))
             {
-                _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Throw]);
+                Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.Throw]);
             }
         }
     }

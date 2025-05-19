@@ -7,8 +7,6 @@ using static PlayerStateMachine;
 public class FireState : AttackState
 {
 
-    private PlayerStateMachine _player;
-
     private PlayerData _playerData;
 
     private Animator _anim;
@@ -25,11 +23,10 @@ public class FireState : AttackState
 
     private int _zoomFireHash = Animator.StringToHash("ZoomFire");
 
-    public FireState(PlayerStateMachine player)
+    public FireState(PlayerStateMachine player): base(player)
     {
-        _player = player;
-        _playerData = _player.PlayerData;
-        _moveCamera = _player.GetComponent<MoveCamera>();
+        _playerData = Player.PlayerData;
+        _moveCamera = Player.GetComponent<MoveCamera>();
         _playerDamage = _playerData.Damage;
         _attackLastTime = 0f;
     }
@@ -44,11 +41,11 @@ public class FireState : AttackState
         Fire();
         if ((_playerData.IsZoom == EZoom.ZoomOut && Input.GetMouseButtonUp(0)))
         {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.IdleAttack]);
+            Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.IdleAttack]);
         }
         if (_playerData.IsZoom == EZoom.ZoomIn && Input.GetMouseButtonUp(0))
         {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Zoom]);
+            Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.Zoom]);
         }
     }
 

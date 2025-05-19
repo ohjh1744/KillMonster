@@ -65,12 +65,12 @@ public class PlayerStateMachine : MonoBehaviour, IDamagable
         PlayerData.Damage = DataManager.Instance.SaveData.CurrentDamage;
         _movementStates[(int)EMovementState.Idle] = new IdleState(this);
         _movementStates[(int)EMovementState.Walk] = new MoveState(this);
-        AttackStates[(int)EAttackState.IdleAttack] = new IdleAttackState(this);
-        AttackStates[(int)EAttackState.Fire] = new FireState( this);
-        AttackStates[(int)EAttackState.Slash] = new SlashState(this);
-        AttackStates[(int)EAttackState.Throw] = new ThrowState(this);
-        AttackStates[(int)EAttackState.Zoom] = new ZoomState(this);
-        AttackStates[(int)EAttackState.ReLoad] = new ReLoadState(this);
+        _attackStates[(int)EAttackState.IdleAttack] = new IdleAttackState(this);
+        _attackStates[(int)EAttackState.Fire] = new FireState( this);
+        _attackStates[(int)EAttackState.Slash] = new SlashState(this);
+        _attackStates[(int)EAttackState.Throw] = new ThrowState(this);
+        _attackStates[(int)EAttackState.Zoom] = new ZoomState(this);
+        _attackStates[(int)EAttackState.ReLoad] = new ReLoadState(this);
     }
     private void Start()
     {

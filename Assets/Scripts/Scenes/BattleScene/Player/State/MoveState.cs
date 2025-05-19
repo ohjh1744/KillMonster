@@ -5,8 +5,6 @@ using static PlayerStateMachine;
 
 public class MoveState : MovementState
 {
-    private PlayerStateMachine _player;
-
     private PlayerData _playerData;
 
     private Animator _anim;
@@ -42,18 +40,17 @@ public class MoveState : MovementState
 
     private AudioSource _audioSource;
 
-    public MoveState(PlayerStateMachine player)
+    public MoveState(PlayerStateMachine player): base(player)
     {
-        _player = player;
-        _playerData = _player.PlayerData;
+        _playerData = Player.PlayerData;
         _originSpeed = _playerData.Speed;
         _cantMoveTime = _playerData.StiffnessTime;
-        _rigid = _player.Rigid;
-        _audioSource = _player.MovementStateAudio;
-        _walkSoundTime = _player.AudioTimes[(int)ESound.Walk];
-        _runSoundTime = _player.AudioTimes[(int)ESound.Run];
-        _walkClip = _player.AudioClips[(int)ESound.Walk];
-        _runClip = _player.AudioClips[(int)ESound.Run];
+        _rigid = Player.Rigid;
+        _audioSource = Player.MovementStateAudio;
+        _walkSoundTime = Player.AudioTimes[(int)ESound.Walk];
+        _runSoundTime = Player.AudioTimes[(int)ESound.Run];
+        _walkClip = Player.AudioClips[(int)ESound.Walk];
+        _runClip = Player.AudioClips[(int)ESound.Run];
     }
 
     public override void Enter()
@@ -87,7 +84,7 @@ public class MoveState : MovementState
 
         if (_moveDir == Vector3.zero)
         {
-            _player.ChangeMovementState(_player.MovementStates[(int)EMovementState.Idle]);
+            Player.ChangeMovementState(Player.MovementStates[(int)EMovementState.Idle]);
         }
     }
 
@@ -108,7 +105,7 @@ public class MoveState : MovementState
     private void Walk()
     {
         _moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-        Vector3 dir = _player.transform.rotation * _moveDir * _playerData.Speed;
+        Vector3 dir = Player.transform.rotation * _moveDir * _playerData.Speed;
         dir.y = 0f;
 
         _rigid.velocity = dir;

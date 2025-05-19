@@ -8,15 +8,12 @@ public class ZoomState : AttackState
 {
     private PlayerData _playerData;
 
-    private PlayerStateMachine _player;
-
     private Animator _anim;
 
     private int _isZoomHash = Animator.StringToHash("isZoom");
-    public ZoomState(PlayerStateMachine player)
+    public ZoomState(PlayerStateMachine player): base(player)
     {
-        _player = player;
-        _playerData = _player.PlayerData;
+        _playerData = Player.PlayerData;
     }
 
     public override void Enter()
@@ -32,11 +29,11 @@ public class ZoomState : AttackState
         if (Input.GetMouseButtonUp(1) || Input.GetMouseButton(1) == false)
         {
             ZoomOutAim();
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.IdleAttack]);
+            Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.IdleAttack]);
         }
         if (Input.GetMouseButtonDown(0))
         {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.Fire]);
+            Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.Fire]);
         }
     }
     public override void Exit()
@@ -47,11 +44,11 @@ public class ZoomState : AttackState
     private void ZoomInAim()
     {
         _playerData.IsZoom = EZoom.ZoomIn;
-        _player.Aims[(int)EZoom.ZoomOut].SetActive(false);
+        Player.Aims[(int)EZoom.ZoomOut].SetActive(false);
         _anim.SetBool(_isZoomHash, true);
         IZoomable zoomable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IZoomable>();
         zoomable.ZoomIn();
-        _player.Aims[(int)EZoom.ZoomIn].SetActive(true);
+        Player.Aims[(int)EZoom.ZoomIn].SetActive(true);
 
 
     }
@@ -59,11 +56,11 @@ public class ZoomState : AttackState
     private void ZoomOutAim()
     {
         _playerData.IsZoom = EZoom.ZoomOut;
-        _player.Aims[(int)EZoom.ZoomIn].SetActive(false);
+        Player.Aims[(int)EZoom.ZoomIn].SetActive(false);
         _anim.SetBool(_isZoomHash, false);
         IZoomable zoomable = _playerData.FireWeapons[(int)_playerData.CurFireWeapon].GetComponent<IZoomable>();
         zoomable.ZoomOut();
-        _player.Aims[(int)EZoom.ZoomOut].SetActive(true);
+        Player.Aims[(int)EZoom.ZoomOut].SetActive(true);
     }
 
 }

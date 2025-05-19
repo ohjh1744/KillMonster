@@ -5,11 +5,10 @@ using static PlayerStateMachine;
 
 public class IdleState : MovementState
 {
-    private PlayerStateMachine _player;
-    public IdleState(PlayerStateMachine player)
+    public IdleState(PlayerStateMachine player): base(player)
     {
-        _player = player;
     }
+
     public override void Enter()
     {
         Debug.Log("현재 Idle State에 진입!");
@@ -19,7 +18,7 @@ public class IdleState : MovementState
     {
         if(Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
-            _player.ChangeMovementState(_player.MovementStates[(int)EMovementState.Walk]);
+            Player.ChangeMovementState(Player.MovementStates[(int)EMovementState.Walk]);
         }
     }
 

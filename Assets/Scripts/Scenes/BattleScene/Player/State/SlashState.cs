@@ -3,8 +3,6 @@ using static PlayerStateMachine;
 
 public class SlashState : AttackState
 {
-    private PlayerStateMachine _player;
-
     private PlayerData _playerData;
 
     private Transform _knifePos;
@@ -21,14 +19,13 @@ public class SlashState : AttackState
 
     private int _isSlashHash = Animator.StringToHash("isSlash");
 
-    public SlashState(PlayerStateMachine player)
+    public SlashState(PlayerStateMachine player): base(player)
     {
-        _player = player;
-        _playerData = _player.PlayerData;
+        _playerData = Player.PlayerData;
         _knifePos = _playerData.NotFireAttackPos[(int)ENotFireWeapon.Knife].transform;
         _playerDamage = _playerData.Damage;
         _attackLastTime = 0f;
-        _audioSource = _player.AttackStateAudio;
+        _audioSource = Player.AttackStateAudio;
     }
     public override void Enter()
     {
@@ -40,7 +37,7 @@ public class SlashState : AttackState
         Slash();
         if (Input.GetKeyUp(KeyCode.Z))
         {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.IdleAttack]);
+            Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.IdleAttack]);
         }
     }
 

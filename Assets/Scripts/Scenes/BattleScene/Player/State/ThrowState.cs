@@ -6,8 +6,6 @@ using static PlayerStateMachine;
 
 public class ThrowState : AttackState
 {
-    private PlayerStateMachine _player;
-
     private PlayerData _playerData;
 
     private Transform _throwPos;
@@ -24,13 +22,12 @@ public class ThrowState : AttackState
 
     private int _isThrowHash = Animator.StringToHash("isThrow");
 
-    public ThrowState(PlayerStateMachine player)
+    public ThrowState(PlayerStateMachine player): base(player)
     {
-        _player = player;
-        _playerData = _player.PlayerData;
+        _playerData = Player.PlayerData;
         _throwPos = _playerData.NotFireAttackPos[(int)ENotFireWeapon.Grenade].transform;
         _attackLastTime = 0f;
-        _audioSource = _player.AttackStateAudio;
+        _audioSource = Player.AttackStateAudio;
     }
     public override void Enter()
     {
@@ -43,7 +40,7 @@ public class ThrowState : AttackState
         Throw();
         if (Input.GetKeyUp(KeyCode.T))
         {
-            _player.ChangeAttackState(_player.AttackStates[(int)EAttackState.IdleAttack]);
+            Player.ChangeAttackState(Player.AttackStates[(int)EAttackState.IdleAttack]);
         }
     }
 
