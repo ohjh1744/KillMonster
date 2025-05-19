@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class BossUpsetState : BossState
 {
-    private BossStateMachine _boss;
-
     private BossData _bossData;
 
     private BossUpset _bossUpset;
@@ -28,15 +26,14 @@ public class BossUpsetState : BossState
 
     private int _warningAnimFalseHash = Animator.StringToHash("WarningImageFalse");
 
-    public BossUpsetState(BossStateMachine boss)
+    public BossUpsetState(BossStateMachine boss) : base(boss)
     {
-        this._boss = boss;
-        _bossData = _boss.BossData;
-        _bossUpset = _boss.GetComponent<BossUpset>();
-        _navMesh = _boss.GetComponent<NavMeshAgent>();
-        _anim = _boss.GetComponent<Animator>();
+        _bossData = Boss.BossData;
+        _bossUpset = Boss.GetComponent<BossUpset>();
+        _navMesh = Boss.GetComponent<NavMeshAgent>();
+        _anim = Boss.GetComponent<Animator>();
         _upsetTime = _bossData.UpsetTime;
-        _warningAnim = _boss.UpsetWarningImage.GetComponent<Animator>();
+        _warningAnim = Boss.UpsetWarningImage.GetComponent<Animator>();
     }
     public override void Enter()
     {
@@ -52,19 +49,19 @@ public class BossUpsetState : BossState
         _currentTime += Time.deltaTime;
         if (_bossData.Hp < 1)
         {
-            _boss.IsChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
+            Boss.IsChange = true;
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.Dead]);
         }
         else if (_currentTime > _upsetTime)
         {
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.Move]);
         }
     }
 
     public override void Exit()
     {
         _warningAnim.Play(_warningAnimFalseHash);
-        _boss.IsChange = false;
+        Boss.IsChange = false;
         _currentTime = 0;
         Debug.Log("BossUpsetState ³ª°¨");
     }

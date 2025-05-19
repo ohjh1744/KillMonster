@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class BossSecondAttackState : BossState
 {
-    private BossStateMachine _boss;
 
     private BossData _bossData;
 
@@ -16,22 +15,21 @@ public class BossSecondAttackState : BossState
     private Animator _anim;
 
     private int _secondAttackHash = Animator.StringToHash("SecondAttack");
-    public BossSecondAttackState(BossStateMachine boss, BossAttack bossAttack)
+    public BossSecondAttackState(BossStateMachine boss, BossAttack bossAttack) : base(boss)
     {
-        this._boss = boss;
-        _bossData = _boss.BossData;
+        _bossData = Boss.BossData;
         _navMesh = _bossData.GetComponent<NavMeshAgent>();
         _bossAttack = bossAttack;
-        _anim = _boss.GetComponent<Animator>();
-
+        _anim = Boss.GetComponent<Animator>();
     }
+
     public override void Enter()
     {
         Debug.Log("BossSecondAttack 진입");
         _navMesh.enabled = false;
-        _boss.transform.LookAt(_boss.transform);
+        Boss.transform.LookAt(Boss.transform);
         _anim.Play(_secondAttackHash, -1, 0);
-        _bossAttack.Target = _boss.Player.transform;
+        _bossAttack.Target = Boss.Player.transform;
         _bossAttack.IsAttack = true;
         DoAttack();
     }
@@ -40,18 +38,18 @@ public class BossSecondAttackState : BossState
     {
         if (_bossData.Hp < 1)
         {
-            _boss.IsChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
+            Boss.IsChange = true;
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.Dead]);
         }
         if (_bossAttack.IsAttack == false)
         {
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.Move]);
         }
     }
     public override void Exit()
     {
         _bossAttack.StopAttack();
-        _boss.IsChange = false;
+        Boss.IsChange = false;
         Debug.Log("BossSecondAttack 나감");
     }
 

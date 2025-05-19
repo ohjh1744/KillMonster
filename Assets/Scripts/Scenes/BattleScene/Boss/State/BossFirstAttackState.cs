@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class BossFirstAttackState : BossState
 {
-    private BossStateMachine _boss;
 
     private BossData _bossData;
 
@@ -16,21 +15,20 @@ public class BossFirstAttackState : BossState
     private Animator _anim;
 
     private int _firstAttackHash = Animator.StringToHash("FirstAttack");
-    public BossFirstAttackState(BossStateMachine boss, BossAttack bossAttack)
+    public BossFirstAttackState(BossStateMachine boss, BossAttack bossAttack) : base(boss)
     {
-        this._boss = boss;
-        _bossData = _boss.BossData;
-        _navMesh = _boss.GetComponent<NavMeshAgent>();
+        _bossData = Boss.BossData;
+        _navMesh = Boss.GetComponent<NavMeshAgent>();
         _bossAttack = bossAttack;
-        _anim = _boss.GetComponent<Animator>();
+        _anim = Boss.GetComponent<Animator>();
     }
     public override void Enter()
     {
         Debug.Log("BossFirstAttack 진입");
         _navMesh.enabled = false;
-        _boss.transform.LookAt(_boss.Player.transform);
+        Boss.transform.LookAt(Boss.Player.transform);
         _anim.Play(_firstAttackHash, -1, 0);
-        _bossAttack.Target = _boss.Player.transform;
+        _bossAttack.Target = Boss.Player.transform;
         _bossAttack.IsAttack = true;
         DoAttack();
     }
@@ -39,19 +37,19 @@ public class BossFirstAttackState : BossState
     {
         if (_bossData.Hp < 1)
         {
-            _boss.IsChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
+            Boss.IsChange = true;
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.Dead]);
         }
         else if (_bossAttack.IsAttack == false)
         {
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.Move]);
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.Move]);
         }
     }
 
     public override void Exit()
     {
         _bossAttack.StopAttack();
-        _boss.IsChange = false;
+        Boss.IsChange = false;
         Debug.Log("BossFirstAttack 나감");
     }
 

@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class BossMoveState : BossState
 {
-    private BossStateMachine _boss;
 
     private BossData _bossData;
 
@@ -20,14 +19,13 @@ public class BossMoveState : BossState
     private float _speed;
 
     private float _bossUpsetHp;
-    public BossMoveState(BossStateMachine boss)
+    public BossMoveState(BossStateMachine boss) : base(boss)
     {
-        this._boss = boss;
-        _bossData = _boss.BossData;
-        _bossMove = _boss.GetComponent<BossMove>();
-        _bossHitAttack = _boss.GetComponent<BossHitAttack>();
-        _navMesh = _boss.GetComponent<NavMeshAgent>();
-        _player = _boss.Player.transform;
+        _bossData = Boss.BossData;
+        _bossMove = Boss.GetComponent<BossMove>();
+        _bossHitAttack = Boss.GetComponent<BossHitAttack>();
+        _navMesh = Boss.GetComponent<NavMeshAgent>();
+        _player = Boss.Player.transform;
         _bossUpsetHp = _bossData.Hp / 2;
  
     }
@@ -45,33 +43,33 @@ public class BossMoveState : BossState
         _bossMove.Move();
         if (_bossData.Hp < 1)
         {
-            _boss.IsChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.Dead]);
+            Boss.IsChange = true;
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.Dead]);
         }
-        if (_bossData.IsUpset == false && _bossData.Hp < _bossUpsetHp && _boss.IsChange == false)
+        if (_bossData.IsUpset == false && _bossData.Hp < _bossUpsetHp && Boss.IsChange == false)
         {
-            _boss.IsChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.Upset]);
+            Boss.IsChange = true;
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.Upset]);
         }
-        if ((_boss.StateProbability < _boss.MaxProb[0] && _boss.StateProbability >= _boss.MinProb[0]) && _boss.IsChange == false)
+        if ((Boss.StateProbability < Boss.MaxProb[0] && Boss.StateProbability >= Boss.MinProb[0]) && Boss.IsChange == false)
         {
-            _boss.IsChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.FirstAttack]);
+            Boss.IsChange = true;
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.FirstAttack]);
         }
-        if ((_boss.StateProbability < _boss.MaxProb[1] && _boss.StateProbability >= _boss.MinProb[1]) && _boss.IsChange == false)
+        if ((Boss.StateProbability < Boss.MaxProb[1] && Boss.StateProbability >= Boss.MinProb[1]) && Boss.IsChange == false)
         {
-            _boss.IsChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.SecondAttack]);
+            Boss.IsChange = true;
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.SecondAttack]);
         }
-        if ((_boss.StateProbability < _boss.MaxProb[2] && _boss.StateProbability >= _boss.MinProb[2]) && _boss.IsChange == false)
+        if ((Boss.StateProbability < Boss.MaxProb[2] && Boss.StateProbability >= Boss.MinProb[2]) && Boss.IsChange == false)
         {
-            _boss.IsChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.ThirdAttack]);
+            Boss.IsChange = true;
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.ThirdAttack]);
         }
-        if (_bossData.IsUpset == true && (_boss.StateProbability < _boss.MaxProb[3] && _boss.StateProbability >= _boss.MinProb[3]) && _boss.IsChange == false)
+        if (_bossData.IsUpset == true && (Boss.StateProbability < Boss.MaxProb[3] && Boss.StateProbability >= Boss.MinProb[3]) && Boss.IsChange == false)
         {
-            _boss.IsChange = true;
-            _boss.ChangeState(_boss.BossStates[(int)EBossState.FourthAttack]);
+            Boss.IsChange = true;
+            Boss.ChangeState(Boss.BossStates[(int)EBossState.FourthAttack]);
         }
     }
 

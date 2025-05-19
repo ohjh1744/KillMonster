@@ -6,7 +6,6 @@ using UnityEngine.AI;
 
 public class BossDeadState : BossState
 {
-    private BossStateMachine _boss;
 
     private BossData _bossData;
 
@@ -24,15 +23,14 @@ public class BossDeadState : BossState
 
     private int _deadHash = Animator.StringToHash("Dead");
 
-    public BossDeadState(BossStateMachine boss)
+    public BossDeadState(BossStateMachine boss): base(boss)
     {
-        this._boss = boss;
-        _bossData = _boss.BossData;
-        _bossDead = _boss.GetComponent<BossDead>();
-        _navMesh = _boss.GetComponent<NavMeshAgent>();
-        _gameManager = _boss.GameManager;
+        _bossData = Boss.BossData;
+        _bossDead = Boss.GetComponent<BossDead>();
+        _navMesh = Boss.GetComponent<NavMeshAgent>();
+        _gameManager = Boss.GameManager;
         _deadTime = _bossData.DeadTime;
-        _anim = _boss.GetComponent<Animator>();
+        _anim = Boss.GetComponent<Animator>();
     }
     public override void Enter()
     {
